@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PT. Maha Karya Haluoleo — Hadir di Mana Impian Dibangun</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sage: #7a9e6e;
+    --sage-light: #a8c49a;
+    --sage-pale: #e4ede0;
+    --sage-dark: #4e7244;
+    --sage-deep: #2d4d25;
+    --gold: #c9a84c;
+    --gold-light: #e8c96b;
+    --cream: #f5f7f2;
+    --white: #ffffff;
+    --text: #2c3228;
+    --text-light: #6b7566;
+    --dusty-rose: #c9948a;
+    --navy: #1a2744;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { font-family:'DM Sans',sans-serif; background:var(--cream); color:var(--text); overflow-x:hidden; }
+
+  /* ===== NAV ===== */
+  nav {
+    position:fixed; top:0; width:100%; z-index:200;
+    padding:0 4rem;
+    display:flex; align-items:stretch; justify-content:space-between;
+    background:rgba(245,247,242,0.95);
+    backdrop-filter:blur(16px);
+    border-bottom:1px solid rgba(122,158,110,0.2);
+    height:64px;
+  }
+  .nav-logo {
+    display:flex; align-items:center; gap:0.8rem;
+    font-family:'Cormorant Garamond',serif;
+    font-size:1.25rem; color:var(--sage-deep); font-weight:400;
+    letter-spacing:0.04em; text-decoration:none;
+  }
+  .nav-logo span { color:var(--sage); font-weight:300; }
+  .nav-links { display:flex; align-items:stretch; gap:0; list-style:none; }
+  .nav-links > li { position:relative; display:flex; align-items:center; }
+  .nav-links > li > a {
+    font-size:0.78rem; letter-spacing:0.12em; text-transform:uppercase;
+    color:var(--text); text-decoration:none; font-weight:500;
+    padding:0 1.3rem; height:100%; display:flex; align-items:center;
+    transition:color 0.2s, background 0.2s;
+    border-bottom:2px solid transparent;
+  }
+  .nav-links > li > a:hover { color:var(--sage-dark); border-bottom-color:var(--sage); }
+  .nav-links > li.active > a { color:var(--sage-dark); border-bottom-color:var(--sage); }
+
+  /* Beauty nav item special */
+  .nav-beauty > a {
+    color:var(--dusty-rose) !important;
+    border-bottom-color:transparent !important;
+  }
+  .nav-beauty > a:hover { color:var(--dusty-rose) !important; border-bottom-color:var(--dusty-rose) !important; }
+
+  .nav-cta {
+    display:flex; align-items:center;
+    background:var(--sage-dark); color:var(--white);
+    padding:0 1.6rem; margin:auto 0 auto 1.5rem;
+    height:38px; border-radius:2px;
+    font-size:0.76rem; letter-spacing:0.1em; text-transform:uppercase;
+    text-decoration:none; font-weight:500;
+    transition:background 0.3s;
+  }
+  .nav-cta:hover { background:var(--sage-deep); }
+
+  /* ===== PAGE SYSTEM ===== */
+  .page { display:none; }
+  .page.active { display:block; }
+
+  /* ===== HERO ===== */
+  .hero {
+    min-height:100vh;
+    background:linear-gradient(150deg, var(--sage-deep) 0%, var(--sage-dark) 45%, #3d6b35 100%);
+    position:relative; overflow:hidden;
+    display:flex; align-items:center; padding:0 4rem;
+  }
+  .hero-pattern {
+    position:absolute; inset:0; opacity:0.05;
+    background-image:radial-gradient(circle, var(--white) 1px, transparent 1px);
+    background-size:32px 32px;
+  }
+  .hero-leaf {
+    position:absolute; right:-5rem; top:50%; transform:translateY(-50%);
+    width:600px; height:600px; opacity:0.06;
+    background:radial-gradient(ellipse, var(--white) 0%, transparent 70%);
+    border-radius:50%;
+  }
+  .hero-content { position:relative; z-index:2; max-width:700px; animation:fadeUp 1.2s ease; }
+  .hero-badge {
+    display:inline-flex; align-items:center; gap:0.6rem;
+    background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.25);
+    padding:0.4rem 1rem; border-radius:2px;
+    font-size:0.7rem; letter-spacing:0.18em; text-transform:uppercase;
+    color:rgba(255,255,255,0.8); margin-bottom:2rem;
+  }
+  .hero-badge::before { content:''; width:5px; height:5px; background:var(--gold); border-radius:50%; }
+  .hero h1 {
+    font-family:'Cormorant Garamond',serif;
+    font-size:clamp(3rem,6vw,5.5rem); font-weight:300; line-height:1.1;
+    color:var(--white); margin-bottom:1.5rem;
+  }
+  .hero h1 em { font-style:italic; color:var(--gold-light); }
+  .hero p { font-size:1rem; color:rgba(255,255,255,0.7); line-height:1.9; max-width:500px; margin-bottom:3rem; font-weight:300; }
+  .hero-btns { display:flex; gap:1rem; flex-wrap:wrap; }
+  .btn-primary {
+    background:var(--gold); color:var(--sage-deep);
+    padding:0.9rem 2.2rem; border-radius:2px;
+    font-size:0.8rem; letter-spacing:0.12em; text-transform:uppercase;
+    text-decoration:none; font-weight:600; transition:all 0.3s; display:inline-block;
+  }
+  .btn-primary:hover { background:var(--gold-light); transform:translateY(-2px); }
+  .btn-outline {
+    border:1px solid rgba(255,255,255,0.35); color:var(--white);
+    padding:0.9rem 2.2rem; border-radius:2px;
+    font-size:0.8rem; letter-spacing:0.12em; text-transform:uppercase;
+    text-decoration:none; font-weight:400; transition:all 0.3s; display:inline-block;
+  }
+  .btn-outline:hover { border-color:var(--gold-light); color:var(--gold-light); }
+  .hero-stats {
+    position:absolute; bottom:3rem; right:4rem; display:flex; gap:3rem; z-index:2;
+  }
+  .stat-num { font-family:'Cormorant Garamond',serif; font-size:2.8rem; font-weight:300; color:var(--gold); line-height:1; }
+  .stat-label { font-size:0.68rem; letter-spacing:0.15em; text-transform:uppercase; color:rgba(255,255,255,0.45); margin-top:0.3rem; }
+
+  /* ===== SECTIONS ===== */
+  section { padding:6rem 4rem; }
+  .section-label {
+    font-size:0.7rem; letter-spacing:0.2em; text-transform:uppercase;
+    color:var(--sage-dark); font-weight:500; margin-bottom:0.8rem;
+    display:flex; align-items:center; gap:0.8rem;
+  }
+  .section-label::before { content:''; width:28px; height:1px; background:var(--sage); }
+  .section-title {
+    font-family:'Cormorant Garamond',serif;
+    font-size:clamp(2rem,4vw,3.2rem); font-weight:300; line-height:1.2; color:var(--text);
+  }
+  .section-title em { font-style:italic; color:var(--sage-dark); }
+
+  /* ===== ABOUT ===== */
+  .about { background:var(--white); }
+  .about-inner { display:grid; grid-template-columns:1fr 1fr; gap:6rem; align-items:center; max-width:1200px; margin:0 auto; }
+  .about-text p { color:var(--text-light); line-height:1.9; margin-bottom:1rem; font-size:0.93rem; }
+  .about-text .section-title { margin-bottom:1.5rem; }
+  .timeline { display:flex; flex-direction:column; gap:1.2rem; margin-top:2rem; }
+  .timeline-item { display:flex; gap:1.2rem; }
+  .tl-year { font-family:'Cormorant Garamond',serif; font-size:1.3rem; color:var(--sage-dark); min-width:45px; }
+  .tl-desc { font-size:0.86rem; color:var(--text-light); line-height:1.6; padding-top:0.2rem; }
+  .about-card {
+    background:linear-gradient(150deg, var(--sage-deep) 0%, var(--sage-dark) 100%);
+    border-radius:6px; padding:3rem; min-height:400px;
+    display:flex; flex-direction:column; justify-content:space-between;
+  }
+  .about-card-title { font-family:'Cormorant Garamond',serif; font-size:2rem; color:var(--white); font-weight:300; line-height:1.3; }
+  .about-card-title em { font-style:italic; color:var(--gold-light); }
+  .location-tags { display:flex; flex-wrap:wrap; gap:0.5rem; margin-top:1.5rem; }
+  .location-tag {
+    background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2);
+    padding:0.3rem 0.8rem; border-radius:2px;
+    font-size:0.7rem; color:rgba(255,255,255,0.8); letter-spacing:0.06em;
+  }
+  .visi-box { margin-top:2rem; }
+  .visi-label { font-size:0.68rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold-light); margin-bottom:0.3rem; }
+  .visi-text { font-size:0.84rem; color:rgba(255,255,255,0.7); line-height:1.7; margin-bottom:1rem; }
+
+  /* ===== PROPERTI PAGE ===== */
+  .properti-hero {
+    padding:10rem 4rem 5rem;
+    background:linear-gradient(160deg, var(--sage-pale) 0%, var(--cream) 100%);
+  }
+  .properti-hero .section-label::before { background:var(--sage); }
+  .properti-hero .section-title { margin-bottom:1rem; }
+  .properti-hero p { color:var(--text-light); font-size:0.95rem; max-width:560px; line-height:1.8; }
+
+  .products-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2rem; max-width:1200px; margin:0 auto; }
+  .product-card {
+    background:var(--white); border-radius:4px; overflow:hidden;
+    border:1px solid rgba(122,158,110,0.15);
+    transition:transform 0.3s, box-shadow 0.3s;
+  }
+  .product-card:hover { transform:translateY(-6px); box-shadow:0 20px 50px rgba(46,77,37,0.12); }
+  .card-img {
+    height:200px; position:relative; overflow:hidden;
+    display:flex; align-items:center; justify-content:center;
+    font-size:3.5rem;
+  }
+  .card-badge {
+    position:absolute; top:1rem; left:1rem;
+    background:var(--sage-dark); color:var(--white);
+    padding:0.25rem 0.7rem; border-radius:2px;
+    font-size:0.66rem; letter-spacing:0.12em; text-transform:uppercase;
+  }
+  .card-badge.subsidi { background:var(--gold); color:var(--sage-deep); }
+  .card-badge.new { background:var(--sage-dark); }
+  .card-body { padding:1.8rem; }
+  .card-loc { font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--sage-dark); margin-bottom:0.4rem; }
+  .card-title { font-family:'Cormorant Garamond',serif; font-size:1.5rem; color:var(--text); margin-bottom:0.6rem; font-weight:400; }
+  .card-desc { font-size:0.83rem; color:var(--text-light); line-height:1.7; margin-bottom:1.2rem; }
+  .card-price { font-family:'Cormorant Garamond',serif; font-size:1.3rem; color:var(--sage-deep); }
+  .card-price small { font-family:'DM Sans',sans-serif; font-size:0.75rem; color:var(--text-light); }
+  .card-cicilan { font-size:0.74rem; color:var(--text-light); margin-top:0.2rem; }
+  .card-links { display:flex; gap:0.5rem; flex-wrap:wrap; margin-top:1rem; }
+  .card-link {
+    font-size:0.7rem; color:var(--sage-dark); text-decoration:none;
+    border:1px solid rgba(122,158,110,0.4); padding:0.28rem 0.7rem;
+    border-radius:2px; transition:all 0.2s;
+  }
+  .card-link:hover { background:var(--sage); color:var(--white); border-color:var(--sage); }
+
+  /* ===== PORTFOLIO PAGE ===== */
+  .portfolio-hero {
+    padding:10rem 4rem 5rem;
+    background:linear-gradient(160deg, var(--sage-deep) 0%, var(--sage-dark) 100%);
+  }
+  .portfolio-hero .section-label { color:var(--sage-light); }
+  .portfolio-hero .section-label::before { background:var(--sage-light); }
+  .portfolio-hero .section-title { color:var(--white); }
+  .portfolio-hero .section-title em { color:var(--gold-light); }
+  .portfolio-hero p { color:rgba(255,255,255,0.6); font-size:0.95rem; max-width:540px; line-height:1.8; margin-top:1rem; }
+
+  .portfolio-grid {
+    display:grid; grid-template-columns:repeat(4,1fr);
+    gap:1px; background:rgba(122,158,110,0.15);
+    border:1px solid rgba(122,158,110,0.15);
+    max-width:1200px; margin:0 auto;
+  }
+  .portfolio-item {
+    background:var(--white); padding:2rem 1.5rem;
+    transition:background 0.3s;
+  }
+  .portfolio-item:hover { background:var(--sage-pale); }
+  .pi-loc { font-size:0.66rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--sage-dark); margin-bottom:0.4rem; }
+  .pi-name { font-family:'Cormorant Garamond',serif; font-size:1.1rem; color:var(--text); font-weight:400; line-height:1.3; margin-bottom:0.3rem; }
+  .pi-units { font-size:0.76rem; color:var(--text-light); }
+
+  /* ===== BEAUTY PAGE ===== */
+  .beauty-page { background:var(--white); }
+  .beauty-hero {
+    padding:10rem 4rem 5rem;
+    background:linear-gradient(150deg, #3d2020 0%, #7a3a35 40%, #c9948a 100%);
+    position:relative; overflow:hidden;
+    display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:center;
+  }
+  .beauty-hero::before {
+    content:'◇'; position:absolute; right:5rem; top:50%; transform:translateY(-50%);
+    font-size:20rem; color:rgba(255,255,255,0.04); line-height:1;
+  }
+  .beauty-hero-content { position:relative; z-index:2; }
+  .beauty-hero .section-label { color:rgba(255,220,210,0.8); }
+  .beauty-hero .section-label::before { background:rgba(255,220,210,0.5); }
+  .beauty-hero .section-title { color:var(--white); margin-bottom:1.2rem; }
+  .beauty-hero .section-title em { color:#f5c5bc; }
+  .beauty-hero p { color:rgba(255,255,255,0.7); font-size:0.93rem; line-height:1.9; margin-bottom:1rem; }
+  .beauty-hero-product {
+    position:relative; z-index:2;
+    background:rgba(255,255,255,0.1); backdrop-filter:blur(10px);
+    border:1px solid rgba(255,255,255,0.2);
+    border-radius:8px; padding:3rem; text-align:center;
+  }
+  .b-brand { font-family:'Cormorant Garamond',serif; font-size:2.5rem; color:var(--white); font-weight:300; letter-spacing:0.2em; }
+  .b-tagline { font-size:0.7rem; letter-spacing:0.2em; text-transform:uppercase; color:rgba(255,255,255,0.65); margin-top:0.2rem; }
+  .b-product-name { font-family:'Cormorant Garamond',serif; font-size:2.2rem; color:var(--white); margin-top:2rem; font-weight:300; }
+  .b-product-type { font-size:0.8rem; letter-spacing:0.1em; color:rgba(255,255,255,0.7); margin-top:0.3rem; text-transform:uppercase; }
+  .b-price { display:flex; align-items:center; justify-content:center; gap:1rem; margin-top:1.5rem; }
+  .b-price-old { font-size:1rem; color:rgba(255,255,255,0.4); text-decoration:line-through; }
+  .b-price-new { font-family:'Cormorant Garamond',serif; font-size:2rem; color:var(--white); }
+  .b-cta { margin-top:2rem; }
+
+  .beauty-features-section { padding:5rem 4rem; background:var(--white); }
+  .beauty-features-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1.5rem; max-width:1200px; margin:3rem auto 0; }
+  .b-feature {
+    padding:2rem 1.5rem; border-radius:4px;
+    border:1px solid rgba(201,148,138,0.2);
+    transition:border-color 0.3s, box-shadow 0.3s;
+  }
+  .b-feature:hover { border-color:var(--dusty-rose); box-shadow:0 8px 30px rgba(201,148,138,0.12); }
+  .b-feature-icon { font-size:1.8rem; margin-bottom:0.8rem; }
+  .b-feature-title { font-size:0.88rem; font-weight:500; color:var(--text); margin-bottom:0.3rem; }
+  .b-feature-desc { font-size:0.8rem; color:var(--text-light); line-height:1.6; }
+
+  .beauty-brand-story { padding:5rem 4rem; background:var(--cream); }
+  .beauty-brand-inner { max-width:800px; margin:0 auto; text-align:center; }
+  .beauty-brand-inner .section-label { justify-content:center; }
+  .beauty-brand-inner .section-label::before { display:none; }
+  .beauty-brand-inner .section-title em { color:var(--dusty-rose); }
+  .b-story-text { font-size:1.05rem; color:var(--text-light); line-height:2; margin-top:1.5rem; font-weight:300; }
+  .b-story-text strong { color:var(--text); font-weight:500; }
+
+  .beauty-shop { padding:5rem 4rem; background:var(--white); }
+  .beauty-shop-inner { max-width:600px; margin:0 auto; text-align:center; }
+  .beauty-shop-inner .section-label { justify-content:center; }
+  .beauty-shop-inner .section-label::before { display:none; }
+  .shop-links { display:flex; justify-content:center; flex-wrap:wrap; gap:1rem; margin-top:2.5rem; }
+  .shop-link {
+    display:flex; align-items:center; gap:0.6rem;
+    padding:0.8rem 1.6rem; border-radius:4px;
+    font-size:0.82rem; text-decoration:none; font-weight:500;
+    transition:all 0.3s;
+  }
+  .shop-link.ig { background:#f5e6e4; color:var(--dusty-rose); border:1px solid rgba(201,148,138,0.3); }
+  .shop-link.ig:hover { background:var(--dusty-rose); color:var(--white); }
+  .shop-link.tok { background:#f5e9e0; color:#d35400; border:1px solid rgba(211,84,0,0.2); }
+  .shop-link.tok:hover { background:#d35400; color:var(--white); }
+  .shop-link.spe { background:#fff0f0; color:#ee4d2d; border:1px solid rgba(238,77,45,0.2); }
+  .shop-link.spe:hover { background:#ee4d2d; color:var(--white); }
+  .shop-link.tik { background:#e8f5e8; color:var(--sage-dark); border:1px solid rgba(78,114,68,0.2); }
+  .shop-link.tik:hover { background:var(--sage-dark); color:var(--white); }
+
+  /* ===== KONTAK PAGE ===== */
+  .kontak-hero {
+    padding:10rem 4rem 5rem;
+    background:linear-gradient(160deg, var(--sage-pale) 0%, var(--cream) 100%);
+    text-align:center;
+  }
+  .kontak-hero .section-label { justify-content:center; }
+  .kontak-hero .section-label::before { display:none; }
+  .kontak-hero .section-title { margin-bottom:1rem; }
+  .kontak-hero p { color:var(--text-light); font-size:0.95rem; max-width:480px; margin:0 auto; line-height:1.8; }
+  .kontak-cards {
+    display:flex; gap:2rem; justify-content:center; flex-wrap:wrap;
+    max-width:900px; margin:0 auto; padding:0 4rem 4rem;
+  }
+  .kontak-card {
+    background:var(--white); border-radius:6px; padding:2.5rem 2rem;
+    flex:1; min-width:220px; text-align:center;
+    border:1px solid rgba(122,158,110,0.15);
+    transition:box-shadow 0.3s;
+  }
+  .kontak-card:hover { box-shadow:0 12px 40px rgba(46,77,37,0.1); }
+  .kontak-icon { font-size:2rem; margin-bottom:1rem; }
+  .kontak-label { font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--sage-dark); margin-bottom:0.5rem; }
+  .kontak-value { font-size:0.9rem; color:var(--text); }
+  .kontak-value a { color:var(--text); text-decoration:none; }
+  .kontak-value a:hover { color:var(--sage-dark); }
+  .kontak-wa { text-align:center; padding-bottom:6rem; }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background:var(--sage-deep); padding:2rem 4rem;
+    display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem;
+  }
+  .footer-brand { font-family:'Cormorant Garamond',serif; font-size:1.1rem; color:rgba(255,255,255,0.6); }
+  .footer-text { font-size:0.76rem; color:rgba(255,255,255,0.3); }
+  .footer-nav { display:flex; gap:1.5rem; }
+  .footer-nav a { font-size:0.72rem; color:rgba(255,255,255,0.35); text-decoration:none; letter-spacing:0.08em; transition:color 0.2s; }
+  .footer-nav a:hover { color:var(--gold-light); }
+
+  /* ===== ANIMATIONS ===== */
+  @keyframes fadeUp { from { opacity:0; transform:translateY(40px); } to { opacity:1; transform:translateY(0); } }
+  .reveal { opacity:0; transform:translateY(25px); transition:opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity:1; transform:translateY(0); }
+
+  /* ===== RESPONSIVE ===== */
+  @media(max-width:900px) {
+    nav { padding:0 1.2rem; }
+    .nav-links li a { padding:0 0.7rem; font-size:0.7rem; }
+    section, .properti-hero, .portfolio-hero, .beauty-hero, .kontak-hero { padding:7rem 1.5rem 3rem; }
+    .about-inner, .beauty-hero { grid-template-columns:1fr; gap:3rem; }
+    .products-grid, .beauty-features-grid { grid-template-columns:1fr; }
+    .portfolio-grid { grid-template-columns:repeat(2,1fr); }
+    .hero-stats { display:none; }
+    footer { padding:1.5rem; flex-direction:column; text-align:center; }
+    .kontak-cards { padding:0 1.5rem 3rem; }
+    .shop-links { flex-direction:column; align-items:center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<nav id="navbar">
+  <a href="#" class="nav-logo" onclick="showPage('home')">Maha Karya <span>Haluoleo</span></a>
+  <ul class="nav-links">
+    <li id="nav-home"><a href="#" onclick="showPage('home')">Beranda</a></li>
+    <li id="nav-properti"><a href="#" onclick="showPage('properti')">Properti</a></li>
+    <li id="nav-beauty" class="nav-beauty"><a href="#" onclick="showPage('beauty')">Loonars Beauty</a></li>
+    <li id="nav-portfolio"><a href="#" onclick="showPage('portfolio')">Portfolio</a></li>
+    <li id="nav-kontak"><a href="#" onclick="showPage('kontak')">Kontak</a></li>
+  </ul>
+  <a href="#" class="nav-cta" onclick="showPage('kontak')">Hubungi Kami</a>
+</nav>
+
+<!-- ===== HOME PAGE ===== -->
+<div class="page active" id="page-home">
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-pattern"></div>
+    <div class="hero-leaf"></div>
+    <div class="hero-content">
+      <div class="hero-badge">Est. 2012 · Sulawesi — Jawa — Yogyakarta</div>
+      <h1>Hadir di Mana<br><em>Impian Dibangun</em></h1>
+      <p>PT. Maha Karya Haluoleo adalah perusahaan pengembang properti, villa, dan kecantikan yang telah mewujudkan ribuan hunian impian di seluruh Indonesia.</p>
+      <div class="hero-btns">
+        <a href="#" class="btn-primary" onclick="showPage('properti')">Lihat Properti</a>
+        <a href="#" class="btn-outline" onclick="showPage('kontak')">Hubungi Kami</a>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">10+</div><div class="stat-label">Project Selesai</div></div>
+      <div class="stat"><div class="stat-num">12+</div><div class="stat-label">Tahun Berkarya</div></div>
+      <div class="stat"><div class="stat-num">6</div><div class="stat-label">Kota Ekspansi</div></div>
+    </div>
+  </div>
+
+  <!-- About -->
+  <section class="about">
+    <div class="about-inner">
+      <div class="about-text reveal">
+        <div class="section-label">Tentang Kami</div>
+        <h2 class="section-title">Membangun Kepercayaan<br><em>Sejak 2012</em></h2>
+        <p>PT. Maha Karya Haluoleo berdiri pada 21 November 2012 sebagai perusahaan pengembang yang berfokus pada perumahan, kawasan wisata, dan tanah kavling.</p>
+        <p>Berkantor pusat di Makassar, kami terus berkembang dengan misi menjadi perusahaan properti berskala nasional yang amanah, kreatif, dan inovatif.</p>
+        <div class="timeline">
+          <div class="timeline-item"><div class="tl-year">2012</div><div class="tl-desc">Berdiri di Sulawesi Tenggara, memulai perjalanan membangun hunian impian</div></div>
+          <div class="timeline-item"><div class="tl-year">2017</div><div class="tl-desc">Ekspansi ke Sulawesi Selatan, membangun 10+ project prestisius</div></div>
+          <div class="timeline-item"><div class="tl-year">2025</div><div class="tl-desc">Ekspansi ke Yogyakarta dengan brand Loonars Living & Loonars Beauty</div></div>
+          <div class="timeline-item"><div class="tl-year">2026</div><div class="tl-desc">Hadir di Bogor dengan perumahan subsidi Griya Cariu Indah</div></div>
+        </div>
+      </div>
+      <div class="about-card reveal">
+        <div>
+          <div class="about-card-title">Dari Sulawesi<br><em>untuk Indonesia</em></div>
+          <div class="location-tags">
+            <span class="location-tag">Makassar</span><span class="location-tag">Kendari</span>
+            <span class="location-tag">Maros</span><span class="location-tag">Gowa</span>
+            <span class="location-tag">Majene</span><span class="location-tag">Yogyakarta</span>
+            <span class="location-tag">Bogor</span><span class="location-tag">Jakarta</span>
+          </div>
+        </div>
+        <div class="visi-box">
+          <div class="visi-label">Visi</div>
+          <div class="visi-text">Menjadi perusahaan property berskala nasional yang amanah, kreatif, dan inovatif.</div>
+          <div class="visi-label">Misi</div>
+          <div class="visi-text">Memperkenalkan property berkualitas ke seluruh Indonesia dengan kepercayaan konsumen sebagai kunci kesuksesan.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Project Gallery Slider -->
+  <section style="background:var(--white);padding:5rem 4rem;">
+    <div style="max-width:1200px;margin:0 auto;">
+      <div class="section-label reveal">Project Kami</div>
+      <h2 class="section-title reveal" style="margin-bottom:2.5rem;">Karya Nyata yang Telah<br><em>Kami Wujudkan</em></h2>
+      <div style="display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:240px 240px;gap:0.8rem;" class="reveal">
+        <div style="grid-row:span 2;border-radius:6px;overflow:hidden;position:relative;">
+          <img src="img_alfath2.jpg" style="width:100%;height:100%;object-fit:cover;transition:transform 0.5s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+          <div style="position:absolute;bottom:0;left:0;right:0;padding:1.5rem;background:linear-gradient(transparent,rgba(0,0,0,0.7));">
+            <div style="font-size:0.68rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--sage-light);">Makassar</div>
+            <div style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--white);">The Al Fath Series</div>
+          </div>
+        </div>
+        <div style="border-radius:6px;overflow:hidden;position:relative;">
+          <img src="img_alfath.jpg" style="width:100%;height:100%;object-fit:cover;transition:transform 0.5s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+          <div style="position:absolute;bottom:0;left:0;right:0;padding:1rem;background:linear-gradient(transparent,rgba(0,0,0,0.7));">
+            <div style="font-size:0.65rem;color:rgba(255,255,255,0.8);">Al Fath · Makassar</div>
+          </div>
+        </div>
+        <div style="border-radius:6px;overflow:hidden;position:relative;">
+          <img src="img_loonars.jpg" style="width:100%;height:100%;object-fit:cover;transition:transform 0.5s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+          <div style="position:absolute;bottom:0;left:0;right:0;padding:1rem;background:linear-gradient(transparent,rgba(0,0,0,0.7));">
+            <div style="font-size:0.65rem;color:rgba(255,255,255,0.8);">Loonars Living · Yogyakarta</div>
+          </div>
+        </div>
+        <div style="border-radius:6px;overflow:hidden;position:relative;">
+          <img src="img_alfathland.jpg" style="width:100%;height:100%;object-fit:cover;transition:transform 0.5s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+          <div style="position:absolute;bottom:0;left:0;right:0;padding:1rem;background:linear-gradient(transparent,rgba(0,0,0,0.7));">
+            <div style="font-size:0.65rem;color:rgba(255,255,255,0.8);">Al Fath Land · Maros</div>
+          </div>
+        </div>
+        <div style="border-radius:6px;overflow:hidden;position:relative;">
+          <img src="img_drone.jpg" style="width:100%;height:100%;object-fit:cover;transition:transform 0.5s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+          <div style="position:absolute;bottom:0;left:0;right:0;padding:1rem;background:linear-gradient(transparent,rgba(0,0,0,0.7));">
+            <div style="font-size:0.65rem;color:rgba(255,255,255,0.8);">Drone View · Progress</div>
+          </div>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:2rem;">
+        <a href="#" onclick="showPage('portfolio')" class="btn-outline" style="color:var(--sage-dark);border-color:var(--sage);font-size:0.78rem;">Lihat Semua Portfolio →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick links -->
+  <section style="background:var(--sage-pale); padding:4rem;">
+    <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;">
+      <div onclick="showPage('properti')" style="background:var(--white);border-radius:6px;overflow:hidden;cursor:pointer;border:1px solid rgba(122,158,110,0.2);transition:all 0.3s;box-shadow:0 2px 12px rgba(0,0,0,0.05);" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 40px rgba(46,77,37,0.12)'" onmouseout="this.style.transform='none';this.style.boxShadow='0 2px 12px rgba(0,0,0,0.05)'">
+        <img src="img_cariu2.jpg" style="width:100%;height:160px;object-fit:cover;">
+        <div style="padding:1.5rem;">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--text);margin-bottom:0.4rem;">Properti</div>
+          <div style="font-size:0.82rem;color:var(--text-light);line-height:1.6;">Villa, perumahan subsidi, dan hunian premium tersedia di berbagai kota.</div>
+        </div>
+      </div>
+      <div onclick="showPage('beauty')" style="background:var(--white);border-radius:6px;overflow:hidden;cursor:pointer;border:1px solid rgba(201,148,138,0.2);transition:all 0.3s;box-shadow:0 2px 12px rgba(0,0,0,0.05);" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 40px rgba(201,148,138,0.15)'" onmouseout="this.style.transform='none';this.style.boxShadow='0 2px 12px rgba(0,0,0,0.05)'">
+        <img src="img_hydraglow2.jpg" style="width:100%;height:160px;object-fit:cover;">
+        <div style="padding:1.5rem;">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--dusty-rose);margin-bottom:0.4rem;">Loonars Beauty</div>
+          <div style="font-size:0.82rem;color:var(--text-light);line-height:1.6;">Pure Skin Luxury — ritual kecantikan untuk perempuan urban modern.</div>
+        </div>
+      </div>
+      <div onclick="showPage('portfolio')" style="background:var(--white);border-radius:6px;overflow:hidden;cursor:pointer;border:1px solid rgba(122,158,110,0.2);transition:all 0.3s;box-shadow:0 2px 12px rgba(0,0,0,0.05);" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 40px rgba(46,77,37,0.12)'" onmouseout="this.style.transform='none';this.style.boxShadow='0 2px 12px rgba(0,0,0,0.05)'">
+        <img src="img_alfath3.jpg" style="width:100%;height:160px;object-fit:cover;">
+        <div style="padding:1.5rem;">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--text);margin-bottom:0.4rem;">Portfolio</div>
+          <div style="font-size:0.82rem;color:var(--text-light);line-height:1.6;">10+ project prestisius yang telah berhasil kami bangun dan serahkan.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- ===== PROPERTI PAGE ===== -->
+<div class="page" id="page-properti">
+  <div class="properti-hero">
+    <div class="section-label">Produk Properti</div>
+    <h1 class="section-title">Project yang Sedang<br><em>Tersedia</em></h1>
+    <p>Temukan hunian impian Anda — dari villa eksklusif di Yogyakarta hingga perumahan subsidi terjangkau di Bogor.</p>
+  </div>
+  <section style="background:var(--white);">
+    <div class="products-grid">
+      <div class="product-card reveal">
+        <div class="card-img" style="padding:0;background:none;">
+          <img src="img_loonars.jpg" style="width:100%;height:100%;object-fit:cover;">
+          <div class="card-badge">Private Villa</div>
+        </div>
+        <div class="card-body">
+          <div class="card-loc">📍 Yogyakarta</div>
+          <div class="card-title">Loonars Living</div>
+          <div class="card-desc">Private villa eksklusif di Yogyakarta. Loonars Living 1 (Mulungan) & Loonars Living 2 (JCM) — hunian privat dengan konsep resort mewah.</div>
+          <div class="card-links">
+            <a href="https://instagram.com/loonarsliving" target="_blank" class="card-link">📸 @loonarsliving</a>
+            <a href="https://tiktok.com/@loonarsliving" target="_blank" class="card-link">🎵 TikTok</a>
+          </div>
+        </div>
+      </div>
+      <div class="product-card reveal">
+        <div class="card-img" style="padding:0;background:none;">
+          <img src="img_introvert.jpg" style="width:100%;height:100%;object-fit:cover;">
+          <div class="card-badge new">New Project</div>
+        </div>
+        <div class="card-body">
+          <div class="card-loc">📍 Makassar</div>
+          <div class="card-title">Al Fath Introvert House</div>
+          <div class="card-desc">"Stay Private. Stay Connected." — 95 unit hunian privat di kawasan Telkomas. Type 38 & 40 (Serenity, Shelter, Haven). Dekat bandara, kampus & mall.</div>
+          <div class="card-links">
+            <a href="https://instagram.com/loonars.introverthouse" target="_blank" class="card-link">📸 IG</a>
+          </div>
+        </div>
+      </div>
+      <div class="product-card reveal">
+        <div class="card-img" style="padding:0;background:none;">
+          <img src="img_cariu2.jpg" style="width:100%;height:100%;object-fit:cover;">
+          <div class="card-badge subsidi">KPR Subsidi</div>
+        </div>
+        <div class="card-body">
+          <div class="card-loc">📍 Cariu, Kab. Bogor</div>
+          <div class="card-title">Griya Cariu Indah 3</div>
+          <div class="card-desc">154 unit perumahan subsidi. Type 30/60 — 2KT, 1KM, Carport, Free Canopy. Pinggir Jl. Raya Transyogi. Lingkungan asri & bebas banjir.</div>
+          <div class="card-price">Rp 185.000.000 <small>/ unit</small></div>
+          <div class="card-cicilan">DP Rp 1,5 juta · Cicilan mulai Rp 985rb/bln</div>
+          <div class="card-links">
+            <a href="tel:082228885223" class="card-link">📞 Hubungi Marketing</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ===== BEAUTY PAGE ===== -->
+<div class="page" id="page-beauty">
+  <div class="beauty-hero">
+    <div class="beauty-hero-content">
+      <div class="section-label">Loonars Beauty</div>
+      <h1 class="section-title">Luxury Decompression<br><em>Ritual for Urban Women</em></h1>
+      <p>Bukan sekadar bodycare. Tapi bagian dari sistem self-regulation. Hadir sebagai ritual reset harian untuk perempuan kota yang lelah — untuk memperlambat detak, melembutkan pikiran, mengembalikan ritme.</p>
+      <p style="margin-top:0.5rem;font-style:italic;color:rgba(255,255,255,0.55);">"Bukan untuk terlihat lebih sempurna. Tapi untuk merasa lebih utuh."</p>
+    </div>
+    <div class="beauty-hero-product" style="padding:0;overflow:hidden;background:transparent;border:none;">
+      <img src="img_hydraglow1.jpg" style="width:100%;border-radius:8px;box-shadow:0 20px 60px rgba(0,0,0,0.3);">
+      <div style="background:rgba(255,255,255,0.1);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.2);border-radius:6px;padding:1.5rem;margin-top:1rem;text-align:center;">
+        <div class="b-price">
+          <span class="b-price-old">IDR 119.000</span>
+          <span class="b-price-new">IDR 89.000</span>
+        </div>
+        <div class="b-cta" style="margin-top:1rem;">
+          <a href="https://shopee.co.id/loonars" target="_blank" class="btn-primary" style="font-size:0.78rem;">Beli Sekarang</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="beauty-features-section">
+    <div style="max-width:1200px;margin:0 auto;">
+      <div class="section-label">Formula Unggulan</div>
+      <h2 class="section-title">Kandungan yang<br><em>Bekerja untuk Kulitmu</em></h2>
+    </div>
+    <div class="beauty-features-grid">
+      <div class="b-feature reveal">
+        <div class="b-feature-icon">💧</div>
+        <div class="b-feature-title">4 Types Hyaluron</div>
+        <div class="b-feature-desc">Hidrasi optimal berlapis dari permukaan hingga lapisan dalam kulit</div>
+      </div>
+      <div class="b-feature reveal">
+        <div class="b-feature-icon">✨</div>
+        <div class="b-feature-title">Niacinamide</div>
+        <div class="b-feature-desc">Mencerahkan, meratakan warna kulit, dan meminimalkan pori</div>
+      </div>
+      <div class="b-feature reveal">
+        <div class="b-feature-icon">🌿</div>
+        <div class="b-feature-title">Squalane</div>
+        <div class="b-feature-desc">Melembapkan tanpa greasy — cepat meresap, kulit tetap nyaman</div>
+      </div>
+      <div class="b-feature reveal">
+        <div class="b-feature-icon">🌙</div>
+        <div class="b-feature-title">Calming Scent</div>
+        <div class="b-feature-desc">Aroma menenangkan untuk ritual malam hari yang sempurna</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="beauty-brand-story">
+    <div class="beauty-brand-inner reveal">
+      <div class="section-label">Brand Story</div>
+      <h2 class="section-title">Urban <em>Reset</em></h2>
+      <p class="b-story-text">Di kota yang tak pernah diam, kita selalu dituntut untuk cepat. <strong>Cepat kerja. Cepat ambil keputusan. Cepat berhasil.</strong> Tapi tubuh kita tidak diciptakan untuk selalu cepat.<br><br>Loonars Beauty lahir dari satu pertanyaan: <em>"Bagaimana kalau 10 menit sebelum tidur bisa jadi ruang aman?"</em></p>
+    </div>
+  </div>
+
+  <div class="beauty-shop">
+    <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;" class="reveal">
+      <img src="img_hydraglow2.jpg" style="width:100%;border-radius:8px;box-shadow:0 16px 50px rgba(201,148,138,0.2);">
+      <div class="beauty-shop-inner" style="text-align:left;">
+        <div class="section-label" style="justify-content:flex-start;">Temukan Kami Di</div>
+        <h2 class="section-title">Beli <em>Sekarang</em></h2>
+        <div class="shop-links" style="justify-content:flex-start;margin-top:2rem;">
+          <a href="https://instagram.com/loonarsbeauty.official" target="_blank" class="shop-link ig">📸 @loonarsbeauty.official</a>
+          <a href="https://tiktok.com/@loonarsskin" target="_blank" class="shop-link tik">🎵 @loonarsskin</a>
+          <a href="https://tokopedia.com/loonars" target="_blank" class="shop-link tok">🛒 Tokopedia · Loonars</a>
+          <a href="https://shopee.co.id/loonars" target="_blank" class="shop-link spe">🛍️ Shopee · Loonars</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== PORTFOLIO PAGE ===== -->
+<div class="page" id="page-portfolio">
+  <div class="portfolio-hero">
+    <div class="section-label">Track Record</div>
+    <h1 class="section-title">Project yang Telah<br><em>Kami Selesaikan</em></h1>
+    <p>Lebih dari 10 project prestisius berhasil dibangun dan diserahkan kepada ribuan keluarga di seluruh Indonesia.</p>
+  </div>
+  <section style="background:var(--white);">
+    <div class="portfolio-grid reveal">
+      <div class="portfolio-item"><div class="pi-loc">Makassar</div><div class="pi-name">The Al Fath</div><div class="pi-units">31 Unit · Panakkukang</div></div>
+      <div class="portfolio-item"><div class="pi-loc">Makassar</div><div class="pi-name">The Al Fath 2</div><div class="pi-units">18 Unit · Panakkukang</div></div>
+      <div class="portfolio-item"><div class="pi-loc">Makassar</div><div class="pi-name">The Al Fath 3</div><div class="pi-units">45 Unit · Pampang</div></div>
+      <div class="portfolio-item"><div class="pi-loc">Makassar</div><div class="pi-name">Dewi Bunga Land</div><div class="pi-units">280 Unit · Telkomas</div></div>
+      <div class="portfolio-item"><div class="pi-loc">Maros</div><div class="pi-name">Al Fath Land</div><div class="pi-units">93 Unit · Moncongloe</div></div>
+      <div class="portfolio-item"><div class="pi-loc">Gowa</div><div class="pi-name">Savana Residence</div><div class="pi-units">101 Unit · Gowa</div></div>
+      <div class="portfolio-item"><div class="pi-loc">Gowa</div><div class="pi-name">Al Fath Bollangi</div><div class="pi-units">10 Villa + 129 Kavling</div></div>
+      <div class="portfolio-item"><div class="pi-loc">Makassar</div><div class="pi-name">Al Fath Flipper</div><div class="pi-units">8 Unit · Borong Indah</div></div>
+      <div class="portfolio-item"><div class="pi-loc">Kendari</div><div class="pi-name">Al Fath Land</div><div class="pi-units">Kavling · Kendari</div></div>
+      <div class="portfolio-item"><div class="pi-loc">Kendari</div><div class="pi-name">Al Fath Spring</div><div class="pi-units">Kendari</div></div>
+      <div class="portfolio-item"><div class="pi-loc">Majene</div><div class="pi-name">Al Fath Hills</div><div class="pi-units">Majene</div></div>
+      <div class="portfolio-item"><div class="pi-loc">Pinrang</div><div class="pi-name">Al Fath Stira Paradise</div><div class="pi-units">Kab. Pinrang</div></div>
+    </div>
+  </section>
+</div>
+
+<!-- ===== KONTAK PAGE ===== -->
+<div class="page" id="page-kontak">
+  <div class="kontak-hero">
+    <div class="section-label">Hubungi Kami</div>
+    <h1 class="section-title">Wujudkan Impian<br><em>Bersama Kami</em></h1>
+    <p>Konsultasi gratis · Dibantu sampai akad · Tim profesional siap melayani Anda.</p>
+  </div>
+  <div class="kontak-cards">
+    <div class="kontak-card reveal">
+      <div class="kontak-icon">📞</div>
+      <div class="kontak-label">Telepon / WhatsApp</div>
+      <div class="kontak-value"><a href="tel:082228885223">082228885223</a></div>
+    </div>
+    <div class="kontak-card reveal">
+      <div class="kontak-icon">✉️</div>
+      <div class="kontak-label">Email</div>
+      <div class="kontak-value"><a href="mailto:mahakarya@haluoleo.id">mahakarya@haluoleo.id</a></div>
+    </div>
+    <div class="kontak-card reveal">
+      <div class="kontak-icon">📍</div>
+      <div class="kontak-label">Kantor Pusat</div>
+      <div class="kontak-value">Jl. Pettarani Lr. 2, Makassar</div>
+    </div>
+  </div>
+  <div class="kontak-wa">
+    <a href="https://wa.me/6282228885223" target="_blank" class="btn-primary" style="font-size:0.9rem;padding:1rem 3rem;">💬 Chat WhatsApp Sekarang</a>
+  </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="footer-brand">PT. Maha Karya Haluoleo</div>
+  <div class="footer-text">© 2026 haluoleo.id · All rights reserved</div>
+  <div class="footer-nav">
+    <a href="#" onclick="showPage('home')">Beranda</a>
+    <a href="#" onclick="showPage('properti')">Properti</a>
+    <a href="#" onclick="showPage('beauty')">Beauty</a>
+    <a href="#" onclick="showPage('portfolio')">Portfolio</a>
+    <a href="#" onclick="showPage('kontak')">Kontak</a>
+  </div>
+</footer>
+
+<script>
+function showPage(name) {
+  // Hide all pages
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  // Remove active nav
+  document.querySelectorAll('.nav-links li').forEach(li => li.classList.remove('active'));
+  // Show target
+  document.getElementById('page-' + name).classList.add('active');
+  document.getElementById('nav-' + name)?.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  // Trigger reveals
+  setTimeout(initReveal, 100);
+}
+
+function initReveal() {
+  const reveals = document.querySelectorAll('.reveal:not(.visible)');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+}
+
+// Init on load
+document.getElementById('nav-home').classList.add('active');
+initReveal();
+
+// Prevent default on nav links
+document.querySelectorAll('a[onclick]').forEach(a => {
+  a.addEventListener('click', e => e.preventDefault());
+});
+</script>
+</body>
+</html>
