@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PT. Maha Karya Haluoleo — Hadir di Mana Impian Dibangun</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sage: #7a9e6e;
+  --sage-light: #a8c49a;
+  --sage-pale: #e8f0e4;
+  --sage-dark: #4e7244;
+  --sage-deep: #2d4d25;
+  --gold: #c9a84c;
+  --gold-light: #e8c96b;
+  --cream: #f8f6f2;
+  --white: #ffffff;
+  --text: #1a1a1a;
+  --text-mid: #4a4a4a;
+  --text-light: #888;
+  --dusty-rose: #c9948a;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { font-family:'DM Sans',sans-serif; background:var(--white); color:var(--text); overflow-x:hidden; }
+
+/* ===== NAV ===== */
+nav {
+  position:fixed; top:0; width:100%; z-index:1000;
+  padding:1.2rem 2rem;
+  display:flex; align-items:center; justify-content:space-between;
+  transition:all 0.4s;
+}
+nav.scrolled {
+  background:rgba(255,255,255,0.96);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(0,0,0,0.06);
+  padding:0.9rem 2rem;
+}
+.nav-logo {
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.3rem; color:var(--white); font-weight:400;
+  letter-spacing:0.06em; text-decoration:none;
+  transition:color 0.3s;
+  display:flex; align-items:center; gap:0.5rem;
+}
+nav.scrolled .nav-logo { color:var(--text); }
+.nav-logo-dot { width:8px; height:8px; background:var(--sage); border-radius:50%; }
+.hamburger {
+  width:44px; height:44px; border-radius:50%;
+  background:rgba(255,255,255,0.15); backdrop-filter:blur(8px);
+  border:1px solid rgba(255,255,255,0.3);
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:5px; cursor:pointer; transition:all 0.3s;
+}
+nav.scrolled .hamburger {
+  background:var(--text); border-color:var(--text);
+}
+.hamburger span {
+  display:block; width:18px; height:1.5px;
+  background:var(--white); transition:all 0.3s;
+}
+nav.scrolled .hamburger span { background:var(--white); }
+.hamburger.open span:nth-child(1) { transform:translateY(6.5px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity:0; }
+.hamburger.open span:nth-child(3) { transform:translateY(-6.5px) rotate(-45deg); }
+
+/* ===== SIDE MENU ===== */
+.side-menu {
+  position:fixed; top:0; right:-100%; width:320px; height:100vh;
+  background:var(--white); z-index:999;
+  padding:6rem 3rem 3rem;
+  transition:right 0.4s cubic-bezier(0.77,0,0.175,1);
+  border-left:1px solid rgba(0,0,0,0.06);
+}
+.side-menu.open { right:0; }
+.side-menu-overlay {
+  position:fixed; inset:0; background:rgba(0,0,0,0.4);
+  z-index:998; opacity:0; pointer-events:none;
+  transition:opacity 0.4s;
+}
+.side-menu-overlay.open { opacity:1; pointer-events:all; }
+.side-menu nav-items { display:flex; flex-direction:column; }
+.menu-item {
+  font-family:'Cormorant Garamond',serif;
+  font-size:2rem; font-weight:300; color:var(--text);
+  text-decoration:none; padding:0.8rem 0;
+  border-bottom:1px solid rgba(0,0,0,0.06);
+  display:flex; align-items:center; justify-content:space-between;
+  cursor:pointer; transition:color 0.2s;
+}
+.menu-item:hover { color:var(--sage-dark); }
+.menu-item.beauty { color:var(--dusty-rose); }
+.menu-arrow { font-size:1rem; color:var(--text-light); }
+.menu-contacts {
+  margin-top:2rem; display:flex; flex-direction:column; gap:0.8rem;
+}
+.menu-contact-link {
+  display:flex; align-items:center; gap:0.6rem;
+  font-size:0.8rem; letter-spacing:0.12em; text-transform:uppercase;
+  color:var(--text-mid); text-decoration:none;
+}
+.menu-contact-link:hover { color:var(--sage-dark); }
+
+/* ===== HERO ===== */
+.hero {
+  height:100vh; position:relative; overflow:hidden;
+  display:flex; align-items:flex-end;
+}
+.hero-slides { position:absolute; inset:0; }
+.hero-slide {
+  position:absolute; inset:0;
+  background-size:cover; background-position:center;
+  opacity:0; transition:opacity 1.2s ease;
+}
+.hero-slide.active { opacity:1; }
+.hero-slide::after {
+  content:''; position:absolute; inset:0;
+  background:linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.1) 60%, transparent 100%);
+}
+.hero-content {
+  position:relative; z-index:2;
+  padding:0 3rem 5rem; width:100%;
+}
+.hero-label {
+  font-size:0.72rem; letter-spacing:0.2em; text-transform:uppercase;
+  color:rgba(255,255,255,0.65); margin-bottom:1rem;
+}
+.hero h1 {
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2.8rem,7vw,6rem); font-weight:300;
+  color:var(--white); line-height:1.05; margin-bottom:2rem;
+}
+.hero h1 em { font-style:italic; }
+.hero-cta {
+  display:inline-flex; align-items:center; gap:0.8rem;
+  background:rgba(255,255,255,0.12); backdrop-filter:blur(8px);
+  border:1px solid rgba(255,255,255,0.3);
+  padding:0.8rem 1.6rem; border-radius:50px;
+  font-size:0.8rem; letter-spacing:0.1em; text-transform:uppercase;
+  color:var(--white); text-decoration:none; cursor:pointer;
+  transition:all 0.3s;
+}
+.hero-cta:hover { background:rgba(255,255,255,0.2); }
+.hero-cta-icon {
+  width:24px; height:24px; background:var(--sage);
+  border-radius:50%; display:flex; align-items:center; justify-content:center;
+  font-size:0.7rem;
+}
+.hero-dots {
+  position:absolute; bottom:2rem; right:3rem; z-index:2;
+  display:flex; gap:0.5rem;
+}
+.hero-dot {
+  width:6px; height:6px; border-radius:50%;
+  background:rgba(255,255,255,0.4); cursor:pointer;
+  transition:all 0.3s;
+}
+.hero-dot.active { background:var(--white); width:20px; border-radius:3px; }
+.hero-scroll {
+  position:absolute; bottom:2rem; left:3rem; z-index:2;
+  display:flex; align-items:center; gap:0.8rem;
+  font-size:0.68rem; letter-spacing:0.15em; text-transform:uppercase;
+  color:rgba(255,255,255,0.5);
+}
+.scroll-line { width:30px; height:1px; background:rgba(255,255,255,0.4); }
+
+/* ===== SECTIONS ===== */
+.section-label {
+  font-size:0.7rem; letter-spacing:0.2em; text-transform:uppercase;
+  color:var(--text-light); margin-bottom:0.6rem;
+}
+.section-title {
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2rem,4vw,3rem); font-weight:300; line-height:1.2; color:var(--text);
+}
+.section-title em { font-style:italic; color:var(--sage-dark); }
+
+/* ===== ABOUT ===== */
+.about { padding:7rem 3rem; background:var(--white); }
+.about-inner { display:grid; grid-template-columns:1fr 1fr; gap:6rem; max-width:1200px; margin:0 auto; align-items:center; }
+.about-text .section-title { margin-bottom:1.5rem; }
+.about-text p { color:var(--text-mid); line-height:1.9; font-size:0.93rem; margin-bottom:1rem; }
+.about-stats { display:flex; gap:3rem; margin-top:2.5rem; }
+.stat-item { }
+.stat-num { font-family:'Cormorant Garamond',serif; font-size:2.5rem; color:var(--sage-dark); line-height:1; }
+.stat-label { font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--text-light); margin-top:0.2rem; }
+.about-img { position:relative; }
+.about-img img { width:100%; height:500px; object-fit:cover; border-radius:4px; }
+.about-img-badge {
+  position:absolute; bottom:-1.5rem; left:-1.5rem;
+  background:var(--sage-deep); color:var(--white);
+  padding:1.5rem 2rem; border-radius:4px;
+}
+.about-img-badge-year { font-family:'Cormorant Garamond',serif; font-size:2rem; font-weight:300; line-height:1; }
+.about-img-badge-text { font-size:0.7rem; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.6); margin-top:0.2rem; }
+
+/* ===== DEVELOPMENTS ===== */
+.developments { padding:7rem 3rem; background:var(--cream); }
+.developments-header { max-width:1200px; margin:0 auto 3rem; display:flex; align-items:flex-end; justify-content:space-between; }
+.dev-see-all {
+  font-size:0.78rem; letter-spacing:0.12em; text-transform:uppercase;
+  color:var(--sage-dark); text-decoration:none;
+  display:flex; align-items:center; gap:0.5rem;
+  border-bottom:1px solid var(--sage); padding-bottom:0.2rem;
+  cursor:pointer;
+}
+.dev-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; max-width:1200px; margin:0 auto; }
+.dev-card {
+  background:var(--white); border-radius:4px; overflow:hidden;
+  cursor:pointer; transition:transform 0.3s, box-shadow 0.3s;
+}
+.dev-card:hover { transform:translateY(-6px); box-shadow:0 20px 50px rgba(0,0,0,0.1); }
+.dev-card-img { height:240px; overflow:hidden; position:relative; }
+.dev-card-img img { width:100%; height:100%; object-fit:cover; transition:transform 0.5s; }
+.dev-card:hover .dev-card-img img { transform:scale(1.05); }
+.dev-card-status {
+  position:absolute; top:1rem; left:1rem;
+  background:rgba(255,255,255,0.9); backdrop-filter:blur(4px);
+  padding:0.3rem 0.8rem; border-radius:50px;
+  font-size:0.68rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--text);
+}
+.dev-card-status.new { background:var(--sage-dark); color:var(--white); }
+.dev-card-status.subsidi { background:var(--gold); color:var(--sage-deep); }
+.dev-card-body { padding:1.5rem; }
+.dev-card-loc { font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--sage-dark); margin-bottom:0.4rem; }
+.dev-card-title { font-family:'Cormorant Garamond',serif; font-size:1.4rem; color:var(--text); margin-bottom:0.5rem; }
+.dev-card-desc { font-size:0.82rem; color:var(--text-light); line-height:1.7; }
+.dev-card-price { margin-top:0.8rem; font-family:'Cormorant Garamond',serif; font-size:1.1rem; color:var(--sage-deep); }
+.dev-card-footer {
+  padding:1rem 1.5rem; border-top:1px solid rgba(0,0,0,0.05);
+  display:flex; align-items:center; justify-content:space-between;
+}
+.dev-card-links { display:flex; gap:0.5rem; flex-wrap:wrap; }
+.dev-card-link {
+  font-size:0.68rem; color:var(--sage-dark); text-decoration:none;
+  border:1px solid rgba(122,158,110,0.3); padding:0.25rem 0.6rem;
+  border-radius:50px; transition:all 0.2s;
+}
+.dev-card-link:hover { background:var(--sage-dark); color:var(--white); border-color:var(--sage-dark); }
+.dev-card-arrow {
+  width:32px; height:32px; border-radius:50%;
+  background:var(--text); color:var(--white);
+  display:flex; align-items:center; justify-content:center;
+  font-size:0.8rem; transition:background 0.2s;
+}
+.dev-card:hover .dev-card-arrow { background:var(--sage-dark); }
+
+/* ===== BEAUTY ===== */
+.beauty { padding:7rem 3rem; background:var(--white); }
+.beauty-inner { display:grid; grid-template-columns:1fr 1fr; gap:6rem; max-width:1200px; margin:0 auto; align-items:center; }
+.beauty-img { position:relative; }
+.beauty-img img { width:100%; height:520px; object-fit:cover; border-radius:4px; }
+.beauty-img-2 {
+  position:absolute; bottom:-2rem; right:-2rem;
+  width:180px; height:240px; object-fit:cover; border-radius:4px;
+  border:4px solid var(--white); box-shadow:0 8px 30px rgba(0,0,0,0.15);
+}
+.beauty-content .section-title { margin-bottom:1.2rem; }
+.beauty-content .section-title em { color:var(--dusty-rose); }
+.beauty-content p { color:var(--text-mid); line-height:1.9; font-size:0.93rem; margin-bottom:1rem; }
+.beauty-price-box {
+  background:linear-gradient(135deg,#fdf0ee,#fce4e0);
+  padding:1.5rem; border-radius:4px; margin:1.5rem 0;
+  display:flex; align-items:center; justify-content:space-between;
+}
+.beauty-price-old { font-size:0.9rem; color:var(--text-light); text-decoration:line-through; }
+.beauty-price-new { font-family:'Cormorant Garamond',serif; font-size:2rem; color:var(--dusty-rose); }
+.beauty-shops { display:flex; gap:0.6rem; flex-wrap:wrap; margin-top:1.5rem; }
+.beauty-shop-btn {
+  padding:0.6rem 1.2rem; border-radius:4px; font-size:0.78rem;
+  text-decoration:none; font-weight:500; transition:all 0.2s;
+}
+.beauty-shop-btn.ig { background:#fce4e0; color:var(--dusty-rose); }
+.beauty-shop-btn.ig:hover { background:var(--dusty-rose); color:var(--white); }
+.beauty-shop-btn.tok { background:#fef0e6; color:#e07b2a; }
+.beauty-shop-btn.tok:hover { background:#e07b2a; color:var(--white); }
+.beauty-shop-btn.spe { background:#fff0f0; color:#ee4d2d; }
+.beauty-shop-btn.spe:hover { background:#ee4d2d; color:var(--white); }
+
+/* ===== PORTFOLIO ===== */
+.portfolio { padding:7rem 3rem; background:var(--sage-deep); }
+.portfolio-header { max-width:1200px; margin:0 auto 3rem; }
+.portfolio-header .section-label { color:var(--sage-light); }
+.portfolio-header .section-title { color:var(--white); }
+.portfolio-header .section-title em { color:var(--gold-light); }
+.portfolio-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:rgba(255,255,255,0.08); max-width:1200px; margin:0 auto; }
+.portfolio-item { background:var(--sage-deep); padding:2rem 1.5rem; transition:background 0.3s; cursor:default; }
+.portfolio-item:hover { background:rgba(255,255,255,0.05); }
+.pi-loc { font-size:0.65rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--sage-light); margin-bottom:0.4rem; }
+.pi-name { font-family:'Cormorant Garamond',serif; font-size:1.05rem; color:var(--white); margin-bottom:0.2rem; }
+.pi-units { font-size:0.75rem; color:rgba(255,255,255,0.35); }
+
+/* ===== CONTACT ===== */
+.contact { padding:7rem 3rem; background:var(--cream); }
+.contact-inner { max-width:1200px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:6rem; align-items:center; }
+.contact-text .section-title { margin-bottom:1.2rem; }
+.contact-text p { color:var(--text-mid); line-height:1.9; font-size:0.93rem; margin-bottom:2rem; }
+.contact-cards { display:flex; flex-direction:column; gap:1rem; }
+.contact-card {
+  background:var(--white); padding:1.5rem; border-radius:4px;
+  display:flex; align-items:center; gap:1.2rem;
+  border:1px solid rgba(0,0,0,0.06);
+}
+.contact-card-icon { font-size:1.4rem; }
+.contact-card-label { font-size:0.68rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--text-light); }
+.contact-card-value { font-size:0.9rem; color:var(--text); margin-top:0.1rem; }
+.contact-card-value a { color:var(--text); text-decoration:none; }
+.contact-wa {
+  display:inline-flex; align-items:center; gap:0.8rem;
+  background:var(--sage-dark); color:var(--white);
+  padding:1rem 2rem; border-radius:4px;
+  font-size:0.82rem; letter-spacing:0.1em; text-transform:uppercase;
+  text-decoration:none; font-weight:500; margin-top:2rem;
+  transition:background 0.3s;
+}
+.contact-wa:hover { background:var(--sage-deep); }
+
+/* ===== FOOTER ===== */
+footer {
+  background:var(--text); padding:2rem 3rem;
+  display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem;
+}
+.footer-brand { font-family:'Cormorant Garamond',serif; font-size:1.1rem; color:rgba(255,255,255,0.5); }
+.footer-text { font-size:0.75rem; color:rgba(255,255,255,0.25); }
+.footer-nav { display:flex; gap:1.5rem; }
+.footer-nav a { font-size:0.7rem; color:rgba(255,255,255,0.3); text-decoration:none; letter-spacing:0.08em; transition:color 0.2s; cursor:pointer; }
+.footer-nav a:hover { color:var(--sage-light); }
+
+/* ===== WA FLOAT ===== */
+.wa-float {
+  position:fixed; bottom:2rem; right:2rem; z-index:500;
+  width:52px; height:52px; border-radius:50%;
+  background:#25d366; color:var(--white);
+  display:flex; align-items:center; justify-content:center;
+  font-size:1.4rem; text-decoration:none;
+  box-shadow:0 4px 20px rgba(37,211,102,0.4);
+  transition:transform 0.3s;
+}
+.wa-float:hover { transform:scale(1.1); }
+
+/* ===== MODAL ===== */
+.modal-overlay {
+  position:fixed; inset:0; background:rgba(0,0,0,0.85);
+  z-index:2000; display:none; align-items:center; justify-content:center;
+  padding:2rem;
+}
+.modal-overlay.open { display:flex; }
+.modal {
+  background:var(--white); border-radius:6px; max-width:800px; width:100%;
+  max-height:90vh; overflow-y:auto;
+}
+.modal-img { width:100%; height:320px; object-fit:cover; }
+.modal-body { padding:2rem; }
+.modal-close {
+  position:absolute; top:1rem; right:1rem;
+  width:36px; height:36px; border-radius:50%;
+  background:var(--white); border:none; cursor:pointer;
+  font-size:1.2rem; display:flex; align-items:center; justify-content:center;
+}
+.modal-loc { font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--sage-dark); margin-bottom:0.4rem; }
+.modal-title { font-family:'Cormorant Garamond',serif; font-size:2rem; color:var(--text); margin-bottom:1rem; }
+.modal-desc { color:var(--text-mid); line-height:1.9; font-size:0.9rem; margin-bottom:1rem; }
+.modal-specs { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin:1.5rem 0; }
+.modal-spec { background:var(--cream); padding:1rem; border-radius:4px; text-align:center; }
+.modal-spec-val { font-family:'Cormorant Garamond',serif; font-size:1.3rem; color:var(--sage-dark); }
+.modal-spec-key { font-size:0.68rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--text-light); margin-top:0.2rem; }
+
+/* ===== ANIMATIONS ===== */
+.reveal { opacity:0; transform:translateY(25px); transition:opacity 0.7s ease, transform 0.7s ease; }
+.reveal.visible { opacity:1; transform:translateY(0); }
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:768px) {
+  nav { padding:1rem 1.5rem; }
+  .hero-content { padding:0 1.5rem 4rem; }
+  .hero h1 { font-size:2.5rem; }
+  .hero-scroll { display:none; }
+  section, .about, .developments, .beauty, .portfolio, .contact { padding:4rem 1.5rem; }
+  .about-inner, .beauty-inner, .contact-inner { grid-template-columns:1fr; gap:3rem; }
+  .dev-grid { grid-template-columns:1fr; }
+  .portfolio-grid { grid-template-columns:repeat(2,1fr); }
+  .about-img-badge { left:0; bottom:-1rem; }
+  .beauty-img-2 { display:none; }
+  footer { padding:1.5rem; flex-direction:column; text-align:center; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-dot"></div>
+    Maha Karya Haluoleo
+  </a>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- SIDE MENU -->
+<div class="side-menu-overlay" id="overlay" onclick="toggleMenu()"></div>
+<div class="side-menu" id="sideMenu">
+  <a class="menu-item" onclick="scrollToSection('#about');toggleMenu()">Tentang Kami <span class="menu-arrow">→</span></a>
+  <a class="menu-item" onclick="scrollToSection('#developments');toggleMenu()">Properti <span class="menu-arrow">→</span></a>
+  <a class="menu-item beauty" onclick="scrollToSection('#beauty');toggleMenu()">Loonars Beauty <span class="menu-arrow">→</span></a>
+  <a class="menu-item" onclick="scrollToSection('#portfolio');toggleMenu()">Portfolio <span class="menu-arrow">→</span></a>
+  <a class="menu-item" onclick="scrollToSection('#contact');toggleMenu()">Kontak <span class="menu-arrow">→</span></a>
+  <div class="menu-contacts">
+    <a href="https://wa.me/6282228885223" target="_blank" class="menu-contact-link">💬 WhatsApp</a>
+    <a href="mailto:mahakarya@haluoleo.id" class="menu-contact-link">✉️ mahakarya@haluoleo.id</a>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-slides">
+    <div class="hero-slide active" style="background-image:url('hero1.jpeg')"></div>
+    <div class="hero-slide" style="background-image:url('hero2.jpeg')"></div>
+    <div class="hero-slide" style="background-image:url('hero3.jpeg')"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-label">PT. Maha Karya Haluoleo · Est. 2012</div>
+    <h1>Hadir di Mana<br><em>Impian Dibangun</em></h1>
+    <a class="hero-cta" onclick="scrollToSection('#developments')">
+      <div class="hero-cta-icon">+</div>
+      Lihat Project Kami
+    </a>
+  </div>
+  <div class="hero-dots" id="heroDots">
+    <div class="hero-dot active" onclick="goSlide(0)"></div>
+    <div class="hero-dot" onclick="goSlide(1)"></div>
+    <div class="hero-dot" onclick="goSlide(2)"></div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    Scroll
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-inner">
+    <div class="about-text reveal">
+      <div class="section-label">Tentang Kami</div>
+      <h2 class="section-title">Membangun Kepercayaan<br><em>Sejak 2012</em></h2>
+      <p>PT. Maha Karya Haluoleo berdiri pada 21 November 2012 sebagai perusahaan pengembang yang berfokus pada perumahan, kawasan wisata, dan tanah kavling.</p>
+      <p>Berkantor pusat di Makassar, kami terus berkembang dengan misi menjadi perusahaan properti berskala nasional yang amanah, kreatif, dan inovatif.</p>
+      <div class="about-stats">
+        <div class="stat-item"><div class="stat-num">10+</div><div class="stat-label">Project Selesai</div></div>
+        <div class="stat-item"><div class="stat-num">12+</div><div class="stat-label">Tahun Berkarya</div></div>
+        <div class="stat-item"><div class="stat-num">6</div><div class="stat-label">Kota Ekspansi</div></div>
+      </div>
+    </div>
+    <div class="about-img reveal">
+      <img src="img alfath2.jpeg" alt="Project Mahakarya">
+      <div class="about-img-badge">
+        <div class="about-img-badge-year">2012</div>
+        <div class="about-img-badge-text">Tahun Berdiri</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEVELOPMENTS -->
+<section class="developments" id="developments">
+  <div class="developments-header reveal">
+    <div>
+      <div class="section-label">Project Aktif</div>
+      <h2 class="section-title">Development<br><em>Portfolio</em></h2>
+    </div>
+  </div>
+  <div class="dev-grid">
+
+    <!-- Loonars Living -->
+    <div class="dev-card reveal" onclick="openModal('loonars')">
+      <div class="dev-card-img">
+        <img src="hero1.jpeg" alt="Loonars Living">
+        <div class="dev-card-status">Private Villa</div>
+      </div>
+      <div class="dev-card-body">
+        <div class="dev-card-loc">📍 Yogyakarta</div>
+        <div class="dev-card-title">Loonars Living</div>
+        <div class="dev-card-desc">Private villa eksklusif. Loonars Living 1 & 2 — hunian privat dengan konsep resort mewah.</div>
+      </div>
+      <div class="dev-card-footer">
+        <div class="dev-card-links">
+          <a href="https://instagram.com/loonarsliving" target="_blank" class="dev-card-link" onclick="event.stopPropagation()">📸 IG</a>
+          <a href="https://tiktok.com/@loonarsliving" target="_blank" class="dev-card-link" onclick="event.stopPropagation()">🎵 TikTok</a>
+        </div>
+        <div class="dev-card-arrow">→</div>
+      </div>
+    </div>
+
+    <!-- Al Fath Introvert House -->
+    <div class="dev-card reveal" onclick="openModal('alfath')">
+      <div class="dev-card-img">
+        <img src="hero2.jpeg" alt="Al Fath Introvert House">
+        <div class="dev-card-status new">New Project</div>
+      </div>
+      <div class="dev-card-body">
+        <div class="dev-card-loc">📍 Makassar</div>
+        <div class="dev-card-title">Al Fath Introvert House</div>
+        <div class="dev-card-desc">"Where Silence Becomes Luxury" — 95 unit hunian privat di kawasan Telkomas.</div>
+      </div>
+      <div class="dev-card-footer">
+        <div class="dev-card-links">
+          <a href="https://instagram.com/loonars.introverthouse" target="_blank" class="dev-card-link" onclick="event.stopPropagation()">📸 IG</a>
+        </div>
+        <div class="dev-card-arrow">→</div>
+      </div>
+    </div>
+
+    <!-- Griya Cariu Indah -->
+    <div class="dev-card reveal" onclick="openModal('cariu')">
+      <div class="dev-card-img">
+        <img src="hero3.jpeg" alt="Griya Cariu Indah">
+        <div class="dev-card-status subsidi">KPR Subsidi</div>
+      </div>
+      <div class="dev-card-body">
+        <div class="dev-card-loc">📍 Cariu, Kab. Bogor</div>
+        <div class="dev-card-title">Griya Cariu Indah 3</div>
+        <div class="dev-card-desc">154 unit perumahan subsidi. Type 30/60 — hunian nyaman untuk keluarga muda.</div>
+        <div class="dev-card-price">Rp 185.000.000</div>
+      </div>
+      <div class="dev-card-footer">
+        <div class="dev-card-links">
+          <a href="tel:082228885223" class="dev-card-link" onclick="event.stopPropagation()">📞 Marketing</a>
+        </div>
+        <div class="dev-card-arrow">→</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- LOONARS BEAUTY -->
+<section class="beauty" id="beauty">
+  <div class="beauty-inner">
+    <div class="beauty-img reveal">
+      <img src="img hydraglow1.jpeg" alt="Loonars Beauty HydraGlow">
+      <img src="img hydraglow2.jpeg" alt="HydraGlow" class="beauty-img-2">
+    </div>
+    <div class="beauty-content reveal">
+      <div class="section-label">Loonars Beauty</div>
+      <h2 class="section-title">Pure Skin<br><em>Luxury</em></h2>
+      <p>Bukan sekadar bodycare. Ritual reset harian untuk perempuan kota — untuk memperlambat detak, melembutkan pikiran, mengembalikan ritme.</p>
+      <p><strong>HydraGlow</strong> — Advanced Brightening Lotion dengan 4 Types Hyaluron, Niacinamide & Squalane.</p>
+      <div class="beauty-price-box">
+        <div>
+          <div class="beauty-price-old">IDR 119.000</div>
+          <div style="font-size:0.7rem;color:var(--text-light);letter-spacing:0.1em;text-transform:uppercase;">Harga Normal</div>
+        </div>
+        <div class="beauty-price-new">IDR 89.000</div>
+      </div>
+      <div class="beauty-shops">
+        <a href="https://instagram.com/loonarsbeauty.official" target="_blank" class="beauty-shop-btn ig">📸 @loonarsbeauty.official</a>
+        <a href="https://tokopedia.com/loonars" target="_blank" class="beauty-shop-btn tok">🛒 Tokopedia</a>
+        <a href="https://shopee.co.id/loonars" target="_blank" class="beauty-shop-btn spe">🛍️ Shopee</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section class="portfolio" id="portfolio">
+  <div class="portfolio-header reveal">
+    <div class="section-label">Track Record</div>
+    <h2 class="section-title">Project yang Telah<br><em>Kami Selesaikan</em></h2>
+  </div>
+  <div class="portfolio-grid reveal">
+    <div class="portfolio-item"><div class="pi-loc">Makassar</div><div class="pi-name">The Al Fath</div><div class="pi-units">31 Unit</div></div>
+    <div class="portfolio-item"><div class="pi-loc">Makassar</div><div class="pi-name">The Al Fath 2</div><div class="pi-units">18 Unit</div></div>
+    <div class="portfolio-item"><div class="pi-loc">Makassar</div><div class="pi-name">The Al Fath 3</div><div class="pi-units">45 Unit</div></div>
+    <div class="portfolio-item"><div class="pi-loc">Makassar</div><div class="pi-name">Dewi Bunga Land</div><div class="pi-units">280 Unit</div></div>
+    <div class="portfolio-item"><div class="pi-loc">Maros</div><div class="pi-name">Al Fath Land</div><div class="pi-units">93 Unit</div></div>
+    <div class="portfolio-item"><div class="pi-loc">Gowa</div><div class="pi-name">Savana Residence</div><div class="pi-units">101 Unit</div></div>
+    <div class="portfolio-item"><div class="pi-loc">Gowa</div><div class="pi-name">Al Fath Bollangi</div><div class="pi-units">10 Villa + 129 Kavling</div></div>
+    <div class="portfolio-item"><div class="pi-loc">Kendari</div><div class="pi-name">Al Fath Spring</div><div class="pi-units">Kendari</div></div>
+    <div class="portfolio-item"><div class="pi-loc">Majene</div><div class="pi-name">Al Fath Hills</div><div class="pi-units">Majene</div></div>
+    <div class="portfolio-item"><div class="pi-loc">Makassar</div><div class="pi-name">Al Fath Flipper</div><div class="pi-units">8 Unit</div></div>
+    <div class="portfolio-item"><div class="pi-loc">Yogyakarta</div><div class="pi-name">Loonars Living 1</div><div class="pi-units">Mulungan</div></div>
+    <div class="portfolio-item"><div class="pi-loc">Yogyakarta</div><div class="pi-name">Loonars Living 2</div><div class="pi-units">JCM</div></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <div class="contact-text reveal">
+      <div class="section-label">Hubungi Kami</div>
+      <h2 class="section-title">Wujudkan Impian<br><em>Bersama Kami</em></h2>
+      <p>Konsultasi gratis, dibantu sampai akad. Tim profesional kami siap membantu Anda menemukan hunian yang tepat.</p>
+      <a href="https://wa.me/6282228885223" target="_blank" class="contact-wa">💬 Chat WhatsApp</a>
+    </div>
+    <div class="contact-cards reveal">
+      <div class="contact-card">
+        <div class="contact-card-icon">📞</div>
+        <div>
+          <div class="contact-card-label">Telepon / WhatsApp</div>
+          <div class="contact-card-value"><a href="tel:082228885223">082228885223</a></div>
+        </div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-card-icon">✉️</div>
+        <div>
+          <div class="contact-card-label">Email</div>
+          <div class="contact-card-value"><a href="mailto:mahakarya@haluoleo.id">mahakarya@haluoleo.id</a></div>
+        </div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-card-icon">📍</div>
+        <div>
+          <div class="contact-card-label">Kantor Pusat</div>
+          <div class="contact-card-value">Jl. Pettarani Lr. 2, Makassar</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">PT. Maha Karya Haluoleo</div>
+  <div class="footer-text">© 2026 haluoleo.id</div>
+  <div class="footer-nav">
+    <a onclick="scrollToSection('#about')">Tentang</a>
+    <a onclick="scrollToSection('#developments')">Properti</a>
+    <a onclick="scrollToSection('#beauty')">Beauty</a>
+    <a onclick="scrollToSection('#portfolio')">Portfolio</a>
+    <a onclick="scrollToSection('#contact')">Kontak</a>
+  </div>
+</footer>
+
+<!-- WA FLOAT -->
+<a href="https://wa.me/6282228885223" target="_blank" class="wa-float">💬</a>
+
+<!-- MODALS -->
+<div class="modal-overlay" id="modal" onclick="closeModal(event)">
+  <div class="modal" style="position:relative;">
+    <button class="modal-close" onclick="closeModalBtn()">✕</button>
+    <img id="modalImg" src="" alt="" class="modal-img">
+    <div class="modal-body">
+      <div class="modal-loc" id="modalLoc"></div>
+      <div class="modal-title" id="modalTitle"></div>
+      <div class="modal-specs" id="modalSpecs"></div>
+      <div class="modal-desc" id="modalDesc"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ===== HAMBURGER =====
+function toggleMenu() {
+  document.getElementById('hamburger').classList.toggle('open');
+  document.getElementById('sideMenu').classList.toggle('open');
+  document.getElementById('overlay').classList.toggle('open');
+}
+
+// ===== SCROLL =====
+function scrollToSection(target) {
+  document.querySelector(target).scrollIntoView({ behavior:'smooth' });
+}
+
+// ===== NAV SCROLL =====
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('navbar');
+  nav.classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// ===== HERO SLIDESHOW =====
+let currentSlide = 0;
+const slides = document.querySelectorAll('.hero-slide');
+const dots = document.querySelectorAll('.hero-dot');
+
+function goSlide(n) {
+  slides[currentSlide].classList.remove('active');
+  dots[currentSlide].classList.remove('active');
+  currentSlide = n;
+  slides[currentSlide].classList.add('active');
+  dots[currentSlide].classList.add('active');
+}
+
+setInterval(() => {
+  goSlide((currentSlide + 1) % slides.length);
+}, 5000);
+
+// ===== MODAL DATA =====
+const projects = {
+  loonars: {
+    img: 'hero1.jpeg',
+    loc: '📍 Yogyakarta',
+    title: 'Loonars Living',
+    specs: [
+      { val: '2', key: 'Unit Tersedia' },
+      { val: 'Villa', key: 'Tipe' },
+      { val: 'Eksklusif', key: 'Konsep' }
+    ],
+    desc: 'Loonars Living hadir sebagai private villa eksklusif di Yogyakarta. Loonars Living 1 berlokasi di Mulungan dan Loonars Living 2 di JCM — keduanya menawarkan pengalaman hunian privat dengan konsep resort mewah. Setiap unit dirancang untuk memberikan ketenangan dan privasi maksimal di tengah keindahan alam Yogyakarta.'
+  },
+  alfath: {
+    img: 'hero2.jpeg',
+    loc: '📍 Telkomas, Makassar',
+    title: 'Al Fath Introvert House',
+    specs: [
+      { val: '95', key: 'Total Unit' },
+      { val: '3', key: 'Tipe Unit' },
+      { val: 'Makassar', key: 'Lokasi' }
+    ],
+    desc: '"Where Silence Becomes Luxury" — Al Fath Introvert House adalah hunian eksklusif 95 unit di kawasan Telkomas, Makassar. Tersedia 3 tipe: Serenity (Type 38), Shelter (Type 40), dan Haven (Type 40). Dekat bandara Hasanuddin, kampus, dan pusat perbelanjaan. Dilengkapi clubhouse, gate/pos jaga, dan marketing gallery. Dibantu proses KPR sampai akad.'
+  },
+  cariu: {
+    img: 'hero3.jpeg',
+    loc: '📍 Cariu, Kab. Bogor, Jawa Barat',
+    title: 'Griya Cariu Indah 3',
+    specs: [
+      { val: '154', key: 'Total Unit' },
+      { val: 'Rp 185jt', key: 'Harga' },
+      { val: '985rb/bln', key: 'Cicilan' }
+    ],
+    desc: 'Griya Cariu Indah 3 menawarkan 154 unit perumahan subsidi di Tegal Panjang, Kec. Cariu, Kab. Bogor. Type 30/60 (5×12m) dengan 2 kamar tidur, 1 kamar mandi, ruang tamu, dapur, dan carport free canopy. Lokasi strategis pinggir Jl. Raya Transyogi. Lingkungan asri, sejuk & bebas banjir. Booking fee hanya Rp 500.000, DP Rp 1.500.000, cicilan mulai Rp 985.000/bulan (30 tahun). Dibantu sampai akad.'
+  }
+};
+
+function openModal(id) {
+  const p = projects[id];
+  document.getElementById('modalImg').src = p.img;
+  document.getElementById('modalLoc').textContent = p.loc;
+  document.getElementById('modalTitle').textContent = p.title;
+  document.getElementById('modalDesc').textContent = p.desc;
+  document.getElementById('modalSpecs').innerHTML = p.specs.map(s =>
+    `<div class="modal-spec"><div class="modal-spec-val">${s.val}</div><div class="modal-spec-key">${s.key}</div></div>`
+  ).join('');
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal(e) {
+  if (e.target === document.getElementById('modal')) closeModalBtn();
+}
+function closeModalBtn() {
+  document.getElementById('modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// ===== REVEAL =====
+function initReveal() {
+  const reveals = document.querySelectorAll('.reveal:not(.visible)');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 100);
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => obs.observe(el));
+}
+initReveal();
+</script>
+</body>
+</html>
+
+<script>
+// ===== LOAD PROJECTS FROM SUPABASE =====
+const SUPABASE_URL = 'https://gluoioiimapyhchdasfl.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdsZW9pb2lpbWFweWhjaGRhc2ZsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDYxOTQ3MjksImV4cCI6MjA2MTc3MDcyOX0.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9';
+
+const statusLabels = {
+  available: 'Tersedia', new: 'New Project',
+  subsidi: 'KPR Subsidi', villa: 'Private Villa', sold_out: 'Sold Out'
+};
+
+async function loadProjectsFromDB() {
+  try {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/projects?order=created_at.asc`, {
+      headers: { 'apikey': SUPABASE_KEY }
+    });
+    const projects = await res.json();
+    if (projects && projects.length > 0) {
+      renderDevCards(projects);
+    }
+  } catch(e) { console.log('Using static content'); }
+}
+
+function renderDevCards(projects) {
+  const grid = document.querySelector('.dev-grid');
+  if (!grid) return;
+  grid.innerHTML = projects.map((p, i) => {
+    const img = (p.images && p.images[0]) || `hero${(i%3)+1}.jpeg`;
+    const statusClass = p.status === 'new' ? 'new' : p.status === 'subsidi' ? 'subsidi' : '';
+    const label = statusLabels[p.status] || p.status || 'Project';
+    const ig = p.socials?.ig || '';
+    return `
+    <div class="dev-card reveal" onclick="openProjectModal(${i}, ${JSON.stringify(projects).replace(/"/g, '&quot;')})">
+      <div class="dev-card-img">
+        <img src="${img}" alt="${p.name}" onerror="this.src='hero1.jpeg'">
+        <div class="dev-card-status ${statusClass}">${label}</div>
+      </div>
+      <div class="dev-card-body">
+        <div class="dev-card-loc">📍 ${p.location || ''}</div>
+        <div class="dev-card-title">${p.name}</div>
+        <div class="dev-card-desc">${p.description || ''}</div>
+        ${p.price ? `<div class="dev-card-price">${p.price}</div>` : ''}
+      </div>
+      <div class="dev-card-footer">
+        <div class="dev-card-links">
+          ${ig ? `<a href="https://instagram.com/${ig.replace('@','')}" target="_blank" class="dev-card-link" onclick="event.stopPropagation()">📸 ${ig}</a>` : ''}
+        </div>
+        <div class="dev-card-arrow">→</div>
+      </div>
+    </div>`;
+  }).join('');
+  initReveal();
+}
+
+function openProjectModal(idx, projectsStr) {
+  try {
+    const projects = JSON.parse(projectsStr.replace(/&quot;/g, '"'));
+    const p = projects[idx];
+    const img = (p.images && p.images[0]) || `hero${(idx%3)+1}.jpeg`;
+    document.getElementById('modalImg').src = img;
+    document.getElementById('modalLoc').textContent = '📍 ' + (p.location || '');
+    document.getElementById('modalTitle').textContent = p.name;
+    document.getElementById('modalDesc').textContent = p.description || '';
+    document.getElementById('modalSpecs').innerHTML = [
+      p.price ? { val: p.price, key: 'Harga' } : null,
+      p.status ? { val: statusLabels[p.status] || p.status, key: 'Status' } : null,
+      p.location ? { val: p.location, key: 'Lokasi' } : null
+    ].filter(Boolean).map(s =>
+      `<div class="modal-spec"><div class="modal-spec-val">${s.val}</div><div class="modal-spec-key">${s.key}</div></div>`
+    ).join('');
+    document.getElementById('modal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  } catch(e) {}
+}
+
+loadProjectsFromDB();
+</script>
+</body>
+</html>
