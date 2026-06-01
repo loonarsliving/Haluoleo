@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin — Maha Karya Haluoleo</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sage:#7a9e6e; --sage-dark:#4e7244; --sage-deep:#2d4d25;
+  --sage-pale:#e8f0e4; --gold:#c9a84c; --cream:#f8f6f2;
+  --white:#fff; --text:#1a1a1a; --text-mid:#4a4a4a;
+  --text-light:#888; --red:#e74c3c; --border:rgba(0,0,0,0.08);
+  --dusty:#c9948a;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);min-height:100vh;}
+
+/* LOGIN */
+.login-page{min-height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(150deg,var(--sage-deep),var(--sage-dark));}
+.login-box{background:var(--white);border-radius:8px;padding:3rem;width:100%;max-width:400px;box-shadow:0 20px 60px rgba(0,0,0,0.2);}
+.login-title{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;margin-bottom:0.3rem;}
+.login-sub{font-size:0.82rem;color:var(--text-light);margin-bottom:2rem;}
+.form-group{margin-bottom:1.2rem;}
+.form-label{font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-mid);margin-bottom:0.4rem;display:block;}
+.form-input{width:100%;padding:0.8rem 1rem;border:1px solid var(--border);border-radius:4px;font-family:'DM Sans',sans-serif;font-size:0.9rem;transition:border-color 0.2s;background:var(--cream);}
+.form-input:focus{outline:none;border-color:var(--sage);background:var(--white);}
+.btn-login{width:100%;padding:0.9rem;background:var(--sage-dark);color:var(--white);border:none;border-radius:4px;font-family:'DM Sans',sans-serif;font-size:0.82rem;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;transition:background 0.2s;margin-top:0.5rem;}
+.btn-login:hover{background:var(--sage-deep);}
+.login-error{color:var(--red);font-size:0.82rem;margin-top:0.8rem;display:none;}
+
+/* LAYOUT */
+.dashboard{display:none;min-height:100vh;}
+.sidebar{position:fixed;left:0;top:0;bottom:0;width:220px;background:var(--sage-deep);padding:2rem 1.5rem;display:flex;flex-direction:column;z-index:100;}
+.sidebar-logo{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--white);font-weight:300;margin-bottom:0.2rem;}
+.sidebar-sub{font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:2.5rem;}
+.sidebar-nav{display:flex;flex-direction:column;gap:0.3rem;flex:1;}
+.nav-btn{padding:0.7rem 1rem;border-radius:4px;border:none;font-family:'DM Sans',sans-serif;font-size:0.82rem;cursor:pointer;text-align:left;transition:all 0.2s;color:rgba(255,255,255,0.6);background:transparent;display:flex;align-items:center;gap:0.7rem;}
+.nav-btn:hover{background:rgba(255,255,255,0.08);color:var(--white);}
+.nav-btn.active{background:rgba(255,255,255,0.14);color:var(--white);}
+.sidebar-logout{padding:0.7rem 1rem;border-radius:4px;border:1px solid rgba(255,255,255,0.15);font-family:'DM Sans',sans-serif;font-size:0.75rem;cursor:pointer;color:rgba(255,255,255,0.5);background:transparent;transition:all 0.2s;letter-spacing:0.08em;text-transform:uppercase;}
+.sidebar-logout:hover{border-color:rgba(255,255,255,0.4);color:var(--white);}
+.main-content{margin-left:220px;padding:2.5rem;min-height:100vh;}
+.page-header{margin-bottom:2rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
+.page-title{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;}
+.btn-add{background:var(--sage-dark);color:var(--white);border:none;padding:0.7rem 1.4rem;border-radius:4px;font-family:'DM Sans',sans-serif;font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;transition:background 0.2s;display:flex;align-items:center;gap:0.5rem;}
+.btn-add:hover{background:var(--sage-deep);}
+
+/* TABS */
+.tab-content{display:none;}
+.tab-content.active{display:block;}
+
+/* HERO SECTION */
+.hero-manager{background:var(--white);border-radius:8px;padding:2rem;border:1px solid var(--border);margin-bottom:2rem;}
+.hero-manager h3{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:300;margin-bottom:1.5rem;}
+.hero-slides-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;}
+.hero-slide-item{border:1px solid var(--border);border-radius:6px;overflow:hidden;position:relative;}
+.hero-slide-img{width:100%;height:140px;object-fit:cover;background:var(--sage-pale);display:flex;align-items:center;justify-content:center;color:var(--text-light);font-size:0.82rem;}
+.hero-slide-img img{width:100%;height:100%;object-fit:cover;}
+.hero-slide-footer{padding:0.8rem;display:flex;align-items:center;justify-content:space-between;}
+.hero-slide-label{font-size:0.72rem;color:var(--text-light);letter-spacing:0.08em;text-transform:uppercase;}
+.btn-upload-hero{background:var(--sage-pale);color:var(--sage-dark);border:none;padding:0.4rem 0.8rem;border-radius:4px;font-size:0.72rem;cursor:pointer;transition:all 0.2s;}
+.btn-upload-hero:hover{background:var(--sage);color:var(--white);}
+.upload-progress{height:3px;background:var(--sage-pale);border-radius:2px;margin-top:0.5rem;overflow:hidden;display:none;}
+.upload-progress-bar{height:100%;background:var(--sage);width:0%;transition:width 0.3s;}
+
+/* BEAUTY SECTION */
+.beauty-manager{background:var(--white);border-radius:8px;padding:2rem;border:1px solid var(--border);}
+.beauty-manager h3{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:300;margin-bottom:1.5rem;}
+.beauty-imgs-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;}
+.beauty-img-item{border:1px solid var(--border);border-radius:6px;overflow:hidden;}
+.beauty-img-preview{width:100%;height:180px;object-fit:cover;background:var(--sage-pale);display:flex;align-items:center;justify-content:center;color:var(--text-light);font-size:0.82rem;}
+.beauty-img-preview img{width:100%;height:100%;object-fit:cover;}
+.beauty-img-footer{padding:0.8rem;display:flex;align-items:center;justify-content:space-between;}
+
+/* PROJECTS */
+.projects-list{display:flex;flex-direction:column;gap:1rem;}
+.project-item{background:var(--white);border-radius:6px;padding:1.5rem;display:flex;gap:1.2rem;align-items:flex-start;border:1px solid var(--border);transition:box-shadow 0.2s;}
+.project-item:hover{box-shadow:0 4px 20px rgba(0,0,0,0.08);}
+.project-thumb{width:80px;height:80px;border-radius:4px;object-fit:cover;background:var(--sage-pale);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1.5rem;overflow:hidden;}
+.project-thumb img{width:100%;height:100%;object-fit:cover;}
+.project-info{flex:1;}
+.project-name{font-family:'Cormorant Garamond',serif;font-size:1.2rem;margin-bottom:0.2rem;}
+.project-loc{font-size:0.72rem;color:var(--sage-dark);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.3rem;}
+.project-desc{font-size:0.82rem;color:var(--text-light);line-height:1.6;}
+.project-actions{display:flex;gap:0.5rem;flex-shrink:0;}
+.btn-edit{padding:0.4rem 0.9rem;border-radius:4px;border:1px solid var(--border);font-size:0.75rem;cursor:pointer;background:var(--white);transition:all 0.2s;font-family:'DM Sans',sans-serif;}
+.btn-edit:hover{border-color:var(--sage);color:var(--sage-dark);}
+.btn-delete{padding:0.4rem 0.9rem;border-radius:4px;border:1px solid rgba(231,76,60,0.2);font-size:0.75rem;cursor:pointer;background:var(--white);color:var(--red);transition:all 0.2s;font-family:'DM Sans',sans-serif;}
+.btn-delete:hover{background:var(--red);color:var(--white);border-color:var(--red);}
+.status-badge{display:inline-block;padding:0.2rem 0.6rem;border-radius:50px;font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;background:var(--sage-pale);color:var(--sage-dark);margin-top:0.4rem;}
+
+/* MODAL */
+.modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:1000;display:none;align-items:center;justify-content:center;padding:1.5rem;}
+.modal-backdrop.open{display:flex;}
+.modal-form{background:var(--white);border-radius:8px;width:100%;max-width:600px;max-height:90vh;overflow-y:auto;}
+.modal-form-header{padding:1.5rem 2rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:var(--white);z-index:1;}
+.modal-form-title{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:300;}
+.modal-close-btn{width:32px;height:32px;border-radius:50%;border:1px solid var(--border);background:none;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;}
+.modal-form-body{padding:2rem;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.form-textarea{width:100%;padding:0.8rem 1rem;border:1px solid var(--border);border-radius:4px;font-family:'DM Sans',sans-serif;font-size:0.9rem;resize:vertical;min-height:80px;background:var(--cream);transition:border-color 0.2s;}
+.form-textarea:focus{outline:none;border-color:var(--sage);background:var(--white);}
+.form-select{width:100%;padding:0.8rem 1rem;border:1px solid var(--border);border-radius:4px;font-family:'DM Sans',sans-serif;font-size:0.9rem;background:var(--cream);cursor:pointer;}
+.modal-form-footer{padding:1.5rem 2rem;border-top:1px solid var(--border);display:flex;gap:1rem;justify-content:flex-end;}
+.btn-cancel{padding:0.7rem 1.5rem;border:1px solid var(--border);border-radius:4px;background:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.82rem;}
+.btn-save{padding:0.7rem 1.5rem;background:var(--sage-dark);color:var(--white);border:none;border-radius:4px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.82rem;letter-spacing:0.1em;text-transform:uppercase;transition:background 0.2s;}
+.btn-save:hover{background:var(--sage-deep);}
+
+/* UPLOAD ZONE */
+.upload-zone{border:2px dashed rgba(122,158,110,0.4);border-radius:6px;padding:1.5rem;text-align:center;cursor:pointer;transition:all 0.2s;background:var(--sage-pale);margin-top:0.5rem;}
+.upload-zone:hover{border-color:var(--sage);}
+.upload-zone input{display:none;}
+.upload-zone-text{font-size:0.82rem;color:var(--text-light);}
+.imgs-preview{display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:0.8rem;}
+.img-prev{position:relative;width:72px;height:72px;}
+.img-prev img{width:100%;height:100%;object-fit:cover;border-radius:4px;}
+.img-prev-del{position:absolute;top:-5px;right:-5px;width:18px;height:18px;background:var(--red);color:var(--white);border-radius:50%;border:none;cursor:pointer;font-size:0.6rem;display:flex;align-items:center;justify-content:center;}
+
+/* STATS */
+.stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-bottom:2rem;}
+.stat-card{background:var(--white);border-radius:6px;padding:1.5rem;border:1px solid var(--border);}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:2.5rem;color:var(--sage-dark);line-height:1;}
+.stat-label{font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-light);margin-top:0.3rem;}
+
+/* TOAST */
+.toast{position:fixed;bottom:2rem;right:2rem;z-index:2000;background:var(--sage-deep);color:var(--white);padding:0.8rem 1.5rem;border-radius:4px;font-size:0.85rem;transform:translateY(100px);opacity:0;transition:all 0.3s;pointer-events:none;}
+.toast.show{transform:translateY(0);opacity:1;}
+
+/* LOADING */
+.loading{text-align:center;padding:3rem;color:var(--text-light);}
+.spinner{width:28px;height:28px;border:2px solid var(--sage-pale);border-top-color:var(--sage);border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto 1rem;}
+@keyframes spin{to{transform:rotate(360deg);}}
+
+@media(max-width:768px){
+  .sidebar{width:100%;position:relative;height:auto;}
+  .main-content{margin-left:0;padding:1.5rem;}
+  .stats-grid,.hero-slides-grid{grid-template-columns:1fr;}
+  .form-row{grid-template-columns:1fr;}
+  .beauty-imgs-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div class="login-page" id="loginPage">
+  <div class="login-box">
+    <div class="login-title">Admin Panel</div>
+    <div class="login-sub">PT. Maha Karya Haluoleo</div>
+    <div class="form-group">
+      <label class="form-label">Email</label>
+      <input type="email" class="form-input" id="loginEmail" placeholder="mahakarya@haluoleo.id">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Password</label>
+      <input type="password" class="form-input" id="loginPassword" onkeydown="if(event.key==='Enter')doLogin()">
+    </div>
+    <button class="btn-login" onclick="doLogin()">Masuk</button>
+    <div class="login-error" id="loginError">Email atau password salah.</div>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div class="dashboard" id="dashboard">
+  <div class="sidebar">
+    <div class="sidebar-logo">Maha Karya</div>
+    <div class="sidebar-sub">Admin Panel</div>
+    <div class="sidebar-nav">
+      <button class="nav-btn active" onclick="showTab('hero')" id="tab-hero">🖼️ Hero Slideshow</button>
+      <button class="nav-btn" onclick="showTab('projects')" id="tab-projects">🏠 Project</button>
+      <button class="nav-btn" onclick="showTab('beauty')" id="tab-beauty">🌸 Loonars Beauty</button>
+      <button class="nav-btn" onclick="showTab('overview')" id="tab-overview">📊 Overview</button>
+    </div>
+    <button class="sidebar-logout" onclick="doLogout()">Keluar</button>
+  </div>
+
+  <div class="main-content">
+
+    <!-- HERO TAB -->
+    <div class="tab-content active" id="content-hero">
+      <div class="page-header">
+        <div class="page-title">Hero Slideshow</div>
+      </div>
+      <div class="hero-manager">
+        <h3>3 Foto Slideshow Utama</h3>
+        <div class="hero-slides-grid">
+          <div class="hero-slide-item">
+            <div class="hero-slide-img" id="hero-preview-0">
+              <img src="" id="hero-img-0" onerror="this.parentElement.innerHTML='Belum ada foto'" style="display:none">
+              <span id="hero-empty-0">Belum ada foto</span>
+            </div>
+            <div class="upload-progress" id="hero-prog-0"><div class="upload-progress-bar" id="hero-bar-0"></div></div>
+            <div class="hero-slide-footer">
+              <span class="hero-slide-label">Slide 1</span>
+              <label class="btn-upload-hero">
+                Upload Foto
+                <input type="file" accept="image/*" onchange="uploadHeroImg(this, 0)">
+              </label>
+            </div>
+          </div>
+          <div class="hero-slide-item">
+            <div class="hero-slide-img" id="hero-preview-1">
+              <img src="" id="hero-img-1" onerror="this.parentElement.innerHTML='Belum ada foto'" style="display:none">
+              <span id="hero-empty-1">Belum ada foto</span>
+            </div>
+            <div class="upload-progress" id="hero-prog-1"><div class="upload-progress-bar" id="hero-bar-1"></div></div>
+            <div class="hero-slide-footer">
+              <span class="hero-slide-label">Slide 2</span>
+              <label class="btn-upload-hero">
+                Upload Foto
+                <input type="file" accept="image/*" onchange="uploadHeroImg(this, 1)">
+              </label>
+            </div>
+          </div>
+          <div class="hero-slide-item">
+            <div class="hero-slide-img" id="hero-preview-2">
+              <img src="" id="hero-img-2" onerror="this.parentElement.innerHTML='Belum ada foto'" style="display:none">
+              <span id="hero-empty-2">Belum ada foto</span>
+            </div>
+            <div class="upload-progress" id="hero-prog-2"><div class="upload-progress-bar" id="hero-bar-2"></div></div>
+            <div class="hero-slide-footer">
+              <span class="hero-slide-label">Slide 3</span>
+              <label class="btn-upload-hero">
+                Upload Foto
+                <input type="file" accept="image/*" onchange="uploadHeroImg(this, 2)">
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECTS TAB -->
+    <div class="tab-content" id="content-projects">
+      <div class="page-header">
+        <div class="page-title">Kelola Project</div>
+        <button class="btn-add" onclick="openForm()">+ Tambah Project</button>
+      </div>
+      <div class="loading" id="projectsLoading"><div class="spinner"></div>Memuat...</div>
+      <div class="projects-list" id="projectsList" style="display:none;"></div>
+    </div>
+
+    <!-- BEAUTY TAB -->
+    <div class="tab-content" id="content-beauty">
+      <div class="page-header">
+        <div class="page-title">Loonars Beauty</div>
+      </div>
+      <div class="beauty-manager">
+        <h3>Foto Produk HydraGlow</h3>
+        <div class="beauty-imgs-grid">
+          <div class="beauty-img-item">
+            <div class="beauty-img-preview" id="beauty-preview-0">
+              <img src="" id="beauty-img-0" style="display:none" onerror="this.parentElement.innerHTML='Belum ada foto'">
+              <span id="beauty-empty-0">Belum ada foto</span>
+            </div>
+            <div class="upload-progress" id="beauty-prog-0"><div class="upload-progress-bar" id="beauty-bar-0"></div></div>
+            <div class="beauty-img-footer">
+              <span class="hero-slide-label">Foto Utama</span>
+              <label class="btn-upload-hero">
+                Upload Foto
+                <input type="file" accept="image/*" onchange="uploadBeautyImg(this, 0)">
+              </label>
+            </div>
+          </div>
+          <div class="beauty-img-item">
+            <div class="beauty-img-preview" id="beauty-preview-1">
+              <img src="" id="beauty-img-1" style="display:none" onerror="this.parentElement.innerHTML='Belum ada foto'">
+              <span id="beauty-empty-1">Belum ada foto</span>
+            </div>
+            <div class="upload-progress" id="beauty-prog-1"><div class="upload-progress-bar" id="beauty-bar-1"></div></div>
+            <div class="beauty-img-footer">
+              <span class="hero-slide-label">Foto Kedua</span>
+              <label class="btn-upload-hero">
+                Upload Foto
+                <input type="file" accept="image/*" onchange="uploadBeautyImg(this, 1)">
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- OVERVIEW TAB -->
+    <div class="tab-content" id="content-overview">
+      <div class="page-header"><div class="page-title">Overview</div></div>
+      <div class="stats-grid">
+        <div class="stat-card"><div class="stat-num" id="statTotal">-</div><div class="stat-label">Total Project</div></div>
+        <div class="stat-card"><div class="stat-num" id="statActive">-</div><div class="stat-label">Project Aktif</div></div>
+        <div class="stat-card"><div class="stat-num" id="statDone">-</div><div class="stat-label">Sold Out</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FORM MODAL -->
+<div class="modal-backdrop" id="formModal">
+  <div class="modal-form">
+    <div class="modal-form-header">
+      <div class="modal-form-title" id="formTitle">Tambah Project</div>
+      <button class="modal-close-btn" onclick="closeForm()">✕</button>
+    </div>
+    <div class="modal-form-body">
+      <input type="hidden" id="formId">
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Nama Project *</label>
+          <input type="text" class="form-input" id="formName" placeholder="Loonars Living">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Lokasi *</label>
+          <input type="text" class="form-input" id="formLocation" placeholder="Yogyakarta">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Status</label>
+          <select class="form-select" id="formStatus">
+            <option value="available">Tersedia</option>
+            <option value="new">New Project</option>
+            <option value="subsidi">KPR Subsidi</option>
+            <option value="villa">Private Villa</option>
+            <option value="sold_out">Sold Out</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Harga</label>
+          <input type="text" class="form-input" id="formPrice" placeholder="Rp 185.000.000">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Deskripsi</label>
+        <textarea class="form-textarea" id="formDesc" placeholder="Deskripsi singkat project..."></textarea>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Instagram</label>
+        <input type="text" class="form-input" id="formIg" placeholder="@loonarsliving">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Foto Project</label>
+        <div class="upload-zone" onclick="document.getElementById('projectImgInput').click()">
+          <div class="upload-zone-text">📷 Klik untuk upload foto</div>
+          <input type="file" id="projectImgInput" accept="image/*" multiple onchange="handleProjectImgs(this)">
+        </div>
+        <div class="imgs-preview" id="imgsPreview"></div>
+        <input type="hidden" id="formImages">
+      </div>
+    </div>
+    <div class="modal-form-footer">
+      <button class="btn-cancel" onclick="closeForm()">Batal</button>
+      <button class="btn-save" id="saveBtn" onclick="saveProject()">Simpan Project</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const SUPABASE_URL = 'https://gluoioiimapyhchdasfl.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdsdW9pb2lpbWFweWhjaGRhc2ZsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAwNDQ3MjAsImV4cCI6MjA5NTYyMDcyMH0.dHVB0jJBMjUunJKSsqbaM3MGCAq-ZRSWQEqvEyUjIyk';
+let authToken = null;
+let editingId = null;
+let projectImageUrls = [];
+
+// ===== AUTH =====
+async function doLogin() {
+  const email = document.getElementById('loginEmail').value;
+  const password = document.getElementById('loginPassword').value;
+  document.getElementById('loginError').style.display = 'none';
+  try {
+    const res = await fetch(`${SUPABASE_URL}/auth/v1/token?grant_type=password`, {
+      method:'POST',
+      headers:{'Content-Type':'application/json','apikey':SUPABASE_KEY},
+      body:JSON.stringify({email,password})
+    });
+    const data = await res.json();
+    if (data.access_token) {
+      authToken = data.access_token;
+      document.getElementById('loginPage').style.display = 'none';
+      document.getElementById('dashboard').style.display = 'flex';
+      loadHeroImages();
+      loadBeautyImages();
+    } else {
+      document.getElementById('loginError').style.display = 'block';
+    }
+  } catch(e) { document.getElementById('loginError').style.display = 'block'; }
+}
+
+function doLogout() {
+  authToken = null;
+  document.getElementById('loginPage').style.display = 'flex';
+  document.getElementById('dashboard').style.display = 'none';
+}
+
+// ===== TABS =====
+function showTab(name) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('content-' + name).classList.add('active');
+  document.getElementById('tab-' + name).classList.add('active');
+  if (name === 'projects') loadProjects();
+  if (name === 'overview') loadOverview();
+}
+
+// ===== UPLOAD TO STORAGE =====
+async function uploadToStorage(file, path) {
+  const res = await fetch(`${SUPABASE_URL}/storage/v1/object/images/${path}`, {
+    method:'POST',
+    headers:{
+      'apikey': SUPABASE_KEY,
+      'Authorization': `Bearer ${authToken}`,
+      'Content-Type': file.type,
+      'x-upsert': 'true'
+    },
+    body: file
+  });
+  if (!res.ok) throw new Error('Upload gagal');
+  return `${SUPABASE_URL}/storage/v1/object/public/images/${path}`;
+}
+
+// ===== HERO IMAGES =====
+async function loadHeroImages() {
+  try {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/site_settings?key=in.(hero_0,hero_1,hero_2)`, {
+      headers:{'apikey':SUPABASE_KEY,'Authorization':`Bearer ${authToken}`}
+    });
+    const data = await res.json();
+    if (Array.isArray(data)) {
+      data.forEach(item => {
+        const idx = parseInt(item.key.split('_')[1]);
+        showHeroPreview(idx, item.value);
+      });
+    }
+  } catch(e) {}
+}
+
+function showHeroPreview(idx, url) {
+  const img = document.getElementById(`hero-img-${idx}`);
+  const empty = document.getElementById(`hero-empty-${idx}`);
+  if (img && url) { img.src = url; img.style.display = 'block'; if(empty) empty.style.display='none'; }
+}
+
+async function uploadHeroImg(input, idx) {
+  const file = input.files[0];
+  if (!file) return;
+  const prog = document.getElementById(`hero-prog-${idx}`);
+  const bar = document.getElementById(`hero-bar-${idx}`);
+  prog.style.display = 'block'; bar.style.width = '30%';
+  try {
+    const path = `hero/slide-${idx}-${Date.now()}.${file.name.split('.').pop()}`;
+    bar.style.width = '60%';
+    const url = await uploadToStorage(file, path);
+    bar.style.width = '90%';
+    await saveHeroSetting(idx, url);
+    bar.style.width = '100%';
+    showHeroPreview(idx, url);
+    showToast(`Slide ${idx+1} berhasil diupdate! ✅`);
+    setTimeout(() => { prog.style.display='none'; bar.style.width='0%'; }, 1000);
+  } catch(e) { showToast('Upload gagal: ' + e.message); prog.style.display='none'; }
+}
+
+async function saveHeroSetting(idx, url) {
+  await fetch(`${SUPABASE_URL}/rest/v1/site_settings`, {
+    method:'POST',
+    headers:{
+      'apikey':SUPABASE_KEY,'Authorization':`Bearer ${authToken}`,
+      'Content-Type':'application/json','Prefer':'resolution=merge-duplicates'
+    },
+    body: JSON.stringify({key:`hero_${idx}`, value:url})
+  });
+}
+
+// ===== BEAUTY IMAGES =====
+async function loadBeautyImages() {
+  try {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/site_settings?key=in.(beauty_0,beauty_1)`, {
+      headers:{'apikey':SUPABASE_KEY,'Authorization':`Bearer ${authToken}`}
+    });
+    const data = await res.json();
+    if (Array.isArray(data)) {
+      data.forEach(item => {
+        const idx = parseInt(item.key.split('_')[1]);
+        showBeautyPreview(idx, item.value);
+      });
+    }
+  } catch(e) {}
+}
+
+function showBeautyPreview(idx, url) {
+  const img = document.getElementById(`beauty-img-${idx}`);
+  const empty = document.getElementById(`beauty-empty-${idx}`);
+  if (img && url) { img.src = url; img.style.display = 'block'; if(empty) empty.style.display='none'; }
+}
+
+async function uploadBeautyImg(input, idx) {
+  const file = input.files[0];
+  if (!file) return;
+  const prog = document.getElementById(`beauty-prog-${idx}`);
+  const bar = document.getElementById(`beauty-bar-${idx}`);
+  prog.style.display = 'block'; bar.style.width = '30%';
+  try {
+    const path = `beauty/photo-${idx}-${Date.now()}.${file.name.split('.').pop()}`;
+    bar.style.width = '60%';
+    const url = await uploadToStorage(file, path);
+    bar.style.width = '90%';
+    await fetch(`${SUPABASE_URL}/rest/v1/site_settings`, {
+      method:'POST',
+      headers:{
+        'apikey':SUPABASE_KEY,'Authorization':`Bearer ${authToken}`,
+        'Content-Type':'application/json','Prefer':'resolution=merge-duplicates'
+      },
+      body: JSON.stringify({key:`beauty_${idx}`, value:url})
+    });
+    bar.style.width = '100%';
+    showBeautyPreview(idx, url);
+    showToast(`Foto beauty ${idx+1} berhasil diupdate! ✅`);
+    setTimeout(() => { prog.style.display='none'; bar.style.width='0%'; }, 1000);
+  } catch(e) { showToast('Upload gagal: ' + e.message); prog.style.display='none'; }
+}
+
+// ===== PROJECT IMAGES =====
+async function handleProjectImgs(input) {
+  const files = Array.from(input.files);
+  const preview = document.getElementById('imgsPreview');
+  for (const file of files) {
+    const tmpUrl = URL.createObjectURL(file);
+    const div = document.createElement('div');
+    div.className = 'img-prev';
+    div.innerHTML = `<img src="${tmpUrl}"><div style="position:absolute;inset:0;background:rgba(0,0,0,0.4);display:flex;align-items:center;justify-content:center;border-radius:4px;"><div class="spinner" style="width:20px;height:20px;border-width:2px;"></div></div>`;
+    preview.appendChild(div);
+    try {
+      const path = `projects/${Date.now()}-${file.name}`;
+      const url = await uploadToStorage(file, path);
+      projectImageUrls.push(url);
+      div.innerHTML = `<img src="${url}"><button class="img-prev-del" onclick="removeImg(this,'${url}')">✕</button>`;
+    } catch(e) { div.remove(); showToast('Upload foto gagal'); }
+  }
+  document.getElementById('formImages').value = projectImageUrls.join(',');
+}
+
+function removeImg(btn, url) {
+  btn.parentElement.remove();
+  projectImageUrls = projectImageUrls.filter(u => u !== url);
+  document.getElementById('formImages').value = projectImageUrls.join(',');
+}
+
+// ===== PROJECTS =====
+async function loadProjects() {
+  document.getElementById('projectsLoading').style.display = 'block';
+  document.getElementById('projectsList').style.display = 'none';
+  try {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/projects?order=created_at.desc`, {
+      headers:{'apikey':SUPABASE_KEY,'Authorization':`Bearer ${authToken||SUPABASE_KEY}`}
+    });
+    const projects = await res.json();
+    renderProjects(projects);
+    document.getElementById('statTotal').textContent = projects.length;
+    document.getElementById('statActive').textContent = projects.filter(p=>p.status!=='sold_out').length;
+    document.getElementById('statDone').textContent = projects.filter(p=>p.status==='sold_out').length;
+  } catch(e) { showToast('Gagal memuat data'); }
+}
+
+function renderProjects(projects) {
+  document.getElementById('projectsLoading').style.display = 'none';
+  document.getElementById('projectsList').style.display = 'flex';
+  const list = document.getElementById('projectsList');
+  if (!projects.length) {
+    list.innerHTML = '<div style="text-align:center;padding:3rem;color:var(--text-light);">Belum ada project.</div>';
+    return;
+  }
+  const labels = {available:'Tersedia',new:'New',subsidi:'Subsidi',villa:'Villa',sold_out:'Sold Out'};
+  list.innerHTML = projects.map(p => {
+    const imgs = Array.isArray(p.images) ? p.images : [];
+    const thumb = imgs[0] || '';
+    return `<div class="project-item">
+      <div class="project-thumb">${thumb?`<img src="${thumb}" onerror="this.parentElement.innerHTML='🏠'">`:'🏠'}</div>
+      <div class="project-info">
+        <div class="project-name">${p.name}</div>
+        <div class="project-loc">📍 ${p.location||'-'}</div>
+        <div class="project-desc">${p.description||'-'}</div>
+        ${p.price?`<div style="font-size:0.82rem;color:var(--sage-dark);margin-top:0.2rem;">${p.price}</div>`:''}
+        <span class="status-badge">${labels[p.status]||p.status}</span>
+      </div>
+      <div class="project-actions">
+        <button class="btn-edit" onclick="editProject('${p.id}')">Edit</button>
+        <button class="btn-delete" onclick="deleteProject('${p.id}','${p.name}')">Hapus</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+async function loadOverview() {
+  try {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/projects`, {
+      headers:{'apikey':SUPABASE_KEY,'Authorization':`Bearer ${authToken||SUPABASE_KEY}`}
+    });
+    const projects = await res.json();
+    document.getElementById('statTotal').textContent = projects.length;
+    document.getElementById('statActive').textContent = projects.filter(p=>p.status!=='sold_out').length;
+    document.getElementById('statDone').textContent = projects.filter(p=>p.status==='sold_out').length;
+  } catch(e) {}
+}
+
+function openForm(project=null) {
+  editingId = project?project.id:null;
+  projectImageUrls = project&&project.images ? [...project.images] : [];
+  document.getElementById('formTitle').textContent = project?'Edit Project':'Tambah Project';
+  document.getElementById('formId').value = project?.id||'';
+  document.getElementById('formName').value = project?.name||'';
+  document.getElementById('formLocation').value = project?.location||'';
+  document.getElementById('formStatus').value = project?.status||'available';
+  document.getElementById('formPrice').value = project?.price||'';
+  document.getElementById('formDesc').value = project?.description||'';
+  document.getElementById('formIg').value = project?.socials?.ig||'';
+  document.getElementById('formImages').value = projectImageUrls.join(',');
+  const preview = document.getElementById('imgsPreview');
+  preview.innerHTML = projectImageUrls.map(url =>
+    `<div class="img-prev"><img src="${url}"><button class="img-prev-del" onclick="removeImg(this,'${url}')">✕</button></div>`
+  ).join('');
+  document.getElementById('formModal').classList.add('open');
+}
+
+function closeForm() {
+  document.getElementById('formModal').classList.remove('open');
+  editingId = null; projectImageUrls = [];
+  document.getElementById('imgsPreview').innerHTML = '';
+}
+
+async function saveProject() {
+  const name = document.getElementById('formName').value.trim();
+  if (!name) { showToast('Nama project wajib diisi!'); return; }
+  const btn = document.getElementById('saveBtn');
+  btn.textContent = 'Menyimpan...'; btn.disabled = true;
+  const data = {
+    name, location:document.getElementById('formLocation').value.trim(),
+    status:document.getElementById('formStatus').value,
+    price:document.getElementById('formPrice').value.trim(),
+    description:document.getElementById('formDesc').value.trim(),
+    images:projectImageUrls,
+    socials:{ig:document.getElementById('formIg').value.trim()}
+  };
+  try {
+    const url = editingId
+      ? `${SUPABASE_URL}/rest/v1/projects?id=eq.${editingId}`
+      : `${SUPABASE_URL}/rest/v1/projects`;
+    const res = await fetch(url, {
+      method: editingId?'PATCH':'POST',
+      headers:{'apikey':SUPABASE_KEY,'Authorization':`Bearer ${authToken}`,'Content-Type':'application/json','Prefer':'return=minimal'},
+      body:JSON.stringify(data)
+    });
+    if (res.ok||res.status===201||res.status===204) {
+      showToast(editingId?'Project berhasil diupdate! ✅':'Project berhasil ditambahkan! ✅');
+      closeForm(); loadProjects();
+    } else { showToast('Gagal menyimpan'); }
+  } catch(e) { showToast('Koneksi gagal'); }
+  btn.textContent = 'Simpan Project'; btn.disabled = false;
+}
+
+async function editProject(id) {
+  try {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/projects?id=eq.${id}`, {
+      headers:{'apikey':SUPABASE_KEY,'Authorization':`Bearer ${authToken||SUPABASE_KEY}`}
+    });
+    const data = await res.json();
+    if (data[0]) openForm(data[0]);
+  } catch(e) { showToast('Gagal memuat'); }
+}
+
+async function deleteProject(id, name) {
+  if (!confirm(`Hapus project "${name}"?`)) return;
+  try {
+    await fetch(`${SUPABASE_URL}/rest/v1/projects?id=eq.${id}`, {
+      method:'DELETE',
+      headers:{'apikey':SUPABASE_KEY,'Authorization':`Bearer ${authToken}`}
+    });
+    showToast('Project dihapus ✅'); loadProjects();
+  } catch(e) { showToast('Gagal menghapus'); }
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),3000);
+}
+
+document.getElementById('formModal').addEventListener('click',function(e){if(e.target===this)closeForm();});
+</script>
+</body>
+</html>
