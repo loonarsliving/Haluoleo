@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PT. Maha Karya Haluoleo — Developer Properti Indonesia</title>
+<meta name="description" content="Developer properti terpercaya sejak 2012. Villa eksklusif Yogyakarta, rumah subsidi Bogor, hunian premium Makassar.">
+<meta name="keywords" content="developer properti, villa yogyakarta, rumah subsidi bogor, hunian makassar, loonars living, al fath introvert house, griya cariu indah, avianto perdana pagala, mahakarya haluoleo">
+<meta name="author" content="PT. Maha Karya Haluoleo">
+<link rel="canonical" href="https://haluoleo.id">
+<meta property="og:title" content="PT. Maha Karya Haluoleo — Hadir di Mana Impian Dibangun">
+<meta property="og:description" content="Developer properti terpercaya sejak 2012.">
+<meta property="og:image" content="https://haluoleo.id/hero1.jpeg">
+<meta property="og:url" content="https://haluoleo.id">
+<meta property="og:type" content="website">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"RealEstateAgent","name":"PT. Maha Karya Haluoleo","url":"https://haluoleo.id","foundingDate":"2012","founder":{"@type":"Person","name":"Avianto Perdana Pagala"},"areaServed":["Makassar","Yogyakarta","Bogor"],"contactPoint":{"@type":"ContactPoint","telephone":"+6282228885223","contactType":"sales"}}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --sage:#7a9e6e;--sage-light:#a8c49a;--sage-dark:#4e7244;--sage-deep:#2d4d25;
+  --gold:#c9a84c;--gold-light:#e8c96b;
+  --cream:#f8f6f2;--white:#fff;
+  --text:#1a1a1a;--text-mid:#4a4a4a;--text-light:#888;
+  --rose:#c9948a;
+  --ease:cubic-bezier(0.25,0.46,0.45,0.94);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--white);color:var(--text);overflow-x:hidden;}
+
+/* ── Ken Burns ── */
+@keyframes kb1{0%{transform:scale(1) translate(0,0);}100%{transform:scale(1.12) translate(-3%,-2%);}}
+@keyframes kb2{0%{transform:scale(1.1) translate(-2%,0);}100%{transform:scale(1) translate(0,-2%);}}
+@keyframes kb3{0%{transform:scale(1) translate(2%,1%);}100%{transform:scale(1.1) translate(0,0);}}
+@keyframes subtleKB{0%{transform:scale(1);}100%{transform:scale(1.05);}}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+@keyframes slideUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
+@keyframes slideIn{from{opacity:0;transform:translateX(-20px);}to{opacity:1;transform:translateX(0);}}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;width:100%;z-index:1000;padding:1.2rem 2.5rem;display:flex;align-items:center;justify-content:space-between;transition:all 0.5s var(--ease);}
+nav.scrolled{background:rgba(255,255,255,0.97);backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,0,0,0.07);padding:0.85rem 2.5rem;}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.25rem;color:var(--white);font-weight:400;letter-spacing:0.07em;text-decoration:none;display:flex;align-items:center;gap:0.6rem;transition:color 0.3s;}
+nav.scrolled .nav-logo{color:var(--text);}
+.nav-dot{width:7px;height:7px;background:var(--sage);border-radius:50%;transition:transform 0.3s;}
+nav.scrolled .nav-logo:hover .nav-dot{transform:scale(1.5);}
+.nav-links{display:flex;align-items:center;gap:2rem;}
+.nav-link{font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.8);text-decoration:none;transition:color 0.3s;position:relative;}
+.nav-link::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1px;background:var(--sage);transition:width 0.3s;}
+.nav-link:hover::after{width:100%;}
+nav.scrolled .nav-link{color:var(--text-mid);}
+.nav-link:hover{color:var(--white);}
+nav.scrolled .nav-link:hover{color:var(--sage-dark);}
+.nav-cta{padding:0.55rem 1.3rem;border:1px solid rgba(255,255,255,0.5);border-radius:50px;font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--white);text-decoration:none;transition:all 0.3s;backdrop-filter:blur(4px);}
+.nav-cta:hover{background:var(--white);color:var(--text);}
+nav.scrolled .nav-cta{border-color:var(--sage);color:var(--sage-dark);}
+nav.scrolled .nav-cta:hover{background:var(--sage-dark);color:var(--white);}
+/* Mobile hamburger */
+.hamburger{display:none;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);flex-direction:column;align-items:center;justify-content:center;gap:5px;cursor:pointer;transition:all 0.3s;}
+.hamburger span{display:block;width:16px;height:1.5px;background:var(--white);transition:all 0.3s;}
+nav.scrolled .hamburger{background:var(--text);border-color:var(--text);}
+.hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg);}
+.hamburger.open span:nth-child(2){opacity:0;}
+.hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}
+.mobile-menu{position:fixed;top:0;right:-100%;width:280px;height:100vh;background:var(--white);z-index:999;padding:5rem 2.5rem 3rem;transition:right 0.4s var(--ease);border-left:1px solid rgba(0,0,0,0.06);}
+.mobile-menu.open{right:0;}
+.mobile-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:998;opacity:0;pointer-events:none;transition:opacity 0.3s;}
+.mobile-overlay.open{opacity:1;pointer-events:all;}
+.m-link{display:block;font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;color:var(--text);text-decoration:none;padding:0.7rem 0;border-bottom:1px solid rgba(0,0,0,0.06);}
+.m-link:hover{color:var(--sage-dark);}
+
+/* ── HERO ── */
+.hero{height:100vh;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;}
+.hero-slide{position:absolute;inset:0;opacity:0;transition:opacity 1.5s ease;}
+.hero-slide.active{opacity:1;}
+.hero-slide::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,0,0,0.55) 0%,rgba(0,0,0,0.2) 50%,rgba(0,0,0,0.4) 100%);}
+.hero-img{position:absolute;inset:-10%;width:120%;height:120%;object-fit:cover;}
+.hero-slide:nth-child(1) .hero-img{animation:kb1 20s ease-in-out infinite alternate;}
+.hero-slide:nth-child(2) .hero-img{animation:kb2 22s ease-in-out infinite alternate;}
+.hero-slide:nth-child(3) .hero-img{animation:kb3 18s ease-in-out infinite alternate;}
+.hero-content{position:relative;z-index:2;text-align:center;padding:0 2rem;max-width:900px;}
+.hero-badge{display:inline-block;font-size:0.68rem;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.7);background:rgba(255,255,255,0.1);backdrop-filter:blur(4px);border:1px solid rgba(255,255,255,0.2);padding:0.4rem 1rem;border-radius:50px;margin-bottom:1.5rem;animation:fadeIn 1s 0.3s both;}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,8vw,7rem);font-weight:300;color:var(--white);line-height:1;margin-bottom:1.5rem;animation:slideUp 1s 0.5s both;}
+.hero h1 em{font-style:italic;color:var(--gold-light);}
+.hero-sub{font-size:0.9rem;color:rgba(255,255,255,0.7);letter-spacing:0.05em;margin-bottom:3rem;animation:slideUp 1s 0.7s both;}
+.hero-actions{display:flex;align-items:center;justify-content:center;gap:1.2rem;flex-wrap:wrap;animation:slideUp 1s 0.9s both;}
+.btn-primary{display:inline-flex;align-items:center;gap:0.7rem;background:var(--sage-dark);color:var(--white);padding:0.85rem 2rem;border-radius:4px;font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;transition:all 0.3s;}
+.btn-primary:hover{background:var(--sage-deep);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.3);}
+.btn-outline{display:inline-flex;align-items:center;gap:0.7rem;border:1px solid rgba(255,255,255,0.5);color:var(--white);padding:0.85rem 2rem;border-radius:4px;font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;backdrop-filter:blur(4px);transition:all 0.3s;}
+.btn-outline:hover{background:rgba(255,255,255,0.15);}
+/* Slide dots */
+.hero-dots{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;gap:0.5rem;z-index:3;}
+.hdot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.4);cursor:pointer;transition:all 0.3s;}
+.hdot.active{background:var(--white);width:22px;border-radius:3px;}
+/* Scroll indicator */
+.hero-scroll{position:absolute;bottom:2rem;right:3rem;z-index:3;display:flex;flex-direction:column;align-items:center;gap:0.5rem;color:rgba(255,255,255,0.4);font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;}
+.hero-scroll-line{width:1px;height:40px;background:linear-gradient(to bottom,transparent,rgba(255,255,255,0.4));animation:pulse 2s ease-in-out infinite;}
+@keyframes pulse{0%,100%{opacity:0.4;}50%{opacity:1;}}
+
+/* ── SECTIONS COMMON ── */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 0.8s var(--ease),transform 0.8s var(--ease);}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.reveal-l{opacity:0;transform:translateX(-28px);transition:opacity 0.8s var(--ease),transform 0.8s var(--ease);}
+.reveal-l.visible{opacity:1;transform:translateX(0);}
+.section-label{font-size:0.68rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--text-light);margin-bottom:0.6rem;}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,4vw,3.2rem);font-weight:300;line-height:1.15;color:var(--text);}
+.section-title em{font-style:italic;color:var(--sage-dark);}
+
+/* ── MARQUEE ── */
+.marquee-wrap{background:var(--sage-deep);padding:0.9rem 0;overflow:hidden;}
+.marquee-track{display:flex;gap:3rem;animation:marquee 25s linear infinite;white-space:nowrap;}
+@keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+.marquee-item{font-family:'Cormorant Garamond',serif;font-size:1rem;color:rgba(255,255,255,0.6);letter-spacing:0.15em;display:flex;align-items:center;gap:1.5rem;}
+.marquee-dot{width:4px;height:4px;border-radius:50%;background:var(--gold);}
+
+/* ── ABOUT ── */
+.about{padding:8rem 5%;background:var(--white);}
+.about-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:7rem;align-items:center;}
+.about-text .section-title{margin-bottom:1.5rem;}
+.about-text p{color:var(--text-mid);line-height:1.95;font-size:0.92rem;margin-bottom:1rem;}
+.about-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:2.5rem;padding-top:2.5rem;border-top:1px solid rgba(0,0,0,0.07);}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:2.8rem;color:var(--sage-dark);line-height:1;}
+.stat-label{font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-light);margin-top:0.3rem;}
+.about-photo{position:relative;overflow:hidden;border-radius:4px;height:520px;}
+.about-photo img{position:absolute;inset:-5%;width:110%;height:110%;object-fit:cover;animation:subtleKB 18s ease-in-out infinite alternate;}
+.about-badge{position:absolute;bottom:-1px;left:-1px;background:var(--sage-deep);color:var(--white);padding:1.5rem 2rem;border-radius:0 4px 0 0;}
+.about-badge-num{font-family:'Cormorant Garamond',serif;font-size:2.2rem;line-height:1;}
+.about-badge-txt{font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.55);margin-top:0.2rem;}
+
+/* ── PROJECTS ── */
+.projects{padding:7rem 5%;background:var(--cream);}
+.projects-inner{max-width:1200px;margin:0 auto;}
+.projects-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:3.5rem;}
+.projects-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;}
+/* Featured (first card = big) */
+.proj-card{position:relative;overflow:hidden;cursor:pointer;display:block;text-decoration:none;}
+.proj-card-featured{grid-column:1;grid-row:1/3;}
+.proj-card-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease);}
+.proj-card-img.kb{animation:subtleKB 16s ease-in-out infinite alternate;}
+.proj-card:hover .proj-card-img{transform:scale(1.12)!important;animation:none;}
+.proj-card::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.72) 0%,rgba(0,0,0,0.1) 50%,transparent 100%);transition:opacity 0.4s;}
+.proj-card:hover::after{opacity:0.85;}
+.proj-card-body{position:absolute;bottom:0;left:0;right:0;padding:2rem;z-index:2;transform:translateY(4px);transition:transform 0.4s var(--ease);}
+.proj-card:hover .proj-card-body{transform:translateY(0);}
+.proj-card-featured .proj-card-body{padding:3rem;}
+.proj-tag{display:inline-block;font-size:0.62rem;letter-spacing:0.14em;text-transform:uppercase;background:var(--sage);color:var(--white);padding:0.25rem 0.7rem;border-radius:50px;margin-bottom:0.8rem;}
+.proj-tag.gold{background:var(--gold);color:var(--sage-deep);}
+.proj-card-name{font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:var(--white);margin-bottom:0.4rem;line-height:1.2;}
+.proj-card-featured .proj-card-name{font-size:2.4rem;}
+.proj-card-loc{font-size:0.74rem;color:rgba(255,255,255,0.65);letter-spacing:0.06em;}
+.proj-card-arrow{display:inline-flex;align-items:center;gap:0.5rem;margin-top:1rem;font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.6);opacity:0;transform:translateY(6px);transition:all 0.3s 0.1s;}
+.proj-card:hover .proj-card-arrow{opacity:1;transform:translateY(0);color:var(--gold-light);}
+/* Heights */
+.proj-card-featured{height:580px;}
+.proj-card-sm{height:289px;}
+
+/* ── PARALLAX DIVIDER ── */
+.parallax-divider{height:420px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;}
+.parallax-bg{position:absolute;inset:-15%;width:130%;height:130%;object-fit:cover;animation:subtleKB 25s ease-in-out infinite alternate;}
+.parallax-divider::after{content:'';position:absolute;inset:0;background:rgba(30,50,25,0.65);}
+.parallax-content{position:relative;z-index:2;text-align:center;max-width:700px;padding:0 2rem;}
+.parallax-content .section-label{color:var(--sage-light);}
+.parallax-content .section-title{color:var(--white);font-size:clamp(2rem,5vw,4rem);margin:1rem 0 2rem;}
+.parallax-content .section-title em{color:var(--gold-light);}
+
+/* ── PORTFOLIO TRACK ── */
+.portfolio{padding:7rem 5%;background:var(--sage-deep);overflow:hidden;}
+.portfolio-header{max-width:1200px;margin:0 auto 3rem;}
+.portfolio-header .section-label{color:var(--sage-light);}
+.portfolio-header .section-title{color:var(--white);}
+.portfolio-header .section-title em{color:var(--gold-light);}
+.portfolio-scroll{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,0.07);}
+.pi{background:var(--sage-deep);padding:1.8rem 1.5rem;transition:background 0.3s;}
+.pi:hover{background:rgba(255,255,255,0.06);}
+.pi-city{font-size:0.62rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--sage-light);margin-bottom:0.4rem;}
+.pi-name{font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--white);margin-bottom:0.2rem;}
+.pi-units{font-size:0.72rem;color:rgba(255,255,255,0.3);}
+
+/* ── DIRECTOR TEASER ── */
+.director-teaser{padding:7rem 5%;background:var(--white);}
+.director-teaser-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center;}
+.dt-photo{position:relative;overflow:hidden;border-radius:4px;height:500px;}
+.dt-photo img{position:absolute;inset:-5%;width:110%;height:110%;object-fit:cover;object-position:top;animation:subtleKB 20s ease-in-out infinite alternate;}
+.dt-badge{position:absolute;top:2rem;left:2rem;background:var(--sage-deep);color:var(--white);padding:1rem 1.5rem;border-radius:4px;z-index:2;}
+.dt-badge-title{font-family:'Cormorant Garamond',serif;font-size:0.9rem;}
+.dt-badge-sub{font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--sage-light);margin-top:0.3rem;}
+.dt-info .section-title{margin-bottom:1.2rem;}
+.dt-info p{color:var(--text-mid);line-height:1.9;font-size:0.92rem;margin-bottom:1.5rem;}
+.dt-name{font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:300;color:var(--text);line-height:1.1;margin-bottom:0.3rem;}
+.dt-role{font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--sage-dark);margin-bottom:2rem;}
+
+/* ── FOOTER ── */
+.footer{background:var(--text);padding:2.5rem 5%;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;}
+.footer-brand{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:rgba(255,255,255,0.45);}
+.footer-links{display:flex;gap:2rem;flex-wrap:wrap;}
+.footer-links a{font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.3);text-decoration:none;transition:color 0.2s;}
+.footer-links a:hover{color:var(--sage-light);}
+.footer-copy{font-size:0.7rem;color:rgba(255,255,255,0.2);}
+
+/* WA Float */
+.wa{position:fixed;bottom:2rem;right:2rem;z-index:900;width:52px;height:52px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;font-size:1.4rem;text-decoration:none;box-shadow:0 4px 20px rgba(37,211,102,0.45);transition:transform 0.3s;animation:slideIn 0.5s 1.5s both;}
+.wa:hover{transform:scale(1.12);}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .nav-links{display:none;}
+  .hamburger{display:flex;}
+  .about-inner,.director-teaser-inner{grid-template-columns:1fr;gap:4rem;}
+  .about{padding:5rem 5%;}
+  .projects-grid{grid-template-columns:1fr;}
+  .proj-card-featured,.proj-card-sm{height:320px;}
+  .proj-card-featured{grid-column:auto;grid-row:auto;}
+  .portfolio-scroll{grid-template-columns:repeat(2,1fr);}
+  .footer{flex-direction:column;text-align:center;}
+  nav{padding:1rem 1.5rem;}
+  .hero-scroll{display:none;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="/" class="nav-logo"><span class="nav-dot"></span>Maha Karya Haluoleo</a>
+  <div class="nav-links">
+    <a href="/loonars-living" class="nav-link">Loonars Living</a>
+    <a href="/al-fath-makassar" class="nav-link">Al Fath</a>
+    <a href="/griya-cariu-indah" class="nav-link">Griya Cariu</a>
+    <a href="/direktur" class="nav-link">Direktur</a>
+    <a href="/beauty" class="nav-link">Beauty</a>
+    <a href="https://wa.me/6282228885223" class="nav-cta" target="_blank">Konsultasi</a>
+  </div>
+  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-overlay" id="mob-overlay" onclick="closeMob()"></div>
+<div class="mobile-menu" id="mob-menu">
+  <a href="/loonars-living" class="m-link">Loonars Living</a>
+  <a href="/al-fath-makassar" class="m-link">Al Fath Makassar</a>
+  <a href="/griya-cariu-indah" class="m-link">Griya Cariu Indah</a>
+  <a href="/direktur" class="m-link">Profil Direktur</a>
+  <a href="/beauty" class="m-link">Loonars Beauty</a>
+  <a href="/kontak" class="m-link">Kontak</a>
+  <a href="https://wa.me/6282228885223" class="m-link" style="color:var(--sage-dark);border-top:2px solid var(--sage-pale);margin-top:1rem;padding-top:1.5rem;" target="_blank">💬 WhatsApp</a>
+</div>
+
+<!-- HERO – Ken Burns slideshow -->
+<section class="hero">
+  <div class="hero-slide active">
+    <img class="hero-img" src="hero1.jpeg" alt="Loonars Living Yogyakarta">
+  </div>
+  <div class="hero-slide">
+    <img class="hero-img" src="hero2.jpeg" alt="Al Fath Makassar">
+  </div>
+  <div class="hero-slide">
+    <img class="hero-img" src="hero3.jpeg" alt="Griya Cariu Indah Bogor">
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-badge">PT. Maha Karya Haluoleo · Est. 2012</div>
+    <h1>Hadir di Mana<br><em>Impian Dibangun</em></h1>
+    <p class="hero-sub">Developer properti terpercaya · Villa Eksklusif · Hunian Subsidi · Investasi Properti</p>
+    <div class="hero-actions">
+      <a href="/loonars-living" class="btn-primary">Lihat Project ↗</a>
+      <a href="https://wa.me/6282228885223" class="btn-outline" target="_blank">💬 Konsultasi Gratis</a>
+    </div>
+  </div>
+
+  <div class="hero-dots" id="hdots">
+    <div class="hdot active" onclick="goSlide(0)"></div>
+    <div class="hdot" onclick="goSlide(1)"></div>
+    <div class="hdot" onclick="goSlide(2)"></div>
+  </div>
+  <div class="hero-scroll">
+    <div class="hero-scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item">Loonars Living <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Al Fath Introvert House <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Griya Cariu Indah <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Private Villa Yogyakarta <span class="marquee-dot"></span></span>
+    <span class="marquee-item">KPR Subsidi Bogor <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Hunian Premium Makassar <span class="marquee-dot"></span></span>
+    <!-- duplicate for seamless loop -->
+    <span class="marquee-item">Loonars Living <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Al Fath Introvert House <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Griya Cariu Indah <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Private Villa Yogyakarta <span class="marquee-dot"></span></span>
+    <span class="marquee-item">KPR Subsidi Bogor <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Hunian Premium Makassar <span class="marquee-dot"></span></span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about">
+  <div class="about-inner">
+    <div class="about-text reveal">
+      <div class="section-label">Tentang Kami</div>
+      <h2 class="section-title">Membangun Kepercayaan<br><em>Sejak 2012</em></h2>
+      <p>PT. Maha Karya Haluoleo berdiri 21 November 2012, berawal dari Kendari, Sulawesi Tenggara. Kini hadir di enam kota — menghadirkan properti premium hingga hunian subsidi dengan standar dan komitmen yang sama.</p>
+      <p>Setiap proyek dibangun dengan pendekatan strategis dan terukur di bawah kepemimpinan langsung Founder Avianto Perdana Pagala.</p>
+      <div class="about-stats">
+        <div><div class="stat-num">10+</div><div class="stat-label">Project Selesai</div></div>
+        <div><div class="stat-num">12+</div><div class="stat-label">Tahun Berkarya</div></div>
+        <div><div class="stat-num">6</div><div class="stat-label">Kota Aktif</div></div>
+      </div>
+    </div>
+    <div class="about-photo reveal">
+      <img src="img alfath2.jpeg" alt="Project Mahakarya Haluoleo">
+      <div class="about-badge"><div class="about-badge-num">2012</div><div class="about-badge-txt">Tahun Berdiri</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS GRID -->
+<section class="projects">
+  <div class="projects-inner">
+    <div class="projects-header reveal">
+      <div>
+        <div class="section-label">Project Aktif</div>
+        <h2 class="section-title">Tiga Kota,<br><em>Satu Visi</em></h2>
+      </div>
+      <a href="/kontak" class="btn-primary" style="font-size:0.72rem;">Konsultasi Gratis →</a>
+    </div>
+    <div class="projects-grid">
+      <!-- Featured: Loonars Living -->
+      <a href="/loonars-living" class="proj-card proj-card-featured reveal-l">
+        <img class="proj-card-img kb" src="img loonars.jpeg" alt="Loonars Living Yogyakarta" onerror="this.src='hero1.jpeg'">
+        <div class="proj-card-body">
+          <div class="proj-tag">Private Villa</div>
+          <div class="proj-card-name">Loonars<br>Private Living</div>
+          <div class="proj-card-loc">📍 Yogyakarta, Jawa Tengah</div>
+          <div class="proj-card-arrow">Lihat Galeri →</div>
+        </div>
+      </a>
+      <!-- Al Fath -->
+      <a href="/al-fath-makassar" class="proj-card proj-card-sm reveal">
+        <img class="proj-card-img kb" src="img introvert.jpeg" alt="Al Fath Introvert House" onerror="this.src='hero2.jpeg'">
+        <div class="proj-card-body">
+          <div class="proj-tag" style="background:var(--sage-deep);">New · 95 Unit</div>
+          <div class="proj-card-name">Al Fath Introvert House</div>
+          <div class="proj-card-loc">📍 Telkomas, Makassar</div>
+          <div class="proj-card-arrow">Lihat Galeri →</div>
+        </div>
+      </a>
+      <!-- Griya Cariu -->
+      <a href="/griya-cariu-indah" class="proj-card proj-card-sm reveal">
+        <img class="proj-card-img kb" src="img cariu1.jpeg" alt="Griya Cariu Indah 3" onerror="this.src='hero3.jpeg'">
+        <div class="proj-card-body">
+          <div class="proj-tag gold">KPR Subsidi · 154 Unit</div>
+          <div class="proj-card-name">Griya Cariu Indah 3</div>
+          <div class="proj-card-loc">📍 Cariu, Kab. Bogor</div>
+          <div class="proj-card-arrow">Lihat Galeri →</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- PARALLAX QUOTE -->
+<div class="parallax-divider">
+  <img class="parallax-bg" src="img drone.jpeg" alt="" onerror="this.style.display='none'">
+  <div class="parallax-content reveal">
+    <div class="section-label" style="color:var(--sage-light);">Filosofi</div>
+    <h2 class="section-title">"Bukan Sekadar<br><em>Properti</em> — Investasi<br>untuk Generasi"</h2>
+    <a href="/direktur" class="btn-primary">Kenali Founder →</a>
+  </div>
+</div>
+
+<!-- PORTFOLIO TRACK -->
+<section class="portfolio">
+  <div class="portfolio-header reveal">
+    <div class="section-label">Track Record</div>
+    <h2 class="section-title">Project yang Telah<br><em>Kami Selesaikan</em></h2>
+  </div>
+  <div class="portfolio-scroll reveal">
+    <div class="pi"><div class="pi-city">Makassar</div><div class="pi-name">The Al Fath</div><div class="pi-units">31 Unit</div></div>
+    <div class="pi"><div class="pi-city">Makassar</div><div class="pi-name">The Al Fath 2</div><div class="pi-units">18 Unit</div></div>
+    <div class="pi"><div class="pi-city">Makassar</div><div class="pi-name">The Al Fath 3</div><div class="pi-units">45 Unit</div></div>
+    <div class="pi"><div class="pi-city">Makassar</div><div class="pi-name">Dewi Bunga Land</div><div class="pi-units">280 Unit</div></div>
+    <div class="pi"><div class="pi-city">Maros</div><div class="pi-name">Al Fath Land</div><div class="pi-units">93 Unit</div></div>
+    <div class="pi"><div class="pi-city">Gowa</div><div class="pi-name">Savana Residence</div><div class="pi-units">101 Unit</div></div>
+    <div class="pi"><div class="pi-city">Gowa</div><div class="pi-name">Al Fath Bollangi</div><div class="pi-units">10 Villa + 129 Kavling</div></div>
+    <div class="pi"><div class="pi-city">Kendari</div><div class="pi-name">Al Fath Spring</div><div class="pi-units">Kendari</div></div>
+    <div class="pi"><div class="pi-city">Majene</div><div class="pi-name">Al Fath Hills</div><div class="pi-units">Majene</div></div>
+    <div class="pi"><div class="pi-city">Makassar</div><div class="pi-name">Al Fath Flipper</div><div class="pi-units">8 Unit</div></div>
+    <div class="pi"><div class="pi-city">Yogyakarta</div><div class="pi-name">Loonars Living 1</div><div class="pi-units">Mulungan</div></div>
+    <div class="pi"><div class="pi-city">Yogyakarta</div><div class="pi-name">Loonars Living 2</div><div class="pi-units">JCM</div></div>
+  </div>
+</section>
+
+<!-- DIRECTOR TEASER -->
+<section class="director-teaser">
+  <div class="director-teaser-inner">
+    <div class="dt-photo reveal-l">
+      <img src="img founder.jpeg" alt="Avianto Perdana Pagala" onerror="this.src='hero1.jpeg'">
+      <div class="dt-badge">
+        <div class="dt-badge-title">Kadin Kota Kendari</div>
+        <div class="dt-badge-sub">Ketua Umum · s.d. Juli 2023</div>
+      </div>
+    </div>
+    <div class="dt-info reveal">
+      <div class="section-label">Founder & Direktur Utama</div>
+      <div class="dt-name">Avianto<br>Perdana Pagala</div>
+      <div class="dt-role">PT. Maha Karya Haluoleo · Est. 2012</div>
+      <p>Pengusaha properti asal Kendari yang membangun PT. Maha Karya Haluoleo sejak 2012. Pernah menjabat Ketua Umum Kadin Kota Kendari sebelum fokus penuh memimpin ekspansi nasional.</p>
+      <a href="/direktur" class="btn-primary">Lihat Profil Lengkap →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-brand">PT. Maha Karya Haluoleo</div>
+  <div class="footer-links">
+    <a href="/loonars-living">Loonars Living</a>
+    <a href="/al-fath-makassar">Al Fath</a>
+    <a href="/griya-cariu-indah">Griya Cariu</a>
+    <a href="/direktur">Direktur</a>
+    <a href="/beauty">Beauty</a>
+    <a href="/kontak">Kontak</a>
+  </div>
+  <div class="footer-copy">© 2026 haluoleo.id</div>
+</footer>
+
+<a href="https://wa.me/6282228885223" class="wa" target="_blank">💬</a>
+
+<script>
+// Nav scroll
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').classList.toggle('scrolled',scrollY>60);
+});
+// Mobile menu
+document.getElementById('hamburger').onclick=()=>{
+  document.getElementById('hamburger').classList.toggle('open');
+  document.getElementById('mob-menu').classList.toggle('open');
+  document.getElementById('mob-overlay').classList.toggle('open');
+};
+function closeMob(){
+  document.getElementById('hamburger').classList.remove('open');
+  document.getElementById('mob-menu').classList.remove('open');
+  document.getElementById('mob-overlay').classList.remove('open');
+}
+// Hero slideshow
+let cur=0;
+const slides=document.querySelectorAll('.hero-slide');
+const dots=document.querySelectorAll('.hdot');
+function goSlide(n){
+  slides[cur].classList.remove('active');dots[cur].classList.remove('active');
+  cur=n;slides[cur].classList.add('active');dots[cur].classList.add('active');
+}
+setInterval(()=>goSlide((cur+1)%slides.length),7000);
+// Scroll reveal
+const obs=new IntersectionObserver((entries)=>{
+  entries.forEach((e,i)=>{
+    if(e.isIntersecting){
+      setTimeout(()=>e.target.classList.add('visible'),i*80);
+      obs.unobserve(e.target);
+    }
+  });
+},{threshold:0.12});
+document.querySelectorAll('.reveal,.reveal-l').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
