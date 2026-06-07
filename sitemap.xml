@@ -1,39 +1,107 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset 
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+  <!-- BERANDA -->
   <url>
-    <loc>https://haluoleo.id</loc>
-    <lastmod>2026-06-01</lastmod>
+    <loc>https://haluoleo.id/</loc>
+    <lastmod>2026-06-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://haluoleo.id/hero1.jpeg</image:loc>
+      <image:title>PT. Maha Karya Haluoleo — Developer Properti Indonesia</image:title>
+      <image:caption>Developer properti terpercaya sejak 2012. Villa eksklusif Yogyakarta, rumah subsidi Bogor, hunian premium Makassar.</image:caption>
+    </image:image>
   </url>
+
+  <!-- LOONARS PRIVATE LIVING -->
   <url>
-    <loc>https://haluoleo.id/#developments</loc>
-    <lastmod>2026-06-01</lastmod>
+    <loc>https://haluoleo.id/loonars-living</loc>
+    <lastmod>2026-06-07</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.95</priority>
+    <image:image>
+      <image:loc>https://haluoleo.id/img%20loonars.jpeg</image:loc>
+      <image:title>Loonars Private Living — Villa Eksklusif Yogyakarta</image:title>
+      <image:caption>Private villa eksklusif di Yogyakarta dengan konsep resort mewah. Pool villa premium.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://haluoleo.id/hero1.jpeg</image:loc>
+      <image:title>Loonars Living Yogyakarta Interior</image:title>
+      <image:caption>Interior villa eksklusif Loonars Private Living Yogyakarta</image:caption>
+    </image:image>
   </url>
+
+  <!-- AL FATH INTROVERT HOUSE -->
   <url>
-    <loc>https://haluoleo.id/#beauty</loc>
-    <lastmod>2026-06-01</lastmod>
+    <loc>https://haluoleo.id/al-fath-makassar</loc>
+    <lastmod>2026-06-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+    <image:image>
+      <image:loc>https://haluoleo.id/img%20introvert.jpeg</image:loc>
+      <image:title>Al Fath Introvert House Makassar — Where Silence Becomes Luxury</image:title>
+      <image:caption>95 unit hunian eksklusif di Telkomas, Makassar. 3 tipe unit. Dekat bandara Hasanuddin.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://haluoleo.id/img%20alfath.jpeg</image:loc>
+      <image:title>Al Fath Introvert House Unit Interior</image:title>
+      <image:caption>Interior hunian Al Fath Introvert House Makassar</image:caption>
+    </image:image>
+  </url>
+
+  <!-- GRIYA CARIU INDAH 3 -->
+  <url>
+    <loc>https://haluoleo.id/griya-cariu-indah</loc>
+    <lastmod>2026-06-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+    <image:image>
+      <image:loc>https://haluoleo.id/img%20cariu1.jpeg</image:loc>
+      <image:title>Griya Cariu Indah 3 — Rumah Subsidi KPR Bogor Rp 185 Juta</image:title>
+      <image:caption>154 unit perumahan subsidi di Cariu, Kab. Bogor. Cicilan Rp 985 ribu per bulan.</image:caption>
+    </image:image>
+  </url>
+
+  <!-- PROFIL DIREKTUR -->
+  <url>
+    <loc>https://haluoleo.id/direktur</loc>
+    <lastmod>2026-06-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://haluoleo.id/img%20founder.jpeg</image:loc>
+      <image:title>Avianto Perdana Pagala — Founder PT. Maha Karya Haluoleo</image:title>
+      <image:caption>Avianto Perdana Pagala, Founder dan Direktur Utama PT. Maha Karya Haluoleo sejak 2012. Mantan Ketua Umum Kadin Kota Kendari.</image:caption>
+    </image:image>
   </url>
+
+  <!-- LOONARS BEAUTY -->
   <url>
-    <loc>https://haluoleo.id/#portfolio</loc>
-    <lastmod>2026-06-01</lastmod>
+    <loc>https://haluoleo.id/beauty</loc>
+    <lastmod>2026-06-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+    <image:image>
+      <image:loc>https://haluoleo.id/img%20hydraglow1.jpeg</image:loc>
+      <image:title>Loonars Beauty HydraGlow Advanced Brightening Lotion</image:title>
+      <image:caption>HydraGlow Advanced Brightening Lotion — 4 Types Hyaluron, Niacinamide dan Squalane. Rp 89.000.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://haluoleo.id/img%20hydraglow2.jpeg</image:loc>
+      <image:title>Loonars Beauty HydraGlow Detail</image:title>
+      <image:caption>Detail produk HydraGlow Advanced Brightening Lotion by Loonars Beauty</image:caption>
+    </image:image>
+  </url>
+
+  <!-- KONTAK -->
+  <url>
+    <loc>https://haluoleo.id/kontak</loc>
+    <lastmod>2026-06-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
-    <loc>https://haluoleo.id/#contact</loc>
-    <lastmod>2026-06-01</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://finance.haluoleo.id</loc>
-    <lastmod>2026-06-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
+
 </urlset>

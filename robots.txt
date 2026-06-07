@@ -1,5 +1,25 @@
+# PT. Maha Karya Haluoleo — haluoleo.id
+# robots.txt
+
 User-agent: *
 Allow: /
 Disallow: /admin
+Disallow: /admin/
 
+# Izinkan semua crawler properti & search engine
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# Blokir path yang tidak perlu diindeks
+Disallow: /admin
+Disallow: /*.json$
+Disallow: /supabase-setup.sql
+
+# Sitemap
 Sitemap: https://haluoleo.id/sitemap.xml
