@@ -142,6 +142,21 @@ nav.scrolled .nav-back:hover{color:var(--sage-dark);}
 .footer-nav{display:flex;gap:1.5rem;}
 .footer-nav a{font-size:0.7rem;letter-spacing:0.08em;color:rgba(255,255,255,0.28);text-decoration:none;transition:color 0.2s;}
 .footer-nav a:hover{color:var(--sage-light);}
+/* TEAM */
+.team-section{padding:6rem 5%;background:var(--cream);}
+.team-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center;}
+.team-text .section-title{margin:0.5rem 0 1.2rem;}
+.team-text p{color:var(--text-mid);line-height:1.9;font-size:0.92rem;margin-bottom:1.8rem;}
+.team-values{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:2rem;}
+.tv-item{display:flex;align-items:center;gap:0.4rem;font-size:0.78rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--sage-dark);background:rgba(122,158,110,0.1);padding:0.4rem 1rem;border-radius:50px;}
+.btn-wa-team{display:inline-flex;align-items:center;gap:0.7rem;background:#25d366;color:var(--white);padding:0.9rem 2rem;border-radius:4px;font-size:0.82rem;letter-spacing:0.08em;text-transform:uppercase;font-weight:500;text-decoration:none;transition:all 0.3s;}
+.btn-wa-team:hover{background:#1db954;transform:translateY(-2px);box-shadow:0 8px 24px rgba(37,211,102,0.35);}
+.team-photo{position:relative;}
+.team-photo img{width:100%;border-radius:8px;display:block;box-shadow:0 20px 60px rgba(0,0,0,0.12);}
+.team-badge{position:absolute;bottom:-1.5rem;left:-1.5rem;background:var(--sage-deep);color:var(--white);padding:1.2rem 1.8rem;border-radius:6px;box-shadow:0 8px 30px rgba(45,77,37,0.3);}
+.tb-num{font-family:'Cormorant Garamond',serif;font-size:2.2rem;color:var(--gold-light);line-height:1;}
+.tb-label{font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.6);margin-top:0.2rem;}
+@media(max-width:900px){.team-inner{grid-template-columns:1fr;gap:3rem;}.team-badge{bottom:-1rem;left:1rem;}}
 .wa{position:fixed;bottom:2rem;right:2rem;z-index:900;width:52px;height:52px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;font-size:1.4rem;text-decoration:none;box-shadow:0 4px 20px rgba(37,211,102,0.4);transition:transform 0.3s;}
 .wa:hover{transform:scale(1.12);}
 
@@ -220,6 +235,30 @@ nav.scrolled .nav-back:hover{color:var(--sage-dark);}
     </div>
     <div class="specs-photo reveal">
       <img src="hero1.jpeg" alt="Loonars Living Interior" onerror="this.src='hero1.jpeg'">
+    </div>
+  </div>
+</section>
+
+<!-- TIM -->
+<section class="team-section">
+  <div class="team-inner">
+    <div class="team-text reveal">
+      <div class="section-label">Tim Kami</div>
+      <h2 class="section-title">Profesional,<br><em>Berpengalaman</em></h2>
+      <p>Di balik setiap proyek Loonars Living berdiri tim yang berdedikasi — profesional muda yang kolaboratif, inovatif, dan berkomitmen menghadirkan pengalaman terbaik dari awal konsultasi hingga serah terima kunci.</p>
+      <div class="team-values">
+        <div class="tv-item"><span>🤝</span> Professional</div>
+        <div class="tv-item"><span>💡</span> Innovative</div>
+        <div class="tv-item"><span>🌿</span> Collaborative</div>
+      </div>
+      <a href="https://wa.me/6282228885223?text=Halo,%20saya%20ingin%20konsultasi%20Loonars%20Living%20Yogyakarta" class="btn-wa-team" target="_blank">💬 Konsultasi dengan Tim</a>
+    </div>
+    <div class="team-photo reveal">
+      <img src="img team.png" alt="Tim Mahakarya Haluoleo — Professional, Innovative, Collaborative" onerror="this.src='8110F78B-0B71-4938-A3CB-2AD2F22031F2.png'">
+      <div class="team-badge">
+        <div class="tb-num">12+</div>
+        <div class="tb-label">Tahun Pengalaman</div>
+      </div>
     </div>
   </div>
 </section>
