@@ -119,6 +119,22 @@ nav.scrolled .nav-back{color:var(--text-mid);}
 .btn-wa:hover{background:#1db954;transform:translateY(-2px);}
 .btn-ghost{display:inline-flex;align-items:center;gap:0.7rem;border:1px solid rgba(255,255,255,0.3);color:rgba(255,255,255,0.8);padding:0.9rem 2.2rem;border-radius:4px;font-size:0.82rem;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;transition:all 0.3s;}
 .btn-ghost:hover{border-color:rgba(255,255,255,0.7);color:var(--white);}
+/* TEAM */
+.team-section{padding:6rem 5%;background:var(--white);}
+.team-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center;}
+.team-text .section-title{margin:0.5rem 0 1.2rem;}
+.team-text p{color:var(--text-mid);line-height:1.9;font-size:0.92rem;margin-bottom:1.8rem;}
+.team-values{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:2rem;}
+.tv-item{display:flex;align-items:center;gap:0.4rem;font-size:0.78rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--sage-dark);background:rgba(122,158,110,0.1);padding:0.4rem 1rem;border-radius:50px;}
+.btn-wa-team{display:inline-flex;align-items:center;gap:0.7rem;background:#25d366;color:var(--white);padding:0.9rem 2rem;border-radius:4px;font-size:0.82rem;letter-spacing:0.08em;text-transform:uppercase;font-weight:500;text-decoration:none;transition:all 0.3s;}
+.btn-wa-team:hover{background:#1db954;transform:translateY(-2px);}
+.team-photo{position:relative;overflow:hidden;border-radius:12px;box-shadow:0 30px 80px rgba(0,0,0,0.12);}
+.team-photo img{width:100%;display:block;border-radius:12px;transition:transform 0.8s var(--ease);animation:teamFloat 8s ease-in-out infinite;}
+.team-photo:hover img{transform:scale(1.04)!important;animation:none;}
+.team-photo-line{position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--sage-light),var(--gold),var(--sage-light));background-size:200% 100%;animation:shimmer 3s linear infinite;}
+@keyframes teamFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
+@keyframes shimmer{0%{background-position:200% 0;}100%{background-position:-200% 0;}}
+@media(max-width:900px){.team-inner{grid-template-columns:1fr;gap:3rem;}}
 .footer{background:var(--text);padding:2rem 5%;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
 .footer-brand{font-family:'Cormorant Garamond',serif;font-size:1rem;color:rgba(255,255,255,0.4);}
 .footer-nav{display:flex;gap:1.5rem;}
@@ -243,6 +259,27 @@ nav.scrolled .nav-back{color:var(--text-mid);}
     </div>
     <div class="specs-photo reveal">
       <img src="img cariu1.jpeg" alt="Griya Cariu Indah 3" onerror="this.src='hero3.jpeg'">
+    </div>
+  </div>
+</section>
+
+<!-- TIM -->
+<section class="team-section">
+  <div class="team-inner">
+    <div class="team-photo reveal">
+      <img src="img team2.png" alt="Tim Mahakarya Haluoleo Griya Cariu Indah" onerror="this.parentElement.style.display='none'">
+      <div class="team-photo-line"></div>
+    </div>
+    <div class="team-text reveal">
+      <div class="section-label">Tim Kami</div>
+      <h2 class="section-title">Kami Ada<br><em>untuk Kamu</em></h2>
+      <p>Tim Mahakarya Haluoleo siap mendampingi kamu dari awal — mulai konsultasi unit, bantu proses KPR, hingga serah terima kunci. Profesional, berpengalaman, dan selalu responsif.</p>
+      <div class="team-values">
+        <div class="tv-item">🤝 Professional</div>
+        <div class="tv-item">💡 Innovative</div>
+        <div class="tv-item">🌿 Collaborative</div>
+      </div>
+      <a href="https://wa.me/6282228885223?text=Halo,%20saya%20ingin%20konsultasi%20Griya%20Cariu%20Indah%203%20Bogor" class="btn-wa-team" target="_blank">💬 Konsultasi Gratis</a>
     </div>
   </div>
 </section>
