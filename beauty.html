@@ -19,17 +19,16 @@
 @keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
 @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
 @keyframes slideUp{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:translateY(0);}}
+@keyframes spin{to{transform:rotate(360deg);}}
 nav{position:fixed;top:0;width:100%;z-index:1000;padding:1.2rem 2.5rem;display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,0.97);backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,0,0,0.07);}
 .nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--text);text-decoration:none;letter-spacing:0.07em;display:flex;align-items:center;gap:0.5rem;}
 .nav-logo::before{content:'';width:6px;height:6px;background:var(--rose);border-radius:50%;flex-shrink:0;}
 .nav-back{font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-mid);text-decoration:none;transition:color 0.3s;}
 .nav-back:hover{color:var(--rose-dark);}
-/* HERO - product showcase */
 .hero{min-height:100vh;padding:100px 5% 5rem;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;background:linear-gradient(135deg,var(--rose-pale) 0%,var(--cream) 50%,var(--white) 100%);}
 .hero-product{position:relative;display:flex;align-items:center;justify-content:center;}
 .hero-product-img{width:100%;max-width:400px;border-radius:8px;animation:subtleKB 20s ease-in-out infinite alternate;box-shadow:0 30px 80px rgba(201,148,138,0.25);}
 .hero-product-img2{position:absolute;bottom:-2rem;right:-2rem;width:160px;border-radius:6px;box-shadow:0 12px 40px rgba(0,0,0,0.15);animation:float 6s ease-in-out infinite;border:4px solid var(--white);}
-.hero-content{}
 .hero-brand{font-size:0.65rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--rose);margin-bottom:0.8rem;animation:fadeIn 1s 0.3s both;}
 .hero-name{font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,5vw,5rem);font-weight:300;color:var(--text);line-height:1;margin-bottom:0.5rem;animation:slideUp 1s 0.4s both;}
 .hero-name em{font-style:italic;color:var(--rose-dark);}
@@ -48,13 +47,14 @@ nav{position:fixed;top:0;width:100%;z-index:1000;padding:1.2rem 2.5rem;display:f
 .btn-tok:hover{background:#e07b2a;color:var(--white);}
 .btn-spe{background:#fff0f0;color:#ee4d2d;border:1px solid rgba(238,77,45,0.2);}
 .btn-spe:hover{background:#ee4d2d;color:var(--white);}
-/* COMMON */
+.btn-cod{background:var(--rose-dark);color:var(--white);font-size:0.95rem;padding:1rem 2rem;border-radius:6px;cursor:pointer;border:none;font-family:inherit;font-weight:500;transition:all 0.3s;display:inline-flex;align-items:center;gap:0.6rem;width:100%;justify-content:center;}
+.btn-cod:hover{background:#8a5850;transform:translateY(-1px);box-shadow:0 8px 25px rgba(160,107,99,0.35);}
+.btn-cod:disabled{opacity:.6;cursor:not-allowed;transform:none;}
 .reveal{opacity:0;transform:translateY(26px);transition:opacity 0.8s var(--ease),transform 0.8s var(--ease);}
 .reveal.visible{opacity:1;transform:translateY(0);}
 .section-label{font-size:0.68rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--text-light);margin-bottom:0.6rem;}
 .section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,3.5vw,3rem);font-weight:300;line-height:1.15;color:var(--text);}
 .section-title em{font-style:italic;color:var(--rose-dark);}
-/* INGREDIENTS */
 .ingredients{padding:6rem 5%;background:var(--white);}
 .ingredients-inner{max-width:1200px;margin:0 auto;}
 .ingredients-header{margin-bottom:3rem;}
@@ -63,7 +63,6 @@ nav{position:fixed;top:0;width:100%;z-index:1000;padding:1.2rem 2.5rem;display:f
 .ingr-icon{font-size:2rem;margin-bottom:1rem;}
 .ingr-name{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--rose-dark);margin-bottom:0.5rem;}
 .ingr-desc{font-size:0.8rem;color:var(--text-mid);line-height:1.6;}
-/* BEFORE AFTER / features */
 .features{padding:6rem 5%;background:var(--cream);}
 .features-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center;}
 .features-text .section-title{margin-bottom:1.5rem;}
@@ -73,13 +72,11 @@ nav{position:fixed;top:0;width:100%;z-index:1000;padding:1.2rem 2.5rem;display:f
 .feat-item::before{content:'✦';color:var(--rose);flex-shrink:0;}
 .features-img{position:relative;height:500px;overflow:hidden;border-radius:8px;}
 .features-img img{position:absolute;inset:-5%;width:110%;height:110%;object-fit:cover;animation:subtleKB 18s ease-in-out infinite alternate;}
-/* RITUAL */
 .ritual{padding:5rem 5%;background:var(--rose-dark);text-align:center;}
 .ritual .section-label{color:rgba(255,255,255,0.55);}
 .ritual .section-title{color:var(--white);margin:0.5rem 0 1rem;}
 .ritual .section-title em{color:var(--rose-light);font-style:italic;}
 .ritual p{color:rgba(255,255,255,0.6);font-size:0.9rem;line-height:1.8;max-width:600px;margin:0 auto 2.5rem;}
-/* HOW TO USE */
 .howto{padding:5rem 5%;background:var(--white);}
 .howto-inner{max-width:900px;margin:0 auto;}
 .howto-header{margin-bottom:3rem;}
@@ -88,6 +85,58 @@ nav{position:fixed;top:0;width:100%;z-index:1000;padding:1.2rem 2.5rem;display:f
 .step-num{font-family:'Cormorant Garamond',serif;font-size:3rem;color:rgba(201,148,138,0.3);line-height:1;margin-bottom:0.5rem;}
 .step-title{font-size:0.85rem;font-weight:500;color:var(--text);margin-bottom:0.4rem;}
 .step-desc{font-size:0.78rem;color:var(--text-mid);line-height:1.6;}
+
+/* ====== CHECKOUT SECTION ====== */
+#checkout{padding:5rem 5%;background:linear-gradient(180deg,var(--cream) 0%,var(--white) 100%);scroll-margin-top:80px;}
+.checkout-inner{max-width:680px;margin:0 auto;}
+.checkout-header{text-align:center;margin-bottom:2.5rem;}
+.co-badge{display:inline-block;background:rgba(160,107,99,0.1);color:var(--rose-dark);font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;padding:0.3rem 1rem;border-radius:50px;margin-bottom:0.8rem;border:1px solid rgba(160,107,99,0.2);}
+.co-card{background:var(--white);border-radius:10px;box-shadow:0 4px 40px rgba(0,0,0,0.07);overflow:hidden;}
+.co-step{padding:1.8rem 2rem;border-bottom:1px solid var(--rose-pale);}
+.co-step:last-child{border-bottom:none;}
+.co-step-title{font-size:0.68rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--rose);font-weight:600;margin-bottom:1.2rem;display:flex;align-items:center;gap:0.5rem;}
+.co-step-title::before{content:attr(data-n);width:20px;height:20px;background:var(--rose-pale);color:var(--rose-dark);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.65rem;font-weight:700;flex-shrink:0;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:0.9rem;margin-bottom:0.9rem;}
+.form-row.full{grid-template-columns:1fr;}
+.fg{display:flex;flex-direction:column;gap:0.3rem;}
+.fg label{font-size:0.72rem;color:var(--text-light);letter-spacing:0.06em;text-transform:uppercase;}
+.fg input,.fg select,.fg textarea{font-family:'DM Sans',sans-serif;font-size:0.85rem;padding:0.6rem 0.9rem;border:1.5px solid #e8e2de;border-radius:5px;background:var(--white);color:var(--text);outline:none;transition:border-color 0.2s,box-shadow 0.2s;width:100%;}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--rose);box-shadow:0 0 0 3px rgba(201,148,138,0.12);}
+.fg input::placeholder{color:#c8bcb9;}
+.qty-ctrl{display:flex;align-items:center;gap:0;}
+.qty-ctrl button{width:34px;height:36px;border:1.5px solid #e8e2de;background:var(--rose-pale);color:var(--rose-dark);font-size:1.1rem;cursor:pointer;transition:background 0.2s;}
+.qty-ctrl button:first-child{border-radius:5px 0 0 5px;border-right:none;}
+.qty-ctrl button:last-child{border-radius:0 5px 5px 0;border-left:none;}
+.qty-ctrl button:hover{background:var(--rose-light);}
+.qty-val{width:50px;text-align:center;border:1.5px solid #e8e2de;padding:0.5rem 0;font-size:0.9rem;font-weight:600;color:var(--text);font-family:'DM Sans',sans-serif;border-left:none;border-right:none;}
+.kurir-list{display:flex;flex-direction:column;gap:0.6rem;margin-top:0.8rem;}
+.kurir-opt{display:flex;align-items:center;justify-content:space-between;padding:0.8rem 1rem;border:1.5px solid #e8e2de;border-radius:7px;cursor:pointer;transition:all 0.2s;}
+.kurir-opt:hover{border-color:var(--rose-light);}
+.kurir-opt.selected{border-color:var(--rose-dark);background:var(--rose-pale);}
+.kurir-opt input[type=radio]{display:none;}
+.kurir-info{display:flex;align-items:center;gap:0.7rem;}
+.kurir-name{font-size:0.85rem;font-weight:500;color:var(--text);}
+.kurir-svc{font-size:0.72rem;color:var(--text-light);}
+.kurir-etd{font-size:0.72rem;color:var(--sage-dark);background:rgba(78,114,68,0.08);padding:0.2rem 0.6rem;border-radius:50px;}
+.kurir-price{font-size:0.9rem;font-weight:600;color:var(--rose-dark);white-space:nowrap;}
+.ongkir-loading{display:flex;align-items:center;gap:0.6rem;padding:1rem;color:var(--text-light);font-size:0.82rem;}
+.ongkir-loading .sp{width:16px;height:16px;border:2px solid #e8e2de;border-top-color:var(--rose);border-radius:50%;animation:spin 0.7s linear infinite;}
+.ongkir-empty{padding:1rem;text-align:center;color:var(--text-light);font-size:0.82rem;}
+.summary-table{width:100%;}
+.summary-table td{padding:0.4rem 0;font-size:0.9rem;color:var(--text-mid);}
+.summary-table td:last-child{text-align:right;font-weight:500;color:var(--text);}
+.summary-table .total-row td{font-size:1.1rem;font-weight:700;color:var(--rose-dark);border-top:1.5px solid var(--rose-pale);padding-top:0.8rem;margin-top:0.4rem;}
+.co-note{font-size:0.78rem;color:var(--text-light);line-height:1.7;margin-top:1rem;padding:0.8rem;background:rgba(201,148,138,0.06);border-radius:5px;border-left:3px solid var(--rose-light);}
+.co-success{display:none;text-align:center;padding:3rem 2rem;}
+.co-success .cs-icon{font-size:3.5rem;margin-bottom:1rem;}
+.co-success .cs-title{font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--rose-dark);margin-bottom:0.5rem;}
+.co-success .cs-sub{font-size:0.9rem;color:var(--text-mid);line-height:1.7;}
+.co-success .cs-no{display:inline-block;margin-top:1rem;background:var(--rose-pale);color:var(--rose-dark);padding:0.5rem 1.2rem;border-radius:50px;font-size:0.85rem;font-weight:600;letter-spacing:0.05em;}
+.toast-co{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:#333;color:#fff;padding:0.8rem 1.5rem;border-radius:8px;font-size:0.85rem;opacity:0;transition:all 0.3s;z-index:9999;white-space:nowrap;}
+.toast-co.show{transform:translateX(-50%) translateY(0);opacity:1;}
+.toast-co.error{background:#c0392b;}
+/* ====== END CHECKOUT ====== */
+
 .footer{background:var(--text);padding:2rem 5%;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
 .footer-brand{font-family:'Cormorant Garamond',serif;font-size:1rem;color:rgba(255,255,255,0.4);}
 .footer-nav{display:flex;gap:1.5rem;}
@@ -100,6 +149,8 @@ nav{position:fixed;top:0;width:100%;z-index:1000;padding:1.2rem 2.5rem;display:f
   .ingr-grid,.steps{grid-template-columns:repeat(2,1fr);}
   .features-img{height:300px;}
   nav{padding:1rem 1.5rem;}
+  .form-row{grid-template-columns:1fr;}
+  .co-step{padding:1.4rem 1.2rem;}
 }
 @media(max-width:480px){.ingr-grid,.steps{grid-template-columns:1fr;}}
 </style>
@@ -110,7 +161,6 @@ nav{position:fixed;top:0;width:100%;z-index:1000;padding:1.2rem 2.5rem;display:f
   <a href="/" class="nav-back">← Beranda</a>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
   <div class="hero-product">
     <img class="hero-product-img" src="img hydraglow1.jpeg" alt="Loonars Beauty HydraGlow" onerror="this.src='hero1.jpeg'">
@@ -132,14 +182,13 @@ nav{position:fixed;top:0;width:100%;z-index:1000;padding:1.2rem 2.5rem;display:f
       <div class="ingr-tag">Non-Comedogenic</div>
     </div>
     <div class="shop-btns">
-      <a href="https://instagram.com/loonarsbeauty.official" class="btn-shop btn-main" target="_blank">📸 @loonarsbeauty.official</a>
-      <a href="https://tokopedia.com/loonars" class="btn-shop btn-tok" target="_blank">🛒 Tokopedia</a>
-      <a href="https://shopee.co.id/loonars" class="btn-shop btn-spe" target="_blank">🛍️ Shopee</a>
+      <a href="#checkout" class="btn-shop btn-main" onclick="document.getElementById('checkout').scrollIntoView({behavior:'smooth'});return false;">🛒 Pesan COD — Rp 89.000</a>
+      <a href="https://tokopedia.com/loonars" class="btn-shop btn-tok" target="_blank">Tokopedia</a>
+      <a href="https://shopee.co.id/loonars" class="btn-shop btn-spe" target="_blank">Shopee</a>
     </div>
   </div>
 </section>
 
-<!-- INGREDIENTS -->
 <section class="ingredients">
   <div class="ingredients-inner">
     <div class="ingredients-header reveal">
@@ -155,7 +204,6 @@ nav{position:fixed;top:0;width:100%;z-index:1000;padding:1.2rem 2.5rem;display:f
   </div>
 </section>
 
-<!-- FEATURES -->
 <section class="features">
   <div class="features-inner">
     <div class="features-text reveal">
@@ -176,7 +224,6 @@ nav{position:fixed;top:0;width:100%;z-index:1000;padding:1.2rem 2.5rem;display:f
   </div>
 </section>
 
-<!-- RITUAL / QUOTE -->
 <section class="ritual reveal">
   <div class="section-label">Filosofi</div>
   <h2 class="section-title">"Kulitmu layak<br><em>yang terbaik</em>."</h2>
@@ -186,7 +233,6 @@ nav{position:fixed;top:0;width:100%;z-index:1000;padding:1.2rem 2.5rem;display:f
   </div>
 </section>
 
-<!-- HOW TO USE -->
 <section class="howto">
   <div class="howto-inner">
     <div class="howto-header reveal">
@@ -201,6 +247,106 @@ nav{position:fixed;top:0;width:100%;z-index:1000;padding:1.2rem 2.5rem;display:f
   </div>
 </section>
 
+<!-- ====== CHECKOUT SECTION ====== -->
+<section id="checkout">
+  <div class="checkout-inner">
+    <div class="checkout-header reveal">
+      <div class="co-badge">🚚 Bayar di Tempat (COD)</div>
+      <h2 class="section-title" style="margin-top:0.5rem">Pesan<br><em>Sekarang</em></h2>
+      <p style="color:var(--text-mid);font-size:0.88rem;margin-top:0.8rem;line-height:1.7">Isi form di bawah → pilih kurir → produk dikirim & bayar saat terima</p>
+    </div>
+    <div class="co-card reveal">
+      <!-- FORM ORDER -->
+      <div id="co-form">
+        <!-- Step 1: Data pembeli -->
+        <div class="co-step">
+          <div class="co-step-title" data-n="1">Data Penerima</div>
+          <div class="form-row">
+            <div class="fg"><label>Nama Lengkap *</label><input id="co-nama" placeholder="Nama sesuai identitas" required></div>
+            <div class="fg"><label>No. WhatsApp *</label><input id="co-hp" type="tel" placeholder="08xxxxxxxxxx" required></div>
+          </div>
+          <div class="form-row full">
+            <div class="fg"><label>Alamat Lengkap *</label><input id="co-alamat" placeholder="Nama jalan, no rumah, RT/RW" required></div>
+          </div>
+          <div class="form-row">
+            <div class="fg"><label>Kota / Kabupaten *</label><input id="co-kota" placeholder="Yogyakarta" required></div>
+            <div class="fg"><label>Provinsi *</label><input id="co-prov" placeholder="DI Yogyakarta" required></div>
+          </div>
+          <div class="form-row">
+            <div class="fg"><label>Kecamatan</label><input id="co-kec" placeholder="Mlati"></div>
+            <div class="fg"><label>Kode Pos</label><input id="co-kodepos" placeholder="55511" maxlength="5" type="number"></div>
+          </div>
+        </div>
+
+        <!-- Step 2: Produk & qty -->
+        <div class="co-step">
+          <div class="co-step-title" data-n="2">Pesanan</div>
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;">
+            <div>
+              <div style="font-size:0.92rem;font-weight:500;color:var(--text)">HydraGlow Advanced Brightening Lotion</div>
+              <div style="font-size:0.8rem;color:var(--text-light);margin-top:0.2rem">Rp 89.000 / botol</div>
+            </div>
+            <div class="qty-ctrl">
+              <button onclick="chgQty(-1)">−</button>
+              <div class="qty-val" id="co-qty-disp">1</div>
+              <button onclick="chgQty(1)">+</button>
+            </div>
+          </div>
+          <div style="margin-top:1rem;padding:0.6rem 0.9rem;background:var(--rose-pale);border-radius:5px;display:flex;justify-content:space-between;">
+            <span style="font-size:0.82rem;color:var(--text-mid)">Subtotal produk</span>
+            <span style="font-size:0.9rem;font-weight:700;color:var(--rose-dark)" id="co-subtotal">Rp 89.000</span>
+          </div>
+        </div>
+
+        <!-- Step 3: Pilih kurir -->
+        <div class="co-step">
+          <div class="co-step-title" data-n="3">Pilih Pengiriman</div>
+          <p style="font-size:0.78rem;color:var(--text-light);margin-bottom:0.6rem">Isi kota tujuan dulu, lalu klik "Cek Ongkir"</p>
+          <button onclick="cekOngkir()" id="btn-cek" class="btn-cod" style="margin-bottom:0.8rem;background:var(--rose-pale);color:var(--rose-dark);border:1.5px solid var(--rose-light);font-size:0.82rem;padding:0.7rem 1.2rem;width:auto;justify-content:flex-start;">
+            🔍 Cek Ongkir
+          </button>
+          <div id="kurir-result">
+            <div class="ongkir-empty">Isi data penerima dan klik "Cek Ongkir" untuk melihat pilihan kurir dan harga pengiriman.</div>
+          </div>
+        </div>
+
+        <!-- Step 4: Ringkasan & submit -->
+        <div class="co-step">
+          <div class="co-step-title" data-n="4">Ringkasan & Konfirmasi</div>
+          <table class="summary-table">
+            <tr><td>Produk</td><td id="sum-produk">—</td></tr>
+            <tr><td>Ongkir (<span id="sum-kurir">—</span>)</td><td id="sum-ongkir">—</td></tr>
+            <tr><td>Biaya COD</td><td id="sum-cod">—</td></tr>
+            <tr class="total-row"><td>Total Bayar</td><td id="sum-total">—</td></tr>
+          </table>
+          <div class="co-note">
+            💡 Bayar saat paket tiba. Tidak perlu transfer dulu. Kurir akan menagih sesuai nominal di atas.
+          </div>
+          <div class="fg" style="margin-top:1rem">
+            <label>Catatan untuk seller (opsional)</label>
+            <textarea id="co-catatan" rows="2" placeholder="Warna varian, instruksi khusus, dll..." style="resize:none;font-size:0.85rem;padding:0.6rem 0.9rem;border:1.5px solid #e8e2de;border-radius:5px;font-family:'DM Sans',sans-serif;width:100%;outline:none;transition:border-color 0.2s;" onfocus="this.style.borderColor='var(--rose)'" onblur="this.style.borderColor='#e8e2de'"></textarea>
+          </div>
+          <button id="btn-order" class="btn-cod" style="margin-top:1.2rem" onclick="submitOrder()" disabled>
+            🛒 Konfirmasi Pesanan COD
+          </button>
+        </div>
+      </div>
+
+      <!-- SUCCESS STATE -->
+      <div class="co-success" id="co-success">
+        <div class="cs-icon">🎉</div>
+        <div class="cs-title">Pesanan Diterima!</div>
+        <div class="cs-sub">
+          Terima kasih sudah memesan HydraGlow.<br>
+          Tim kami akan segera memproses dan mengirimkan pesananmu.<br>
+          Pantau via WhatsApp: <strong>+62 822-2888-5223</strong>
+        </div>
+        <div class="cs-no" id="cs-orderno"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <footer class="footer">
   <div class="footer-brand">Loonars Beauty · PT. Maha Karya Haluoleo</div>
   <div class="footer-nav">
@@ -208,7 +354,175 @@ nav{position:fixed;top:0;width:100%;z-index:1000;padding:1.2rem 2.5rem;display:f
   </div>
 </footer>
 
+<div class="toast-co" id="co-toast"></div>
+
 <script>
+// ======= CONFIG =======
+const SB_URL = "https://gluoioiimapyhchdasfl.supabase.co";
+const SB_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdsdW9pb2lpbWFweWhjaGRhc2ZsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAwNDQ3MjAsImV4cCI6MjA5NTYyMDcyMH0.dHVB0jJBMjUunJKSsqbaM3MGCAq-ZRSWQEqvEyUjIyk";
+const SH = {"Content-Type":"application/json","apikey":SB_KEY,"Authorization":"Bearer "+SB_KEY};
+const TG_TOKEN = "8972034832:AAGCLi9HuGbmzC9O13wH9X8YxVTPG6kMQr8";
+const TG_CHAT = "-5180682189";
+const HARGA = 89000;
+const ASAL_KOTA = "Sleman"; // kota asal pengiriman (Yogyakarta)
+/* === KiriminAja API KEY ===
+   Ganti string di bawah setelah dapat API key dari KiriminAja dashboard.
+   Selama kosong, sistem pakai fallback ongkos kirim estimasi. */
+const KA_KEY = ""; // <- ISI API KEY KIRIMINAJA DI SINI
+
+// ======= STATE =======
+let qty = 1;
+let selectedKurir = null; // {name, service, etd, price, cod_fee}
+
+// ======= HELPERS =======
+const fR = n => "Rp "+parseInt(n||0).toLocaleString("id-ID");
+const v = id => document.getElementById(id)?.value?.trim()||"";
+function toast(msg, err=false){
+  const t=document.getElementById("co-toast");
+  t.textContent=msg; t.className="toast-co show"+(err?" error":"");
+  clearTimeout(t._t); t._t=setTimeout(()=>t.classList.remove("show"),3500);
+}
+
+// ======= QTY =======
+function chgQty(d){
+  qty=Math.max(1,Math.min(10,qty+d));
+  document.getElementById("co-qty-disp").textContent=qty;
+  document.getElementById("co-subtotal").textContent=fR(qty*HARGA);
+  updateSummary();
+}
+
+// ======= CEK ONGKIR =======
+async function cekOngkir(){
+  const kota=v("co-kota"),prov=v("co-prov");
+  if(!kota||!prov){toast("Isi kota dan provinsi tujuan dulu",true);return;}
+  const el=document.getElementById("kurir-result");
+  el.innerHTML=`<div class="ongkir-loading"><div class="sp"></div>Mengecek ongkir ke ${kota}...</div>`;
+  selectedKurir=null;updateSummary();document.getElementById("btn-order").disabled=true;
+
+  let kurir_list = [];
+
+  // Coba KiriminAja API kalau key sudah diisi
+  if(KA_KEY){
+    try{
+      const r=await fetch(`${SB_URL}/functions/v1/cek-ongkir-ka`,{
+        method:"POST",headers:{...SH,"Authorization":"Bearer "+SB_KEY},
+        body:JSON.stringify({kota_tujuan:kota,provinsi:prov,weight:300*qty})
+      });
+      if(r.ok){const d=await r.json();kurir_list=d.results||[];}
+    }catch(e){console.warn("KA API:",e)}
+  }
+
+  // Fallback: estimasi harga berdasarkan zona
+  if(!kurir_list.length){
+    const inJawa=/jakarta|bandung|bogor|bekasi|depok|tangerang|semarang|yogyakarta|solo|surabaya|malang|surakarta|cirebon|tasik|garut|jawa/i.test(kota+prov);
+    const isSumatra=/medan|palembang|pekanbaru|padang|jambi|lampung|bengkulu|banda aceh|sumatera/i.test(kota+prov);
+    const isLocal=/sleman|bantul|gunung kidul|kulon progo|yogya/i.test(kota+prov);
+
+    const base=isLocal?6000:inJawa?9000:isSumatra?13000:17000;
+    kurir_list=[
+      {name:"JNE",service:"REG",etd:"2-3 hari",price:base+2000,cod:true},
+      {name:"J&T",service:"EZ",etd:"2-4 hari",price:base+1000,cod:true},
+      {name:"SiCepat",service:"BEST",etd:"1-3 hari",price:base+1500,cod:true},
+      {name:"AnterAja",service:"REG",etd:"3-5 hari",price:base,cod:true},
+    ];
+  }
+
+  if(!kurir_list.length){el.innerHTML=`<div class="ongkir-empty">Tidak ada kurir tersedia untuk tujuan ini.</div>`;return;}
+
+  // Hitung cod_fee ~2.5% dari total
+  kurir_list.forEach(k=>{
+    const total=(qty*HARGA)+k.price;
+    k.cod_fee=Math.ceil(total*0.025/100)*100; // 2.5%, rounded ke 100
+  });
+
+  el.innerHTML=`<div class="kurir-list">${kurir_list.map((k,i)=>`
+  <div class="kurir-opt" id="ko${i}" onclick="pilihKurir(${i},${JSON.stringify(k).replace(/"/g,'&quot;')})">
+    <input type="radio" name="kurir" value="${i}">
+    <div class="kurir-info">
+      <div>
+        <div class="kurir-name">${k.name} <span class="kurir-svc">${k.service}</span></div>
+        <span class="kurir-etd">~${k.etd}</span>
+      </div>
+    </div>
+    <div class="kurir-price">${fR(k.price)}</div>
+  </div>`).join("")}</div>`;
+  window._kurir_list=kurir_list;
+}
+
+function pilihKurir(i, k){
+  selectedKurir={name:k.name,service:k.service,etd:k.etd,price:k.price,cod_fee:k.cod_fee};
+  document.querySelectorAll(".kurir-opt").forEach(el=>el.classList.remove("selected"));
+  document.getElementById("ko"+i).classList.add("selected");
+  updateSummary();
+  const btn=document.getElementById("btn-order");
+  const nama=v("co-nama"),hp=v("co-hp"),alamat=v("co-alamat"),kota=v("co-kota");
+  btn.disabled=!(nama&&hp&&alamat&&kota);
+}
+
+function updateSummary(){
+  const sp=qty*HARGA;
+  document.getElementById("sum-produk").textContent=fR(sp);
+  if(selectedKurir){
+    document.getElementById("sum-kurir").textContent=selectedKurir.name+" "+selectedKurir.service;
+    document.getElementById("sum-ongkir").textContent=fR(selectedKurir.price);
+    document.getElementById("sum-cod").textContent=fR(selectedKurir.cod_fee);
+    document.getElementById("sum-total").textContent=fR(sp+selectedKurir.price+selectedKurir.cod_fee);
+  }else{
+    ["sum-kurir","sum-ongkir","sum-cod","sum-total"].forEach(id=>{
+      document.getElementById(id).textContent="—";
+    });
+  }
+}
+
+// ======= SUBMIT ORDER =======
+async function submitOrder(){
+  const nama=v("co-nama"),hp=v("co-hp"),alamat=v("co-alamat");
+  const kota=v("co-kota"),prov=v("co-prov"),kec=v("co-kec"),kpos=v("co-kodepos");
+  const catatan=v("co-catatan");
+  if(!nama||!hp||!alamat||!kota){toast("Lengkapi nama, HP, alamat, dan kota",true);return;}
+  if(!selectedKurir){toast("Pilih kurir pengiriman dulu",true);return;}
+
+  const btn=document.getElementById("btn-order");
+  btn.disabled=true; btn.textContent="⏳ Memproses...";
+
+  try{
+    // Ambil nomor order
+    const rno=await fetch(`${SB_URL}/rest/v1/rpc/next_mkh_no`,{method:"POST",headers:SH,body:JSON.stringify({p_prefix:"LB"})});
+    const noVal=rno.ok?await rno.json():Math.floor(Math.random()*9000)+1000;
+    const order_no="LB-"+String(noVal).padStart(4,"0");
+
+    const totalBayar=(qty*HARGA)+selectedKurir.price+selectedKurir.cod_fee;
+    const payload={
+      order_no, nama, hp, alamat,
+      kecamatan:kec, kota, provinsi:prov, kode_pos:kpos,
+      qty, harga_satuan:HARGA,
+      kurir:selectedKurir.name, layanan:selectedKurir.service,
+      ongkir:selectedKurir.price, cod_fee:selectedKurir.cod_fee,
+      total_bayar:totalBayar, catatan, status:"pending"
+    };
+    const res=await fetch(`${SB_URL}/rest/v1/beauty_orders`,{
+      method:"POST",headers:{...SH,"Prefer":"return=minimal"},
+      body:JSON.stringify(payload)
+    });
+    if(!res.ok) throw new Error(await res.text());
+
+    // Notif Telegram
+    const tgMsg=`💄 <b>ORDER BARU — LOONARS BEAUTY</b>\n\n📦 Order: <b>${order_no}</b>\n👤 Nama: <b>${nama}</b>\n📱 HP: <b>${hp}</b>\n📍 Alamat: <b>${alamat}, ${kec?kec+", ":""}${kota}, ${prov}</b>\n\n🧴 Produk: HydraGlow × ${qty}\n🚚 Kurir: <b>${selectedKurir.name} ${selectedKurir.service}</b> (~${selectedKurir.etd})\n💰 Ongkir: ${fR(selectedKurir.price)}\n💵 Total COD: <b>${fR(totalBayar)}</b>\n\n📝 Catatan: ${catatan||"—"}\n\n⚡ Proses di Loonars Dashboard`;
+    fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage?chat_id=${TG_CHAT}&parse_mode=HTML&text=${encodeURIComponent(tgMsg)}`,{method:"GET",mode:"no-cors"}).catch(()=>{});
+
+    // Show success
+    document.getElementById("co-form").style.display="none";
+    const suc=document.getElementById("co-success");
+    suc.style.display="block";
+    document.getElementById("cs-orderno").textContent=order_no;
+    document.getElementById("checkout").scrollIntoView({behavior:"smooth",block:"start"});
+  }catch(e){
+    toast("Gagal mengirim pesanan: "+e.message,true);
+    btn.disabled=false; btn.textContent="🛒 Konfirmasi Pesanan COD";
+  }
+}
+
+// ======= REVEAL ANIM =======
 const obs=new IntersectionObserver(entries=>{entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),i*80);obs.unobserve(e.target);}});},{threshold:0.1});
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 </script>
