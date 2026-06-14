@@ -337,22 +337,45 @@ body{background:#060203;}
 .sh-link{display:flex;align-items:center;gap:.7rem;padding:1rem 2rem;border:1px solid rgba(255,255,255,.07);border-radius:6px;color:rgba(255,255,255,.35);text-decoration:none;font-size:.8rem;transition:all .3s;cursor:none;}
 .sh-link:hover{border-color:rgba(201,148,138,.3);color:var(--rose);transform:translateY(-2px);}
 
+
+/* PRODUCT SHOWCASE */
+.prod-showcase{background:#0a0205;padding:7rem 4rem;}
+.ps-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center;}
+.ps-visual{display:flex;justify-content:center;}
+.ps-bottle{width:300px;height:400px;background:linear-gradient(160deg,#2a0f0d,#1a0a0e,#0d0305);border-radius:16px;border:1px solid rgba(201,148,138,.12);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2.5rem;text-align:center;position:relative;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.5);}
+.psb-glow{position:absolute;width:200px;height:200px;background:var(--rose);opacity:.08;border-radius:50%;filter:blur(60px);top:50%;left:50%;transform:translate(-50%,-50%);}
+.psb-icon{font-size:5rem;margin-bottom:1rem;animation:bFloat 3.5s ease-in-out infinite;position:relative;z-index:1;}
+@keyframes bFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.psb-name{font-family:'Cormorant Garamond',serif;font-size:2rem;color:#fff;font-weight:300;position:relative;z-index:1;}
+.psb-sub{font-size:.68rem;letter-spacing:.1em;color:rgba(255,255,255,.3);margin:.3rem 0 1.5rem;position:relative;z-index:1;}
+.psb-tags{display:flex;flex-direction:column;gap:.4rem;width:100%;margin-bottom:1.5rem;position:relative;z-index:1;}
+.psb-tags span{font-size:.72rem;color:rgba(201,148,138,.7);border:1px solid rgba(201,148,138,.15);padding:.3rem .8rem;border-radius:50px;}
+.psb-price-wrap{display:flex;align-items:baseline;gap:.8rem;position:relative;z-index:1;}
+.psb-old{font-size:.85rem;color:rgba(255,255,255,.2);text-decoration:line-through;}
+.psb-new{font-family:'Cormorant Garamond',serif;font-size:1.8rem;color:var(--rose);}
+.ps-badges{display:flex;flex-direction:column;gap:.7rem;margin-top:1.5rem;}
+.ps-badge{display:flex;align-items:center;gap:.8rem;padding:.7rem 1rem;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.05);border-radius:4px;font-size:.82rem;color:rgba(255,255,255,.55);}
+.psb-i{font-size:1rem;}
 @media(max-width:900px){
   .b-hero-inner{grid-template-columns:1fr;padding:0 1.5rem 5rem;gap:2rem;}
   .b-title{font-size:clamp(4.5rem,18vw,8rem);}
   .b-price-new{font-size:3.5rem;}
   .b-btns{flex-direction:column;gap:.7rem;}
   .btn-rose,.btn-shop-out{width:100%;justify-content:center;padding:.95rem 1.5rem;text-align:center;}
-  .ing-sec,.ap-sec,.ht-sec,.cod-sec{padding:5rem 1.5rem;}
+  .ing-sec,.ap-sec,.ht-sec,.cod-sec,.prod-showcase{padding:5rem 1.5rem;}
   .ing-grid{grid-template-columns:1fr 1fr;}
-  .ap-inner,.cod-grid{grid-template-columns:1fr;gap:3rem;}
+  .ap-inner,.cod-grid,.ps-inner{grid-template-columns:1fr;gap:2.5rem;}
+  .ps-bottle{width:100%;max-width:280px;height:340px;}
+  .ps-visual{margin-bottom:1rem;}
   .ap-fallback,.ap-img-wrap{height:320px;}
   .ap-float{display:none;}
   .cod-sum{position:static;}
   .cs-tv{font-size:1.5rem;}
+  .form-row-2{grid-template-columns:1fr!important;}
   .shops-row{padding:3rem 1.5rem;flex-direction:column;align-items:center;}
   .cod-hdr .s-title{font-size:clamp(2.5rem,10vw,4rem);}
 }
+.form-row-2{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
 
 @keyframes fu{to{opacity:1;transform:translateY(0)}}
 @keyframes wu{to{opacity:1;transform:translateY(0)}}
@@ -485,6 +508,40 @@ body{background:#060203;}
   </div>
 </section>
 
+<!-- PRODUCT SHOWCASE -->
+<section class="prod-showcase" id="produk">
+  <div class="ps-inner">
+    <div class="ps-visual rv">
+      <div class="ps-bottle">
+        <div class="psb-glow"></div>
+        <div class="psb-icon">&#129518;</div>
+        <div class="psb-name">HydraGlow</div>
+        <div class="psb-sub">Advanced Brightening Lotion</div>
+        <div class="psb-tags">
+          <span>&#128167; 4 Types Hyaluron</span>
+          <span>&#10024; Niacinamide</span>
+          <span>&#127807; Squalane</span>
+        </div>
+        <div class="psb-price-wrap">
+          <span class="psb-old">IDR 119.000</span>
+          <span class="psb-new">IDR 89.000</span>
+        </div>
+      </div>
+    </div>
+    <div class="rvr">
+      <div class="s-label" style="color:var(--rose);">Produk Unggulan</div>
+      <h2 class="s-title" style="color:#fff;font-size:clamp(2.5rem,5vw,4rem);">HydraGlow<br><em style="color:rgba(201,148,138,.5);">Advanced Brightening</em></h2>
+      <p style="color:rgba(255,255,255,.55);font-size:.88rem;line-height:1.85;margin:1.5rem 0;font-weight:300;">Formula canggih dengan 4 jenis Hyaluronic Acid untuk hidrasi berlapis. Diformulasikan untuk perempuan kota yang aktif &mdash; ringan, cepat meresap, dan bekerja sepanjang hari.</p>
+      <div class="ps-badges">
+        <div class="ps-badge"><span class="psb-i">&#128737;&#65039;</span><span>BPOM Terdaftar</span></div>
+        <div class="ps-badge"><span class="psb-i">&#127807;</span><span>Cruelty-Free &amp; Non-Comedogenic</span></div>
+        <div class="ps-badge"><span class="psb-i">&#9989;</span><span>Aman untuk semua jenis kulit</span></div>
+      </div>
+      <a href="#checkout" class="btn-rose" style="margin-top:2rem;display:inline-flex;"><span>&#128722; Pesan COD Sekarang &darr;</span></a>
+    </div>
+  </div>
+</section>
+
 <!-- COD ORDER FORM -->
 <section class="cod-sec" id="checkout">
   <div class="cod-inner">
@@ -502,11 +559,11 @@ body{background:#060203;}
             <div class="f-g"><label class="f-lbl">Nama Lengkap <span class="f-req" style="color:var(--rose);">*</span></label><input class="f-inp" id="bName" type="text" placeholder="Nama penerima"></div>
             <div class="f-g"><label class="f-lbl">No. WhatsApp <span class="f-req" style="color:var(--rose);">*</span></label><input class="f-inp" id="bPhone" type="tel" placeholder="08xxxxxxxxxx"></div>
             <div class="f-g"><label class="f-lbl">Alamat Lengkap <span class="f-req" style="color:var(--rose);">*</span></label><textarea class="f-inp f-ta" id="bAddress" placeholder="Jalan, nomor, RT/RW, kelurahan..."></textarea></div>
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+            <div class="form-row-2">
               <div class="f-g"><label class="f-lbl">Kota / Kabupaten <span class="f-req" style="color:var(--rose);">*</span></label><input class="f-inp" id="bCity" type="text" placeholder="Makassar"></div>
               <div class="f-g"><label class="f-lbl">Provinsi</label><input class="f-inp" id="bProv" type="text" placeholder="Sulawesi Selatan"></div>
             </div>
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+            <div class="form-row-2">
               <div class="f-g"><label class="f-lbl">Kecamatan</label><input class="f-inp" id="bDist" type="text" placeholder="Kecamatan"></div>
               <div class="f-g"><label class="f-lbl">Kode Pos</label><input class="f-inp" id="bPost" type="text" placeholder="90123"></div>
             </div>

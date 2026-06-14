@@ -236,9 +236,9 @@ footer{background:#030604;padding:2.5rem 4rem;display:flex;align-items:center;ju
 
 
 .dir-hero{min-height:90vh;position:relative;display:flex;align-items:flex-end;overflow:hidden;background:var(--dark);}
-.dir-bg{position:absolute;inset:0;background-image:url('img founder.jpeg');background-size:cover;background-position:center top;filter:brightness(.38) saturate(1.2);transform:scale(1.05);animation:hzoom 10s ease forwards;}
-.dir-vg{position:absolute;inset:0;background:linear-gradient(to right,rgba(6,10,5,.92) 35%,rgba(6,10,5,.25) 100%);}
-.dir-vg2{position:absolute;inset:0;background:linear-gradient(to top,rgba(6,10,5,.92) 0%,transparent 45%);}
+.dir-bg{position:absolute;inset:0;background-image:url('img founder.jpeg');background-size:cover;background-position:center top;filter:brightness(.58) saturate(1.1);transform:scale(1.05);animation:hzoom 10s ease forwards;}
+.dir-vg{position:absolute;inset:0;background:linear-gradient(to right,rgba(6,10,5,.85) 30%,rgba(6,10,5,.1) 65%,transparent 100%);}
+.dir-vg2{position:absolute;inset:0;background:linear-gradient(to top,rgba(6,10,5,.88) 0%,transparent 40%);}
 .dir-hero-inner{position:relative;z-index:5;padding:0 4rem 5rem;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:flex-end;}
 .dir-eyebrow{font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--sage);margin-bottom:1.2rem;display:flex;align-items:center;gap:.8rem;opacity:0;animation:fu .6s .3s forwards;}
 .dir-eyebrow::before{content:'';display:block;width:18px;height:1px;background:var(--sage);}
@@ -282,9 +282,14 @@ footer{background:#030604;padding:2.5rem 4rem;display:flex;align-items:center;ju
 .kom-desc{font-size:.8rem;color:rgba(255,255,255,.5);line-height:1.8;}
 
 @media(max-width:900px){
-  .dir-hero-inner{grid-template-columns:1fr;gap:2rem;padding:0 1.5rem 3rem;}
+  .dir-hero{min-height:100vh;}
+  .dir-hero-inner{grid-template-columns:1fr;gap:1.5rem;padding:0 1.5rem 3.5rem;}
+  .dir-name{font-size:clamp(2.5rem,10vw,4.5rem);}
+  .dir-bio{font-size:1rem;color:rgba(255,255,255,.55);}
   .dir-pf-grid,.kom-grid{grid-template-columns:1fr;}
   .phil{padding:5rem 1.5rem;}
+  .tl{padding-left:4px;}
+  .tl-item{padding:0 0 2.5rem 2.5rem;}
 }
 
 @keyframes fu{to{opacity:1;transform:translateY(0)}}
