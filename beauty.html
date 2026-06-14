@@ -339,7 +339,7 @@ body{background:#060203;}
 
 
 /* PRODUCT SHOWCASE */
-.prod-showcase{background:#0a0205;padding:7rem 4rem;}
+.prod-showcase{background:#0a0205;padding:7rem 4rem;position:relative;z-index:1;isolation:isolate;}
 .ps-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center;}
 .ps-visual{display:flex;justify-content:center;}
 .ps-bottle{width:300px;height:400px;background:linear-gradient(160deg,#2a0f0d,#1a0a0e,#0d0305);border-radius:16px;border:1px solid rgba(201,148,138,.12);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2.5rem;text-align:center;position:relative;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.5);}
@@ -463,8 +463,8 @@ body{background:#060203;}
     <div class="ap-img rvl">
       <!-- Product visual - shows product bottle illustration if photo not available -->
       <div class="ap-img-wrap">
-        <img src="img hydraglow1.jpeg" alt="HydraGlow" 
-          onerror="this.style.display='none';document.getElementById('apFallback').style.display='flex';">
+        <img src="img%20hydraglow1.jpeg" alt="HydraGlow" 
+          onerror="this.src='img%20hydraglow2.jpeg';this.onerror=function(){this.style.display='none';var f=document.getElementById('apFallback');if(f)f.style.display='flex';};">
         <div id="apFallback" class="ap-fallback">
           <div class="apf-icon">&#129518;</div>
           <div class="apf-name">HydraGlow</div>
