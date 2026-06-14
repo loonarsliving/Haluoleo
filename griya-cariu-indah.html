@@ -473,10 +473,18 @@ async function loadGallery(slug,gridId){
   try{
     const {data,error}=await _sb.from('project_images').select('*').eq('project_slug',slug).order('display_order',{ascending:true});
     if(error)throw error;
-    if(!data?.length){grid.innerHTML='<div class="g-loading">Belum ada foto.</div>';return;}
-    window['_gd'+gridId]=data;
-    grid.innerHTML=data.map((img,i)=>`<div class="g-item" onclick="openLb(window['_gd${gridId}']],${i})"><img src="${img.url}" alt="${img.caption||''}" loading="lazy" onerror="this.parentElement.style.display='none'"></div>`).join('').replace(/\]\]/g,']');
-  }catch(ex){grid.innerHTML='<div class="g-loading">Gagal memuat galeri.</div>';}
+    if(!data||!data.length){grid.innerHTML='<div class="g-loading">Belum ada foto.</div>';return;}
+    // Simpan ke window scope dengan nama aman
+    window._lbData=data;
+    grid.innerHTML=data.map((img,i)=>{
+      const url=img.url||'';
+      const cap=img.caption||'';
+      return '<div class="g-item" onclick="openLb(window._lbData,'+i+')"><img src="'+url+'" alt="'+cap+'" loading="lazy" onerror="this.parentElement.style.display='none'"></div>';
+    }).join('');
+  }catch(ex){
+    console.error('Gallery error:',ex);
+    grid.innerHTML='<div class="g-loading">Gagal memuat galeri. Coba refresh.</div>';
+  }
 }
 
 // MAGNETIC
