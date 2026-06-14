@@ -8,7 +8,7 @@
 <meta property="og:description" content="Al Fath Introvert House Makassar — 95 unit hunian eksklusif di Telkomas. Where Silence Becomes Luxury. 3 tipe unit, KPR tersedia.">
 <meta property="og:image" content="https://haluoleo.id/img introvert.jpeg">
 <link rel="canonical" href="https://haluoleo.id">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js" defer></script>
 <style>
 
 *{margin:0;padding:0;box-sizing:border-box;}
@@ -401,8 +401,15 @@ footer{background:#030604;padding:2.5rem 4rem;display:flex;align-items:center;ju
   <div class="lb-cap" id="_lbCap"></div>
 </div>
 <script>
-// SUPABASE
-const _sb=supabase.createClient('https://gluoioiimapyhchdasfl.supabase.co','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdsdW9pb2lpbWFweWhjaGRhc2ZsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAwNDQ3MjAsImV4cCI6MjA5NTYyMDcyMH0.dHVB0jJBMjUunJKSsqbaM3MGCAq-ZRSWQEqvEyUjIyk');
+// SUPABASE — single init after DOM ready
+let _sb=null;
+document.addEventListener('DOMContentLoaded',function(){
+  try{
+    if(typeof supabase!=='undefined' && !_sb){
+      _sb=supabase.createClient('https://gluoioiimapyhchdasfl.supabase.co','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdsdW9pb2lpbWFweWhjaGRhc2ZsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAwNDQ3MjAsImV4cCI6MjA5NTYyMDcyMH0.dHVB0jJBMjUunJKSsqbaM3MGCAq-ZRSWQEqvEyUjIyk');
+    }
+  }catch(e){console.warn('SB:',e);}
+});
 
 // LOADER
 (function(){
@@ -439,14 +446,14 @@ window.addEventListener('scroll',()=>{
 
 // MENU
 function toggleMenu(){
-  document.getElementById('hbg')?.classList.toggle('open');
-  document.getElementById('_sm')?.classList.toggle('open');
-  document.getElementById('_smol')?.classList.toggle('open');
+  var _h=document.getElementById('hbg');if(_h)_h.classList.toggle('open');
+  var _sm2=document.getElementById('_sm');if(_sm2)_sm2.classList.toggle('open');
+  var _so=document.getElementById('_smol');if(_so)_so.classList.toggle('open');
 }
 function closeMenu(){
-  document.getElementById('hbg')?.classList.remove('open');
-  document.getElementById('_sm')?.classList.remove('open');
-  document.getElementById('_smol')?.classList.remove('open');
+  var _h2=document.getElementById('hbg');if(_h2)_h2.classList.remove('open');
+  var _sm3=document.getElementById('_sm');if(_sm3)_sm3.classList.remove('open');
+  var _so2=document.getElementById('_smol');if(_so2)_so2.classList.remove('open');
 }
 
 // REVEAL
@@ -462,26 +469,42 @@ function _showLb(){const img=document.getElementById('_lbImg'),cap=document.getE
 function closeLb(){document.getElementById('_lb').classList.remove('open');document.body.style.overflow='';}
 function prevLb(){_lbI=(_lbI-1+_lbD.length)%_lbD.length;_showLb();}
 function nextLb(){_lbI=(_lbI+1)%_lbD.length;_showLb();}
-document.addEventListener('keydown',e=>{const lb=document.getElementById('_lb');if(!lb?.classList.contains('open'))return;if(e.key==='Escape')closeLb();if(e.key==='ArrowLeft')prevLb();if(e.key==='ArrowRight')nextLb();});
+document.addEventListener('keydown',e=>{const lb=document.getElementById('_lb');if(!lb||!lb.classList.contains('open'))return;if(e.key==='Escape')closeLb();if(e.key==='ArrowLeft')prevLb();if(e.key==='ArrowRight')nextLb();});
 
 // GALLERY FROM SUPABASE
 async function loadGallery(slug,gridId){
-  const grid=document.getElementById(gridId);if(!grid)return;
+  const grid=document.getElementById(gridId);
+  if(!grid)return;
   grid.innerHTML='<div class="g-loading">&#9203; Memuat galeri...</div>';
+  // Wait for _sb to be ready (max 3s)
+  var waited=0;
+  while(!_sb && waited<3000){
+    await new Promise(function(r){setTimeout(r,200);});
+    waited+=200;
+  }
+  if(!_sb){grid.innerHTML='<div class="g-loading">Koneksi tidak tersedia.</div>';return;}
   try{
-    const {data,error}=await _sb.from('project_images').select('*').eq('project_slug',slug).order('display_order',{ascending:true});
-    if(error)throw error;
+    var res=await _sb.from('project_images').select('url,caption,display_order').eq('project_slug',slug).order('display_order',{ascending:true});
+    if(res.error)throw res.error;
+    var data=res.data;
     if(!data||!data.length){grid.innerHTML='<div class="g-loading">Belum ada foto.</div>';return;}
-    // Simpan ke window scope dengan nama aman
     window._lbData=data;
-    grid.innerHTML=data.map((img,i)=>{
-      const url=img.url||'';
-      const cap=img.caption||'';
-      return '<div class="g-item" onclick="openLb(window._lbData,'+i+')"><img src="'+url+'" alt="'+cap+'" loading="lazy" onerror="this.parentElement.style.display='none'"></div>';
-    }).join('');
+    grid.innerHTML='';
+    data.forEach(function(img,i){
+      var wrap=document.createElement('div');
+      wrap.className='g-item';
+      wrap.addEventListener('click',function(){openLb(window._lbData,i);});
+      var el=document.createElement('img');
+      el.src=img.url||'';
+      el.alt=img.caption||'';
+      el.loading='lazy';
+      el.addEventListener('error',function(){wrap.style.display='none';});
+      wrap.appendChild(el);
+      grid.appendChild(wrap);
+    });
   }catch(ex){
-    console.error('Gallery error:',ex);
-    grid.innerHTML='<div class="g-loading">Gagal memuat galeri. Coba refresh.</div>';
+    console.error('Gallery:',ex);
+    grid.innerHTML='<div class="g-loading">Gagal memuat galeri.</div>';
   }
 }
 
@@ -513,16 +536,16 @@ function spawnParticles(containerId){
 // KONTAK FORM
 async function submitKontak(e){
   e.preventDefault();
-  const name=document.getElementById('kName')?.value.trim();
-  const phone=document.getElementById('kPhone')?.value.trim();
+  var kn=document.getElementById('kName');const name=kn?kn.value.trim():'';
+  var kp=document.getElementById('kPhone');const phone=kp?kp.value.trim():'';
   if(!name||!phone){alert('Nama dan nomor WhatsApp wajib diisi.');return;}
   const btn=document.getElementById('kBtn');
-  if(btn){btn.disabled=true;btn.querySelector('span').textContent='Mengirim...';}
+  if(btn){btn.disabled=true;var sp=btn.querySelector('span');if(sp)sp.textContent='Mengirim...';}
   try{
-    await _sb.from('contact_messages').insert([{
+    if(_sb)await _sb.from('contact_messages').insert([{
       name,phone,
-      project:document.getElementById('kProject')?.value,
-      message:document.getElementById('kMsg')?.value.trim(),
+      project:(document.getElementById('kProject')||{}).value||'',
+      message:(document.getElementById('kMsg')||{value:''}).value.trim(),
       created_at:new Date().toISOString()
     }]);
   }catch(ex){console.warn(ex);}
