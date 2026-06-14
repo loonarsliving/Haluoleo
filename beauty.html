@@ -104,7 +104,7 @@ nav{position:fixed;top:0;width:100%;z-index:1000;padding:1.5rem 3rem;display:fle
 
 /* DETAIL HERO */
 .d-hero{height:85vh;min-height:560px;position:relative;overflow:hidden;display:flex;align-items:flex-end;}
-.d-hero-bg{position:absolute;inset:0;background-size:cover;background-position:center;transform:scale(1.06);animation:hzoom 10s ease forwards;filter:brightness(.22) saturate(1.3);}
+.d-hero-bg{position:absolute;inset:0;background-size:cover;background-position:center;transform:scale(1.06);animation:hzoom 10s ease forwards;filter:brightness(.42) saturate(1.3);}
 @keyframes hzoom{to{transform:scale(1);}}
 .d-hero-vg1{position:absolute;inset:0;background:radial-gradient(ellipse at center,transparent 30%,rgba(6,10,5,.85) 100%);}
 .d-hero-vg2{position:absolute;inset:0;background:linear-gradient(to top,rgba(6,10,5,.95) 0%,rgba(6,10,5,.2) 50%,transparent 100%);}
@@ -275,19 +275,19 @@ body{background:#060203;}
 .ing-icon{font-size:1.8rem;margin-bottom:1.2rem;}
 .ing-name{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:#fff;margin-bottom:.3rem;}
 .ing-role{font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:var(--rose);margin-bottom:.8rem;}
-.ing-desc{font-size:.78rem;color:rgba(255,255,255,.3);line-height:1.75;}
+.ing-desc{font-size:.78rem;color:rgba(255,255,255,.5);line-height:1.75;}
 
 /* ABOUT PRODUCT */
 .ap-sec{background:#0a0205;padding:8rem 4rem;}
 .ap-inner{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:8rem;align-items:center;}
 .ap-img{position:relative;}
-.ap-img img{width:100%;height:500px;object-fit:cover;border-radius:8px;filter:brightness(.55) saturate(1.3);}
+.ap-img img{width:100%;height:500px;object-fit:cover;border-radius:8px;filter:brightness(.72) saturate(1.3);}
 .ap-float{position:absolute;top:-1rem;right:-1rem;background:rgba(6,2,3,.85);backdrop-filter:blur(12px);border:1px solid rgba(201,148,138,.15);border-radius:6px;padding:.8rem 1.2rem;font-size:.78rem;color:var(--rose);}
 .ap-content .s-label{color:var(--rose);}
 .ap-content .s-title em{color:rgba(201,148,138,.35);}
-.ap-q{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-style:italic;color:rgba(255,255,255,.3);border-left:1px solid var(--rose);padding-left:1.5rem;margin:2rem 0;line-height:1.65;}
+.ap-q{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-style:italic;color:rgba(255,255,255,.5);border-left:1px solid var(--rose);padding-left:1.5rem;margin:2rem 0;line-height:1.65;}
 .ap-list{list-style:none;}
-.ap-list li{font-size:.82rem;color:rgba(255,255,255,.35);padding:.4rem 0;display:flex;align-items:center;gap:.7rem;border-bottom:1px solid rgba(255,255,255,.04);}
+.ap-list li{font-size:.82rem;color:rgba(255,255,255,.55);padding:.4rem 0;display:flex;align-items:center;gap:.7rem;border-bottom:1px solid rgba(255,255,255,.04);}
 .ap-list li::before{content:'';display:block;width:3px;height:3px;background:var(--rose);border-radius:50%;flex-shrink:0;}
 
 /* HOWTO */
@@ -299,7 +299,7 @@ body{background:#060203;}
 .ht-step{display:flex;gap:2.5rem;align-items:flex-start;}
 .ht-num{font-family:'Cormorant Garamond',serif;font-size:4rem;color:rgba(201,148,138,.15);font-weight:300;line-height:1;flex-shrink:0;width:70px;}
 .ht-title{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:#fff;margin-bottom:.4rem;}
-.ht-desc{font-size:.84rem;color:rgba(255,255,255,.32);line-height:1.9;}
+.ht-desc{font-size:.84rem;color:rgba(255,255,255,.52);line-height:1.9;}
 
 /* COD FORM */
 .cod-sec{background:#0a0205;padding:8rem 4rem;}
@@ -338,13 +338,20 @@ body{background:#060203;}
 .sh-link:hover{border-color:rgba(201,148,138,.3);color:var(--rose);transform:translateY(-2px);}
 
 @media(max-width:900px){
-  .b-hero-inner{grid-template-columns:1fr;padding:0 1.5rem 5rem;}
+  .b-hero-inner{grid-template-columns:1fr;padding:0 1.5rem 5rem;gap:2rem;}
+  .b-title{font-size:clamp(4.5rem,18vw,8rem);}
+  .b-price-new{font-size:3.5rem;}
+  .b-btns{flex-direction:column;gap:.7rem;}
+  .btn-rose,.btn-shop-out{width:100%;justify-content:center;padding:.95rem 1.5rem;text-align:center;}
   .ing-sec,.ap-sec,.ht-sec,.cod-sec{padding:5rem 1.5rem;}
   .ing-grid{grid-template-columns:1fr 1fr;}
   .ap-inner,.cod-grid{grid-template-columns:1fr;gap:3rem;}
+  .ap-fallback,.ap-img-wrap{height:320px;}
   .ap-float{display:none;}
   .cod-sum{position:static;}
+  .cs-tv{font-size:1.5rem;}
   .shops-row{padding:3rem 1.5rem;flex-direction:column;align-items:center;}
+  .cod-hdr .s-title{font-size:clamp(2.5rem,10vw,4rem);}
 }
 
 @keyframes fu{to{opacity:1;transform:translateY(0)}}
@@ -431,7 +438,22 @@ body{background:#060203;}
 <section class="ap-sec">
   <div class="ap-inner">
     <div class="ap-img rvl">
-      <img src="img hydraglow1.jpeg" alt="HydraGlow" onerror="this.src='hero1.jpeg'">
+      <!-- Product visual - shows product bottle illustration if photo not available -->
+      <div class="ap-img-wrap">
+        <img src="img hydraglow1.jpeg" alt="HydraGlow" 
+          onerror="this.style.display='none';document.getElementById('apFallback').style.display='flex';">
+        <div id="apFallback" class="ap-fallback">
+          <div class="apf-icon">&#129518;</div>
+          <div class="apf-name">HydraGlow</div>
+          <div class="apf-sub">Advanced Brightening Lotion</div>
+          <div class="apf-tags">
+            <span>&#128167; 4 Types Hyaluron</span>
+            <span>&#10024; Niacinamide</span>
+            <span>&#127807; Squalane</span>
+          </div>
+          <div class="apf-price">IDR 89.000</div>
+        </div>
+      </div>
       <div class="ap-float">&#127942; BPOM Terdaftar</div>
     </div>
     <div class="ap-content rvr">
