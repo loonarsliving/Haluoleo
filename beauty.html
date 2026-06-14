@@ -1,530 +1,700 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Loonars Beauty HydraGlow — Skincare Premium Indonesia</title>
-<meta name="description" content="Loonars Beauty HydraGlow Advanced Brightening Lotion — 4 Types Hyaluron, Niacinamide & Squalane. Ritual perawatan kulit harian premium. Harga Rp 89.000.">
-<meta name="keywords" content="loonars beauty, hydraglow lotion, brightening lotion indonesia, skincare hyaluron niacinamide, body lotion premium indonesia">
-<link rel="canonical" href="https://haluoleo.id/beauty">
+<meta name="description" content="Loonars Beauty HydraGlow Advanced Brightening Lotion — 4 Types Hyaluron, Niacinamide & Squalane. Rp 89.000.">
 <meta property="og:title" content="Loonars Beauty HydraGlow — Advanced Brightening Lotion">
-<meta property="og:description" content="4 Types Hyaluron + Niacinamide + Squalane. Ritual perawatan premium. Rp 89.000.">
-<meta property="og:image" content="https://haluoleo.id/img%20hydraglow1.jpeg">
-<meta property="og:url" content="https://haluoleo.id/beauty">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<meta property="og:image" content="https://haluoleo.id/img hydraglow1.jpeg">
+<link rel="canonical" href="https://haluoleo.id/beauty">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <style>
-:root{--rose:#c9948a;--rose-light:#e8c0bb;--rose-pale:#fdf0ee;--rose-dark:#a06b63;--sage:#7a9e6e;--sage-dark:#4e7244;--sage-deep:#2d4d25;--gold:#c9a84c;--cream:#f8f6f2;--white:#fff;--text:#1a1a1a;--text-mid:#4a4a4a;--text-light:#888;--ease:cubic-bezier(0.25,0.46,0.45,0.94);}
-*{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}body{font-family:'DM Sans',sans-serif;background:var(--white);color:var(--text);overflow-x:hidden;}
-@keyframes subtleKB{0%{transform:scale(1);}100%{transform:scale(1.06);}}
-@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
-@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
-@keyframes slideUp{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:translateY(0);}}
-@keyframes spin{to{transform:rotate(360deg);}}
-nav{position:fixed;top:0;width:100%;z-index:1000;padding:1.2rem 2.5rem;display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,0.97);backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,0,0,0.07);}
-.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--text);text-decoration:none;letter-spacing:0.07em;display:flex;align-items:center;gap:0.5rem;}
-.nav-logo::before{content:'';width:6px;height:6px;background:var(--rose);border-radius:50%;flex-shrink:0;}
-.nav-back{font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-mid);text-decoration:none;transition:color 0.3s;}
-.nav-back:hover{color:var(--rose-dark);}
-.hero{min-height:100vh;padding:100px 5% 5rem;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;background:linear-gradient(135deg,var(--rose-pale) 0%,var(--cream) 50%,var(--white) 100%);}
-.hero-product{position:relative;display:flex;align-items:center;justify-content:center;}
-.hero-product-img{width:100%;max-width:400px;border-radius:8px;animation:subtleKB 20s ease-in-out infinite alternate;box-shadow:0 30px 80px rgba(201,148,138,0.25);}
-.hero-product-img2{position:absolute;bottom:-2rem;right:-2rem;width:160px;border-radius:6px;box-shadow:0 12px 40px rgba(0,0,0,0.15);animation:float 6s ease-in-out infinite;border:4px solid var(--white);}
-.hero-brand{font-size:0.65rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--rose);margin-bottom:0.8rem;animation:fadeIn 1s 0.3s both;}
-.hero-name{font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,5vw,5rem);font-weight:300;color:var(--text);line-height:1;margin-bottom:0.5rem;animation:slideUp 1s 0.4s both;}
-.hero-name em{font-style:italic;color:var(--rose-dark);}
-.hero-tagline{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-style:italic;color:var(--text-mid);margin-bottom:2rem;animation:slideUp 1s 0.5s both;}
-.hero-price{display:flex;align-items:center;gap:1.5rem;margin-bottom:2rem;animation:slideUp 1s 0.6s both;}
-.price-old{font-size:1rem;color:var(--text-light);text-decoration:line-through;}
-.price-new{font-family:'Cormorant Garamond',serif;font-size:2.8rem;color:var(--rose-dark);}
-.price-save{font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;background:var(--rose-pale);color:var(--rose-dark);padding:0.3rem 0.7rem;border-radius:50px;}
-.hero-ingr{display:flex;gap:0.6rem;flex-wrap:wrap;margin-bottom:2.5rem;animation:slideUp 1s 0.7s both;}
-.ingr-tag{font-size:0.72rem;letter-spacing:0.08em;background:rgba(201,148,138,0.1);color:var(--rose-dark);padding:0.3rem 0.8rem;border-radius:50px;border:1px solid rgba(201,148,138,0.2);}
-.shop-btns{display:flex;gap:0.8rem;flex-wrap:wrap;animation:slideUp 1s 0.8s both;}
-.btn-shop{padding:0.8rem 1.5rem;border-radius:4px;font-size:0.8rem;font-weight:500;text-decoration:none;transition:all 0.3s;display:inline-flex;align-items:center;gap:0.5rem;}
-.btn-main{background:var(--rose-dark);color:var(--white);}
-.btn-main:hover{background:var(--rose);transform:translateY(-2px);}
-.btn-tok{background:#fef0e6;color:#e07b2a;border:1px solid rgba(224,123,42,0.2);}
-.btn-tok:hover{background:#e07b2a;color:var(--white);}
-.btn-spe{background:#fff0f0;color:#ee4d2d;border:1px solid rgba(238,77,45,0.2);}
-.btn-spe:hover{background:#ee4d2d;color:var(--white);}
-.btn-cod{background:var(--rose-dark);color:var(--white);font-size:0.95rem;padding:1rem 2rem;border-radius:6px;cursor:pointer;border:none;font-family:inherit;font-weight:500;transition:all 0.3s;display:inline-flex;align-items:center;gap:0.6rem;width:100%;justify-content:center;}
-.btn-cod:hover{background:#8a5850;transform:translateY(-1px);box-shadow:0 8px 25px rgba(160,107,99,0.35);}
-.btn-cod:disabled{opacity:.6;cursor:not-allowed;transform:none;}
-.reveal{opacity:0;transform:translateY(26px);transition:opacity 0.8s var(--ease),transform 0.8s var(--ease);}
-.reveal.visible{opacity:1;transform:translateY(0);}
-.section-label{font-size:0.68rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--text-light);margin-bottom:0.6rem;}
-.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,3.5vw,3rem);font-weight:300;line-height:1.15;color:var(--text);}
-.section-title em{font-style:italic;color:var(--rose-dark);}
-.ingredients{padding:6rem 5%;background:var(--white);}
-.ingredients-inner{max-width:1200px;margin:0 auto;}
-.ingredients-header{margin-bottom:3rem;}
-.ingr-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;}
-.ingr-card{background:var(--rose-pale);padding:2rem 1.5rem;border-radius:6px;border:1px solid rgba(201,148,138,0.15);}
-.ingr-icon{font-size:2rem;margin-bottom:1rem;}
-.ingr-name{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--rose-dark);margin-bottom:0.5rem;}
-.ingr-desc{font-size:0.8rem;color:var(--text-mid);line-height:1.6;}
-.features{padding:6rem 5%;background:var(--cream);}
-.features-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center;}
-.features-text .section-title{margin-bottom:1.5rem;}
-.features-text p{color:var(--text-mid);line-height:1.9;font-size:0.92rem;margin-bottom:1rem;}
-.feat-list{display:flex;flex-direction:column;gap:0.8rem;margin-top:1.5rem;}
-.feat-item{display:flex;align-items:flex-start;gap:0.8rem;font-size:0.88rem;color:var(--text-mid);}
-.feat-item::before{content:'✦';color:var(--rose);flex-shrink:0;}
-.features-img{position:relative;height:500px;overflow:hidden;border-radius:8px;}
-.features-img img{position:absolute;inset:-5%;width:110%;height:110%;object-fit:cover;animation:subtleKB 18s ease-in-out infinite alternate;}
-.ritual{padding:5rem 5%;background:var(--rose-dark);text-align:center;}
-.ritual .section-label{color:rgba(255,255,255,0.55);}
-.ritual .section-title{color:var(--white);margin:0.5rem 0 1rem;}
-.ritual .section-title em{color:var(--rose-light);font-style:italic;}
-.ritual p{color:rgba(255,255,255,0.6);font-size:0.9rem;line-height:1.8;max-width:600px;margin:0 auto 2.5rem;}
-.howto{padding:5rem 5%;background:var(--white);}
-.howto-inner{max-width:900px;margin:0 auto;}
-.howto-header{margin-bottom:3rem;}
-.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
-.step{text-align:center;padding:2rem 1rem;}
-.step-num{font-family:'Cormorant Garamond',serif;font-size:3rem;color:rgba(201,148,138,0.3);line-height:1;margin-bottom:0.5rem;}
-.step-title{font-size:0.85rem;font-weight:500;color:var(--text);margin-bottom:0.4rem;}
-.step-desc{font-size:0.78rem;color:var(--text-mid);line-height:1.6;}
 
-/* ====== CHECKOUT SECTION ====== */
-#checkout{padding:5rem 5%;background:linear-gradient(180deg,var(--cream) 0%,var(--white) 100%);scroll-margin-top:80px;}
-.checkout-inner{max-width:680px;margin:0 auto;}
-.checkout-header{text-align:center;margin-bottom:2.5rem;}
-.co-badge{display:inline-block;background:rgba(160,107,99,0.1);color:var(--rose-dark);font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;padding:0.3rem 1rem;border-radius:50px;margin-bottom:0.8rem;border:1px solid rgba(160,107,99,0.2);}
-.co-card{background:var(--white);border-radius:10px;box-shadow:0 4px 40px rgba(0,0,0,0.07);overflow:hidden;}
-.co-step{padding:1.8rem 2rem;border-bottom:1px solid var(--rose-pale);}
-.co-step:last-child{border-bottom:none;}
-.co-step-title{font-size:0.68rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--rose);font-weight:600;margin-bottom:1.2rem;display:flex;align-items:center;gap:0.5rem;}
-.co-step-title::before{content:attr(data-n);width:20px;height:20px;background:var(--rose-pale);color:var(--rose-dark);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.65rem;font-weight:700;flex-shrink:0;}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:0.9rem;margin-bottom:0.9rem;}
-.form-row.full{grid-template-columns:1fr;}
-.fg{display:flex;flex-direction:column;gap:0.3rem;}
-.fg label{font-size:0.72rem;color:var(--text-light);letter-spacing:0.06em;text-transform:uppercase;}
-.fg input,.fg select,.fg textarea{font-family:'DM Sans',sans-serif;font-size:0.85rem;padding:0.6rem 0.9rem;border:1.5px solid #e8e2de;border-radius:5px;background:var(--white);color:var(--text);outline:none;transition:border-color 0.2s,box-shadow 0.2s;width:100%;}
-.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--rose);box-shadow:0 0 0 3px rgba(201,148,138,0.12);}
-.fg input::placeholder{color:#c8bcb9;}
-.qty-ctrl{display:flex;align-items:center;gap:0;}
-.qty-ctrl button{width:34px;height:36px;border:1.5px solid #e8e2de;background:var(--rose-pale);color:var(--rose-dark);font-size:1.1rem;cursor:pointer;transition:background 0.2s;}
-.qty-ctrl button:first-child{border-radius:5px 0 0 5px;border-right:none;}
-.qty-ctrl button:last-child{border-radius:0 5px 5px 0;border-left:none;}
-.qty-ctrl button:hover{background:var(--rose-light);}
-.qty-val{width:50px;text-align:center;border:1.5px solid #e8e2de;padding:0.5rem 0;font-size:0.9rem;font-weight:600;color:var(--text);font-family:'DM Sans',sans-serif;border-left:none;border-right:none;}
-.kurir-list{display:flex;flex-direction:column;gap:0.6rem;margin-top:0.8rem;}
-.kurir-opt{display:flex;align-items:center;justify-content:space-between;padding:0.8rem 1rem;border:1.5px solid #e8e2de;border-radius:7px;cursor:pointer;transition:all 0.2s;}
-.kurir-opt:hover{border-color:var(--rose-light);}
-.kurir-opt.selected{border-color:var(--rose-dark);background:var(--rose-pale);}
-.kurir-opt input[type=radio]{display:none;}
-.kurir-info{display:flex;align-items:center;gap:0.7rem;}
-.kurir-name{font-size:0.85rem;font-weight:500;color:var(--text);}
-.kurir-svc{font-size:0.72rem;color:var(--text-light);}
-.kurir-etd{font-size:0.72rem;color:var(--sage-dark);background:rgba(78,114,68,0.08);padding:0.2rem 0.6rem;border-radius:50px;}
-.kurir-price{font-size:0.9rem;font-weight:600;color:var(--rose-dark);white-space:nowrap;}
-.ongkir-loading{display:flex;align-items:center;gap:0.6rem;padding:1rem;color:var(--text-light);font-size:0.82rem;}
-.ongkir-loading .sp{width:16px;height:16px;border:2px solid #e8e2de;border-top-color:var(--rose);border-radius:50%;animation:spin 0.7s linear infinite;}
-.ongkir-empty{padding:1rem;text-align:center;color:var(--text-light);font-size:0.82rem;}
-.summary-table{width:100%;}
-.summary-table td{padding:0.4rem 0;font-size:0.9rem;color:var(--text-mid);}
-.summary-table td:last-child{text-align:right;font-weight:500;color:var(--text);}
-.summary-table .total-row td{font-size:1.1rem;font-weight:700;color:var(--rose-dark);border-top:1.5px solid var(--rose-pale);padding-top:0.8rem;margin-top:0.4rem;}
-.co-note{font-size:0.78rem;color:var(--text-light);line-height:1.7;margin-top:1rem;padding:0.8rem;background:rgba(201,148,138,0.06);border-radius:5px;border-left:3px solid var(--rose-light);}
-.co-success{display:none;text-align:center;padding:3rem 2rem;}
-.co-success .cs-icon{font-size:3.5rem;margin-bottom:1rem;}
-.co-success .cs-title{font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--rose-dark);margin-bottom:0.5rem;}
-.co-success .cs-sub{font-size:0.9rem;color:var(--text-mid);line-height:1.7;}
-.co-success .cs-no{display:inline-block;margin-top:1rem;background:var(--rose-pale);color:var(--rose-dark);padding:0.5rem 1.2rem;border-radius:50px;font-size:0.85rem;font-weight:600;letter-spacing:0.05em;}
-.toast-co{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:#333;color:#fff;padding:0.8rem 1.5rem;border-radius:8px;font-size:0.85rem;opacity:0;transition:all 0.3s;z-index:9999;white-space:nowrap;}
-.toast-co.show{transform:translateX(-50%) translateY(0);opacity:1;}
-.toast-co.error{background:#c0392b;}
-/* ====== END CHECKOUT ====== */
-
-.footer{background:var(--text);padding:2rem 5%;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
-.footer-brand{font-family:'Cormorant Garamond',serif;font-size:1rem;color:rgba(255,255,255,0.4);}
-.footer-nav{display:flex;gap:1.5rem;}
-.footer-nav a{font-size:0.7rem;letter-spacing:0.08em;color:rgba(255,255,255,0.28);text-decoration:none;transition:color 0.2s;}
-.footer-nav a:hover{color:rgba(201,148,138,0.8);}
-@media(max-width:900px){
-  .hero,.features-inner{grid-template-columns:1fr;}
-  .hero{padding:90px 5% 4rem;}
-  .hero-product-img2{display:none;}
-  .ingr-grid,.steps{grid-template-columns:repeat(2,1fr);}
-  .features-img{height:300px;}
-  nav{padding:1rem 1.5rem;}
-  .form-row{grid-template-columns:1fr;}
-  .co-step{padding:1.4rem 1.2rem;}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:#060a05;color:#fff;overflow-x:hidden;cursor:none;}
+:root{
+  --sage:#7a9e6e;--sage-d:#4e7244;--sage-deep:#2d4d25;
+  --gold:#c9a84c;--rose:#c9948a;--rose-d:#a06660;
+  --dark:#060a05;--dark2:#0a100a;--dark3:#0d160c;
 }
-@media(max-width:480px){.ingr-grid,.steps{grid-template-columns:1fr;}}
+
+/* CURSOR */
+.cur-dot{width:8px;height:8px;background:#fff;border-radius:50%;position:fixed;transform:translate(-50%,-50%);pointer-events:none;z-index:9999;mix-blend-mode:difference;transition:width .2s,height .2s;}
+.cur-ring{width:40px;height:40px;border:1px solid rgba(255,255,255,.35);border-radius:50%;position:fixed;transform:translate(-50%,-50%);pointer-events:none;z-index:9998;transition:width .3s,height .3s,border-color .3s;}
+body.hov .cur-dot{width:4px;height:4px;}
+body.hov .cur-ring{width:64px;height:64px;border-color:var(--sage);}
+
+/* PROGRESS */
+#pb{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--sage),var(--gold),var(--rose));z-index:9000;width:0;transition:width .08s;}
+
+/* LOADER */
+#ldr{position:fixed;inset:0;background:var(--dark);z-index:8000;display:flex;align-items:center;justify-content:center;flex-direction:column;transition:opacity .9s,transform .9s;}
+#ldr.out{opacity:0;transform:scale(1.04);pointer-events:none;}
+.ldr-line{display:flex;overflow:hidden;margin-bottom:.5rem;}
+.ldr-char{font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,7vw,6rem);font-weight:300;color:#fff;opacity:0;transform:translateY(50px);animation:charUp .5s forwards;}
+@keyframes charUp{to{opacity:1;transform:translateY(0)}}
+.ldr-bar{width:0;height:1px;background:linear-gradient(90deg,transparent,var(--sage),transparent);margin-top:1.5rem;transition:width 1.6s ease;}
+.ldr-bar.go{width:260px;}
+.ldr-pct{font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.2);margin-top:.8rem;}
+
+/* NAV */
+nav{position:fixed;top:0;width:100%;z-index:1000;padding:1.5rem 3rem;display:flex;align-items:center;justify-content:space-between;mix-blend-mode:difference;}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:#fff;text-decoration:none;letter-spacing:.08em;display:flex;align-items:center;gap:.5rem;cursor:none;}
+.nav-dot{width:7px;height:7px;background:var(--sage);border-radius:50%;}
+.nav-links{display:flex;gap:2.5rem;list-style:none;}
+.nav-links a{font-size:.68rem;color:rgba(255,255,255,.5);text-decoration:none;letter-spacing:.15em;text-transform:uppercase;transition:color .25s;cursor:none;}
+.nav-links a:hover{color:#fff;}
+.nav-cta{font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:#fff;border:1px solid rgba(255,255,255,.2);padding:.5rem 1.2rem;border-radius:50px;text-decoration:none;transition:all .3s;cursor:none;}
+.nav-cta:hover{background:#fff;color:#000;}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:none;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);width:42px;height:42px;border-radius:50%;align-items:center;justify-content:center;}
+.hamburger span{display:block;width:16px;height:1.5px;background:#fff;transition:all .3s;}
+.hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg);}
+.hamburger.open span:nth-child(2){opacity:0;}
+.hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}
+
+/* SIDE MENU */
+.smol{position:fixed;inset:0;z-index:998;opacity:0;pointer-events:none;transition:opacity .4s;background:rgba(0,0,0,.6);backdrop-filter:blur(6px);}
+.smol.open{opacity:1;pointer-events:all;}
+.side-menu{position:fixed;top:0;right:-100%;width:300px;height:100vh;background:#0a100a;z-index:999;padding:5rem 2.5rem 3rem;transition:right .5s cubic-bezier(.77,0,.175,1);border-left:1px solid rgba(255,255,255,.04);}
+.side-menu.open{right:0;}
+.sm-item{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;color:rgba(255,255,255,.55);text-decoration:none;padding:.7rem 0;border-bottom:1px solid rgba(255,255,255,.05);display:block;transition:all .25s;cursor:none;}
+.sm-item:hover{color:#fff;padding-left:.5rem;}
+.sm-item.rose{color:var(--rose);}
+
+/* PARTICLES */
+.particles{position:absolute;inset:0;pointer-events:none;overflow:hidden;}
+.particle{position:absolute;border-radius:50%;animation:pdrift linear infinite;}
+@keyframes pdrift{0%{transform:translateY(100vh) scale(0);opacity:0}10%{opacity:1}90%{opacity:.4}100%{transform:translateY(-10vh) scale(1);opacity:0}}
+
+/* LIGHTBOX */
+.lb{position:fixed;inset:0;background:rgba(0,0,0,.95);z-index:5000;display:none;align-items:center;justify-content:center;backdrop-filter:blur(10px);}
+.lb.open{display:flex;}
+.lb img{max-width:90vw;max-height:82vh;object-fit:contain;border-radius:6px;}
+.lb-close{position:absolute;top:1.5rem;right:1.5rem;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:#fff;font-size:1.2rem;cursor:none;display:flex;align-items:center;justify-content:center;transition:background .2s;}
+.lb-close:hover{background:rgba(255,255,255,.18);}
+.lb-prev,.lb-next{position:absolute;top:50%;transform:translateY(-50%);width:50px;height:50px;border-radius:50%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);color:#fff;font-size:1.3rem;cursor:none;display:flex;align-items:center;justify-content:center;transition:background .2s;}
+.lb-prev:hover,.lb-next:hover{background:rgba(255,255,255,.18);}
+.lb-prev{left:1.5rem;}.lb-next{right:1.5rem;}
+.lb-cap{position:absolute;bottom:2rem;font-size:.75rem;color:rgba(255,255,255,.4);letter-spacing:.1em;}
+
+/* GALLERY */
+.gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:4px;margin-top:2rem;}
+.g-item{aspect-ratio:4/3;overflow:hidden;border-radius:4px;cursor:none;background:rgba(255,255,255,.04);position:relative;}
+.g-item img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.77,0,.175,1),filter .6s;filter:brightness(.7);}
+.g-item:hover img{transform:scale(1.08);filter:brightness(1);}
+.g-item::after{content:'&#128247;';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:1.5rem;opacity:0;transition:opacity .3s;background:rgba(0,0,0,.3);}
+.g-item:hover::after{opacity:1;}
+.g-loading{text-align:center;padding:3rem;color:rgba(255,255,255,.25);font-size:.85rem;}
+
+/* REVEAL */
+.rv{opacity:0;transform:translateY(45px);transition:opacity .9s ease,transform .9s cubic-bezier(.77,0,.175,1);}
+.rv.vis{opacity:1;transform:translateY(0);}
+.rvl{opacity:0;transform:translateX(-45px);transition:opacity .9s ease,transform .9s cubic-bezier(.77,0,.175,1);}
+.rvl.vis{opacity:1;transform:translateX(0);}
+.rvr{opacity:0;transform:translateX(45px);transition:opacity .9s ease,transform .9s cubic-bezier(.77,0,.175,1);}
+.rvr.vis{opacity:1;transform:translateX(0);}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}.d5{transition-delay:.5s}
+
+/* SECTION LABELS */
+.s-label{font-size:.62rem;letter-spacing:.25em;text-transform:uppercase;color:var(--sage);margin-bottom:1.2rem;display:flex;align-items:center;gap:.8rem;}
+.s-label::before{content:'';display:block;width:22px;height:1px;background:currentColor;}
+.s-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,4vw,3.8rem);font-weight:300;color:#fff;line-height:1.05;}
+.s-title em{font-style:italic;color:rgba(255,255,255,.28);}
+
+/* DETAIL HERO */
+.d-hero{height:85vh;min-height:560px;position:relative;overflow:hidden;display:flex;align-items:flex-end;}
+.d-hero-bg{position:absolute;inset:0;background-size:cover;background-position:center;transform:scale(1.06);animation:hzoom 10s ease forwards;filter:brightness(.22) saturate(1.3);}
+@keyframes hzoom{to{transform:scale(1);}}
+.d-hero-vg1{position:absolute;inset:0;background:radial-gradient(ellipse at center,transparent 30%,rgba(6,10,5,.85) 100%);}
+.d-hero-vg2{position:absolute;inset:0;background:linear-gradient(to top,rgba(6,10,5,.95) 0%,rgba(6,10,5,.2) 50%,transparent 100%);}
+.d-hero-content{position:relative;z-index:5;padding:0 4rem 5rem;width:100%;}
+.d-hero-back{display:inline-flex;align-items:center;gap:.5rem;color:rgba(255,255,255,.35);font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;margin-bottom:2.5rem;transition:color .25s;opacity:0;animation:fu .6s .2s forwards;cursor:none;}
+.d-hero-back:hover{color:var(--sage);}
+.d-eyebrow{font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;color:var(--sage);margin-bottom:1.2rem;display:flex;align-items:center;gap:.8rem;opacity:0;animation:fu .6s .4s forwards;}
+.d-eyebrow::before{content:'';display:block;width:18px;height:1px;background:var(--sage);}
+.d-title{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,8vw,7rem);font-weight:300;color:#fff;line-height:.9;margin-bottom:2rem;}
+.d-title .wl{display:block;overflow:hidden;}
+.d-title .wl span{display:block;opacity:0;transform:translateY(100%);animation:wu 1s cubic-bezier(.77,0,.175,1) forwards;}
+.d-title .wl:nth-child(1) span{animation-delay:.5s;}
+.d-title .wl:nth-child(2) span{animation-delay:.68s;}
+.d-title em{font-style:italic;color:rgba(255,255,255,.38);}
+.d-chips{display:flex;gap:.6rem;flex-wrap:wrap;opacity:0;animation:fu .6s 1s forwards;}
+.d-chip{padding:.3rem .9rem;border-radius:50px;background:rgba(255,255,255,.06);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.1);font-size:.67rem;letter-spacing:.07em;color:rgba(255,255,255,.7);}
+
+/* SECTIONS */
+.sec{padding:8rem 4rem;}
+.sec-2c{display:grid;grid-template-columns:1fr 1fr;gap:8rem;align-items:start;}
+.sec-p{color:rgba(255,255,255,.4);line-height:1.95;font-size:.9rem;margin-bottom:1rem;font-weight:300;}
+.sec-q{font-family:'Cormorant Garamond',serif;font-size:1.45rem;font-style:italic;color:rgba(255,255,255,.35);border-left:1px solid var(--sage);padding-left:1.5rem;margin:2rem 0;line-height:1.6;}
+
+/* SPECS */
+.specs{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,.06);}
+.spec{background:var(--dark);padding:2rem;transition:background .3s;}
+.spec:hover{background:rgba(122,158,110,.06);}
+.spec-v{font-family:'Cormorant Garamond',serif;font-size:2.2rem;color:var(--sage);line-height:1;}
+.spec-k{font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-top:.4rem;}
+
+/* UNIT CARDS */
+.units{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.05);margin-top:3rem;}
+.unit{background:var(--dark);padding:2.5rem 2rem;position:relative;overflow:hidden;transition:background .3s;}
+.unit::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--sage),var(--gold));transform:scaleX(0);transform-origin:left;transition:transform .45s cubic-bezier(.77,0,.175,1);}
+.unit:hover::after{transform:scaleX(1);}
+.unit:hover{background:rgba(122,158,110,.04);}
+.unit-badge{display:inline-block;font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;padding:.25rem .8rem;border-radius:50px;margin-bottom:1rem;}
+.ub-std{background:rgba(122,158,110,.12);border:1px solid rgba(122,158,110,.2);color:var(--sage);}
+.ub-pop{background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.2);color:var(--gold);}
+.unit-name{font-family:'Cormorant Garamond',serif;font-size:1.7rem;color:#fff;margin-bottom:.3rem;}
+.unit-type{font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:1rem;}
+.unit-feats{list-style:none;}
+.unit-feats li{font-size:.8rem;color:rgba(255,255,255,.35);padding:.3rem 0;display:flex;align-items:center;gap:.6rem;border-bottom:1px solid rgba(255,255,255,.04);}
+.unit-feats li::before{content:'';display:block;width:3px;height:3px;background:var(--sage);border-radius:50%;flex-shrink:0;}
+
+/* LOC CARDS */
+.loc-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,.05);margin-top:2.5rem;}
+.loc-c{background:var(--dark);padding:1.8rem;display:flex;align-items:flex-start;gap:1rem;transition:background .3s;}
+.loc-c:hover{background:rgba(122,158,110,.05);}
+.loc-icon{font-size:1.4rem;flex-shrink:0;}
+.loc-t{font-weight:500;font-size:.9rem;color:#fff;margin-bottom:.2rem;}
+.loc-d{font-size:.75rem;color:rgba(255,255,255,.3);line-height:1.6;}
+
+/* SIM */
+.sim-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,.05);margin-top:2.5rem;}
+.sim-box{background:var(--dark);padding:2rem;}
+.sim-title{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:#fff;margin-bottom:1.2rem;padding-bottom:.8rem;border-bottom:1px solid rgba(255,255,255,.06);}
+.sim-row{display:flex;justify-content:space-between;padding:.5rem 0;border-bottom:1px solid rgba(255,255,255,.04);}
+.sim-row:last-child{border:none;}
+.sim-l{font-size:.78rem;color:rgba(255,255,255,.3);}
+.sim-v{font-family:'Cormorant Garamond',serif;font-size:.98rem;color:#fff;}
+.sim-v.big{font-size:1.4rem;color:var(--sage);}
+.sim-note{font-size:.65rem;color:rgba(255,255,255,.2);margin-top:.8rem;font-style:italic;}
+.spec-tbl{width:100%;border-collapse:collapse;margin-top:1rem;}
+.spec-tbl td{padding:.6rem 0;font-size:.82rem;border-bottom:1px solid rgba(255,255,255,.05);}
+.spec-tbl td:first-child{color:rgba(255,255,255,.3);width:45%;}
+.spec-tbl td:last-child{font-weight:500;color:rgba(255,255,255,.8);}
+
+/* TEAM */
+.team-grid{display:grid;grid-template-columns:1fr 1fr;gap:8rem;align-items:center;max-width:1300px;margin:0 auto;}
+.team-img img{width:100%;height:460px;object-fit:cover;border-radius:6px;filter:brightness(.65) saturate(1.2);}
+.team-badges{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1.5rem;}
+.t-badge{font-size:.68rem;padding:.35rem .9rem;border-radius:50px;background:rgba(122,158,110,.1);border:1px solid rgba(122,158,110,.2);color:var(--sage);}
+
+/* CTA BANNER */
+.cta{background:var(--dark3);padding:7rem 4rem;text-align:center;position:relative;overflow:hidden;}
+.cta::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(122,158,110,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(122,158,110,.04) 1px,transparent 1px);background-size:70px 70px;}
+.cta-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,5vw,4.5rem);color:#fff;font-weight:300;margin-bottom:1rem;position:relative;}
+.cta-title em{font-style:italic;color:rgba(255,255,255,.3);}
+.cta-desc{color:rgba(255,255,255,.35);font-size:.9rem;max-width:480px;margin:0 auto 3rem;line-height:1.85;position:relative;}
+.cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;position:relative;}
+
+/* BUTTONS */
+.btn-p{display:inline-flex;align-items:center;gap:.7rem;background:var(--sage-d);color:#fff;padding:1rem 2rem;border-radius:6px;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;transition:all .35s;position:relative;overflow:hidden;cursor:none;border:none;font-family:'DM Sans',sans-serif;}
+.btn-p::before{content:'';position:absolute;inset:0;background:var(--sage-deep);transform:translateX(-100%);transition:transform .4s cubic-bezier(.77,0,.175,1);}
+.btn-p:hover::before{transform:translateX(0);}
+.btn-p span{position:relative;z-index:1;}
+.btn-o{display:inline-flex;align-items:center;gap:.7rem;border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.55);padding:1rem 2rem;border-radius:6px;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;transition:all .3s;cursor:none;}
+.btn-o:hover{border-color:rgba(255,255,255,.4);color:#fff;}
+
+/* FOOTER */
+footer{background:#030604;padding:2.5rem 4rem;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(255,255,255,.03);}
+.ft-brand{font-family:'Cormorant Garamond',serif;font-size:1rem;color:rgba(255,255,255,.3);}
+.ft-copy{font-size:.67rem;color:rgba(255,255,255,.14);}
+.ft-nav{display:flex;gap:2rem;}
+.ft-nav a{font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.18);text-decoration:none;transition:color .2s;cursor:none;}
+.ft-nav a:hover{color:var(--sage);}
+
+/* WA */
+.wa{position:fixed;bottom:2rem;right:2rem;z-index:500;width:52px;height:52px;border-radius:50%;background:#25d366;color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.4rem;text-decoration:none;box-shadow:0 4px 24px rgba(37,211,102,.3);transition:transform .3s;cursor:none;}
+.wa:hover{transform:scale(1.12);}
+
+@keyframes fu{to{opacity:1;transform:translateY(0)}}
+@keyframes wu{to{opacity:1;transform:translateY(0)}}
+
+@media(max-width:900px){
+  nav{padding:1rem 1.5rem;mix-blend-mode:normal;background:rgba(6,10,5,.85);}
+  .nav-links,.nav-cta{display:none;}
+  .hamburger{display:flex;}
+  .d-hero-content{padding:0 1.5rem 3rem;}
+  .sec{padding:5rem 1.5rem;}
+  .sec-2c,.team-grid{grid-template-columns:1fr;gap:3rem;}
+  .units,.loc-grid,.sim-grid{grid-template-columns:1fr;}
+  .cta{padding:5rem 1.5rem;}
+  footer{padding:2rem 1.5rem;flex-direction:column;gap:1rem;text-align:center;}
+}
+
+
+body{background:#060203;}
+:root{--rose:#c9948a;--rose-d:#a06660;--rose-deep:#7a3f3a;}
+.cur-dot{background:var(--rose)!important;}
+.cur-ring{border-color:rgba(201,148,138,.4)!important;}
+.nav-dot{background:var(--rose)!important;}
+#pb{background:linear-gradient(90deg,var(--rose),var(--gold),#fff)!important;}
+
+.b-hero{min-height:100vh;position:relative;display:flex;align-items:flex-end;overflow:hidden;background:linear-gradient(135deg,#1e0804,#130508,#08030a);}
+.b-blob{position:absolute;border-radius:50%;filter:blur(120px);pointer-events:none;}
+.bb1{width:700px;height:700px;background:var(--rose);opacity:.09;top:-200px;right:-200px;animation:bfloat 10s ease-in-out infinite;}
+.bb2{width:500px;height:500px;background:#5a1f1a;opacity:.07;bottom:-100px;left:-150px;animation:bfloat 13s 4s ease-in-out infinite;}
+.bb3{width:350px;height:350px;background:var(--gold);opacity:.04;top:40%;left:35%;animation:bfloat 8s 2s ease-in-out infinite;}
+@keyframes bfloat{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(25px,-20px) scale(1.03)}66%{transform:translate(-18px,18px) scale(.97)}}
+.b-grid{position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(201,148,138,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(201,148,138,.03) 1px,transparent 1px);background-size:80px 80px;}
+.b-hero-inner{position:relative;z-index:5;padding:0 4rem 6rem;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:flex-end;}
+
+.b-eyebrow{font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--rose);margin-bottom:1.2rem;display:flex;align-items:center;gap:.8rem;opacity:0;animation:fu .6s .3s forwards;}
+.b-eyebrow::before{content:'';display:block;width:18px;height:1px;background:var(--rose);}
+.b-title{font-family:'Cormorant Garamond',serif;font-size:clamp(5rem,12vw,10rem);font-weight:300;color:#fff;line-height:.85;overflow:hidden;}
+.b-title .wl{display:block;overflow:hidden;}
+.b-title .wl span{display:block;opacity:0;transform:translateY(100%);animation:wu 1s cubic-bezier(.77,0,.175,1) forwards;}
+.b-title .wl:nth-child(1) span{animation-delay:.4s;}
+.b-title .wl:nth-child(2) span{animation-delay:.6s;}
+.b-title em{font-style:italic;color:var(--rose);}
+.b-sub{font-size:.88rem;color:rgba(255,255,255,.3);margin-top:.8rem;letter-spacing:.06em;opacity:0;animation:fu .6s .9s forwards;}
+.b-right{opacity:0;animation:fu .9s .7s forwards;}
+.b-tags{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.5rem;}
+.b-tag{padding:.28rem .85rem;border-radius:50px;background:rgba(201,148,138,.08);border:1px solid rgba(201,148,138,.18);font-size:.63rem;letter-spacing:.07em;color:var(--rose);}
+.b-price-old{font-size:.88rem;color:rgba(255,255,255,.18);text-decoration:line-through;margin-bottom:.4rem;}
+.b-price-new{font-family:'Cormorant Garamond',serif;font-size:4.5rem;color:var(--rose);font-weight:300;line-height:.9;}
+.b-price-save{display:inline-flex;align-items:center;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;background:rgba(201,148,138,.1);border:1px solid rgba(201,148,138,.2);border-radius:50px;padding:.22rem .8rem;color:var(--rose);margin-top:.5rem;}
+.b-btns{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1.8rem;}
+.btn-rose{display:inline-flex;align-items:center;gap:.6rem;padding:1rem 2rem;border-radius:6px;background:var(--rose);color:#fff;font-size:.76rem;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;transition:all .35s;position:relative;overflow:hidden;cursor:none;border:none;font-family:'DM Sans',sans-serif;box-shadow:0 4px 24px rgba(201,148,138,.25);}
+.btn-rose::before{content:'';position:absolute;inset:0;background:var(--rose-d);transform:translateX(-100%);transition:transform .4s cubic-bezier(.77,0,.175,1);}
+.btn-rose:hover::before{transform:translateX(0);}
+.btn-rose span{position:relative;z-index:1;}
+.btn-shop-out{display:inline-flex;align-items:center;gap:.6rem;padding:.85rem 1.5rem;border-radius:6px;border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.45);font-size:.73rem;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;transition:all .3s;cursor:none;}
+.btn-shop-out:hover{border-color:rgba(255,255,255,.35);color:#fff;}
+
+/* INGREDIENTS */
+.ing-sec{background:#0f0306;padding:8rem 4rem;}
+.ing-inner{max-width:1300px;margin:0 auto;}
+.ing-inner .s-label{color:var(--rose);}
+.ing-inner .s-title em{color:rgba(201,148,138,.4);}
+.ing-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(201,148,138,.07);margin-top:3rem;}
+.ing-c{background:#060203;padding:2.5rem 2rem;transition:background .35s;position:relative;overflow:hidden;}
+.ing-c::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--rose),var(--gold));transform:scaleX(0);transform-origin:left;transition:transform .45s cubic-bezier(.77,0,.175,1);}
+.ing-c:hover::after{transform:scaleX(1);}
+.ing-c:hover{background:rgba(201,148,138,.05);}
+.ing-icon{font-size:1.8rem;margin-bottom:1.2rem;}
+.ing-name{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:#fff;margin-bottom:.3rem;}
+.ing-role{font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:var(--rose);margin-bottom:.8rem;}
+.ing-desc{font-size:.78rem;color:rgba(255,255,255,.3);line-height:1.75;}
+
+/* ABOUT PRODUCT */
+.ap-sec{background:#0a0205;padding:8rem 4rem;}
+.ap-inner{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:8rem;align-items:center;}
+.ap-img{position:relative;}
+.ap-img img{width:100%;height:500px;object-fit:cover;border-radius:8px;filter:brightness(.55) saturate(1.3);}
+.ap-float{position:absolute;top:-1rem;right:-1rem;background:rgba(6,2,3,.85);backdrop-filter:blur(12px);border:1px solid rgba(201,148,138,.15);border-radius:6px;padding:.8rem 1.2rem;font-size:.78rem;color:var(--rose);}
+.ap-content .s-label{color:var(--rose);}
+.ap-content .s-title em{color:rgba(201,148,138,.35);}
+.ap-q{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-style:italic;color:rgba(255,255,255,.3);border-left:1px solid var(--rose);padding-left:1.5rem;margin:2rem 0;line-height:1.65;}
+.ap-list{list-style:none;}
+.ap-list li{font-size:.82rem;color:rgba(255,255,255,.35);padding:.4rem 0;display:flex;align-items:center;gap:.7rem;border-bottom:1px solid rgba(255,255,255,.04);}
+.ap-list li::before{content:'';display:block;width:3px;height:3px;background:var(--rose);border-radius:50%;flex-shrink:0;}
+
+/* HOWTO */
+.ht-sec{background:#0f0306;padding:8rem 4rem;}
+.ht-inner{max-width:860px;margin:0 auto;}
+.ht-inner .s-label{color:var(--rose);}
+.ht-inner .s-title em{color:rgba(201,148,138,.4);}
+.ht-steps{display:flex;flex-direction:column;gap:3rem;margin-top:3rem;}
+.ht-step{display:flex;gap:2.5rem;align-items:flex-start;}
+.ht-num{font-family:'Cormorant Garamond',serif;font-size:4rem;color:rgba(201,148,138,.15);font-weight:300;line-height:1;flex-shrink:0;width:70px;}
+.ht-title{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:#fff;margin-bottom:.4rem;}
+.ht-desc{font-size:.84rem;color:rgba(255,255,255,.32);line-height:1.9;}
+
+/* COD FORM */
+.cod-sec{background:#0a0205;padding:8rem 4rem;}
+.cod-inner{max-width:1100px;margin:0 auto;}
+.cod-hdr{text-align:center;margin-bottom:4rem;}
+.cod-hdr .s-label{color:var(--rose);justify-content:center;}
+.cod-hdr .s-title em{color:rgba(201,148,138,.35);}
+.cod-badge{display:inline-block;margin-top:1rem;padding:.5rem 1.3rem;border-radius:50px;background:rgba(201,148,138,.07);border:1px solid rgba(201,148,138,.18);font-size:.68rem;letter-spacing:.1em;color:var(--rose);}
+.cod-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:3rem;align-items:start;}
+.cod-fb{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.04);border-radius:6px;padding:2.5rem;}
+.cod-fb-title{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:#fff;margin-bottom:.3rem;}
+.cod-fb-sub{font-size:.75rem;color:rgba(255,255,255,.22);margin-bottom:2rem;}
+.cod-sum{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.04);border-radius:6px;padding:2rem;position:sticky;top:5rem;}
+.cs-title{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:#fff;margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:1px solid rgba(255,255,255,.05);}
+.cs-row{display:flex;justify-content:space-between;padding:.5rem 0;font-size:.82rem;border-bottom:1px solid rgba(255,255,255,.04);}
+.cs-l{color:rgba(255,255,255,.28);}
+.cs-v{color:#fff;}
+.cs-total{display:flex;justify-content:space-between;padding:1rem 0;margin-top:.5rem;border-top:1px solid rgba(255,255,255,.07);}
+.cs-tl{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.3);}
+.cs-tv{font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--rose);}
+.cs-note{font-size:.67rem;color:rgba(255,255,255,.18);margin-top:1rem;line-height:1.6;font-style:italic;}
+.qty-c{display:flex;align-items:center;border:1px solid rgba(255,255,255,.07);border-radius:4px;overflow:hidden;}
+.q-btn{width:42px;height:42px;background:rgba(255,255,255,.04);border:none;color:rgba(255,255,255,.4);font-size:1.1rem;cursor:none;transition:all .2s;}
+.q-btn:hover{background:rgba(201,148,138,.12);color:var(--rose);}
+.q-val{flex:1;text-align:center;color:#fff;font-size:.95rem;}
+
+.b-ok{display:none;text-align:center;padding:4rem 1rem;}
+.b-ok-icon{font-size:3.5rem;margin-bottom:1.2rem;}
+.b-ok-title{font-family:'Cormorant Garamond',serif;font-size:2rem;color:#fff;margin-bottom:.8rem;}
+.b-ok-desc{font-size:.86rem;color:rgba(255,255,255,.32);line-height:1.85;margin-bottom:1.5rem;}
+.btn-wa-lnk{display:inline-flex;align-items:center;gap:.6rem;background:#25d366;color:#fff;padding:.85rem 2rem;border-radius:6px;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;transition:opacity .2s;cursor:none;}
+.btn-wa-lnk:hover{opacity:.85;}
+
+.shops-row{background:#060203;padding:4rem;border-top:1px solid rgba(255,255,255,.03);display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+.sh-link{display:flex;align-items:center;gap:.7rem;padding:1rem 2rem;border:1px solid rgba(255,255,255,.07);border-radius:6px;color:rgba(255,255,255,.35);text-decoration:none;font-size:.8rem;transition:all .3s;cursor:none;}
+.sh-link:hover{border-color:rgba(201,148,138,.3);color:var(--rose);transform:translateY(-2px);}
+
+@media(max-width:900px){
+  .b-hero-inner{grid-template-columns:1fr;padding:0 1.5rem 5rem;}
+  .ing-sec,.ap-sec,.ht-sec,.cod-sec{padding:5rem 1.5rem;}
+  .ing-grid{grid-template-columns:1fr 1fr;}
+  .ap-inner,.cod-grid{grid-template-columns:1fr;gap:3rem;}
+  .ap-float{display:none;}
+  .cod-sum{position:static;}
+  .shops-row{padding:3rem 1.5rem;flex-direction:column;align-items:center;}
+}
+
+@keyframes fu{to{opacity:1;transform:translateY(0)}}
+@keyframes wu{to{opacity:1;transform:translateY(0)}}
+@keyframes spin{to{transform:rotate(360deg)}}
 </style>
 </head>
 <body>
+
+<div id="ldr"><div class="ldr-line"><span class="ldr-char" style="animation-delay:0.00s">B</span><span class="ldr-char" style="animation-delay:0.06s">e</span><span class="ldr-char" style="animation-delay:0.12s">a</span><span class="ldr-char" style="animation-delay:0.18s">u</span><span class="ldr-char" style="animation-delay:0.24s">t</span><span class="ldr-char" style="animation-delay:0.30s">y</span></div><div class="ldr-bar" id="ldrBar"></div><div class="ldr-pct" id="ldrPct">0%</div></div>
+<div class="cur-dot" id="curDot"></div><div class="cur-ring" id="curRing"></div>
+<div id="pb"></div>
+
+<div class="smol" id="_smol" onclick="closeMenu()"></div>
+<div class="side-menu" id="_sm">
+  <a class="sm-item" href="index.html">Beranda</a>
+  <a class="sm-item" href="loonars-living.html">Loonars Living</a>
+  <a class="sm-item" href="al-fath-makassar.html">Al Fath Makassar</a>
+  <a class="sm-item" href="griya-cariu-indah.html">Griya Cariu</a>
+  <a class="sm-item" href="direktur.html">Direktur</a>
+  <a class="sm-item rose" href="beauty.html">Loonars Beauty</a>
+  <a class="sm-item" href="kontak.html">Kontak</a>
+</div>
 <nav>
-  <a href="/" class="nav-logo">Loonars Beauty</a>
-  <a href="/" class="nav-back">← Beranda</a>
+  <a href="index.html" class="nav-logo"><div class="nav-dot"></div>Loonars Beauty</a>
+  <ul class="nav-links">
+    <li><a href="index.html#projects">Properti</a></li>
+    <li><a href="direktur.html">Direktur</a></li>
+    <li><a href="beauty.html">Beauty</a></li>
+  </ul>
+  <a href="https://wa.me/6282228885223" target="_blank" class="nav-cta">&#128172; Konsultasi</a>
+  <div class="hamburger" id="hbg" onclick="toggleMenu()"><span></span><span></span><span></span></div>
 </nav>
 
-<section class="hero">
-  <div class="hero-product">
-    <img class="hero-product-img" src="img hydraglow1.jpeg" alt="Loonars Beauty HydraGlow" onerror="this.src='hero1.jpeg'">
-    <img class="hero-product-img2" src="img hydraglow2.jpeg" alt="HydraGlow Detail" onerror="this.style.display='none'">
-  </div>
-  <div class="hero-content">
-    <div class="hero-brand">Loonars Beauty</div>
-    <h1 class="hero-name">Hydra<em>Glow</em></h1>
-    <div class="hero-tagline">Advanced Brightening Lotion</div>
-    <div class="hero-price">
-      <div class="price-old">IDR 119.000</div>
-      <div class="price-new">IDR 89.000</div>
-      <div class="price-save">Hemat 25%</div>
+<!-- HERO -->
+<section class="b-hero">
+  <div class="b-blob bb1"></div><div class="b-blob bb2"></div><div class="b-blob bb3"></div>
+  <div class="b-grid"></div>
+  <div class="particles" id="pB"></div>
+  <div class="b-hero-inner">
+    <div>
+      <a href="index.html" class="d-hero-back" style="color:rgba(255,255,255,.3);">&#8592; Beranda</a>
+      <div class="b-eyebrow">Loonars Beauty</div>
+      <h1 class="b-title">
+        <span class="wl"><span>Hydra</span></span>
+        <span class="wl"><span><em>Glow</em></span></span>
+      </h1>
+      <p class="b-sub">Advanced Brightening Lotion</p>
     </div>
-    <div class="hero-ingr">
-      <div class="ingr-tag">4 Types Hyaluron</div>
-      <div class="ingr-tag">Niacinamide</div>
-      <div class="ingr-tag">Squalane</div>
-      <div class="ingr-tag">Non-Comedogenic</div>
-    </div>
-    <div class="shop-btns">
-      <a href="#checkout" class="btn-shop btn-main" onclick="document.getElementById('checkout').scrollIntoView({behavior:'smooth'});return false;">🛒 Pesan COD — Rp 89.000</a>
-      <a href="https://tokopedia.com/loonars" class="btn-shop btn-tok" target="_blank">Tokopedia</a>
-      <a href="https://shopee.co.id/loonarsskin" class="btn-shop btn-spe" target="_blank">Shopee</a>
-    </div>
-  </div>
-</section>
-
-<section class="ingredients">
-  <div class="ingredients-inner">
-    <div class="ingredients-header reveal">
-      <div class="section-label">Kandungan Aktif</div>
-      <h2 class="section-title">Formula<br><em>Premium</em></h2>
-    </div>
-    <div class="ingr-grid">
-      <div class="ingr-card reveal"><div class="ingr-icon">💧</div><div class="ingr-name">4 Types Hyaluron</div><div class="ingr-desc">Hidrasi berlapis dari permukaan hingga lapisan dalam kulit. Mengunci kelembapan 24 jam.</div></div>
-      <div class="ingr-card reveal"><div class="ingr-icon">✨</div><div class="ingr-name">Niacinamide</div><div class="ingr-desc">Mencerahkan merata, menyamarkan noda hitam, dan memperkuat skin barrier.</div></div>
-      <div class="ingr-card reveal"><div class="ingr-icon">🌿</div><div class="ingr-name">Squalane</div><div class="ingr-desc">Emolien ringan dari tanaman — melembapkan tanpa rasa berat atau berminyak.</div></div>
-      <div class="ingr-card reveal"><div class="ingr-icon">🧴</div><div class="ingr-name">Non-Comedogenic</div><div class="ingr-desc">Aman untuk kulit wajah dan tubuh. Tidak menyumbat pori, cocok semua jenis kulit.</div></div>
-    </div>
-  </div>
-</section>
-
-<section class="features">
-  <div class="features-inner">
-    <div class="features-text reveal">
-      <div class="section-label">Tentang Produk</div>
-      <h2 class="section-title">Bukan Sekadar<br><em>Bodycare</em></h2>
-      <p>Ritual reset harian untuk perempuan kota — untuk memperlambat detak, melembutkan pikiran, mengembalikan ritme. HydraGlow hadir sebagai pengingat bahwa merawat diri adalah kebutuhan, bukan kemewahan.</p>
-      <div class="feat-list">
-        <div class="feat-item">Tekstur ringan, cepat meresap tanpa rasa lengket</div>
-        <div class="feat-item">Wangi lembut, tidak overwhelm</div>
-        <div class="feat-item">Aman untuk ibu hamil & menyusui (konsultasikan dulu)</div>
-        <div class="feat-item">BPOM terdaftar</div>
-        <div class="feat-item">Cruelty-free</div>
+    <div class="b-right">
+      <div class="b-tags">
+        <span class="b-tag">&#128167; 4 Types Hyaluron</span>
+        <span class="b-tag">&#10024; Niacinamide</span>
+        <span class="b-tag">&#127807; Squalane</span>
+        <span class="b-tag">&#128737;&#65039; Non-Comedogenic</span>
+      </div>
+      <div class="b-price-old">IDR 119.000</div>
+      <div class="b-price-new">IDR 89.000</div>
+      <span class="b-price-save">Hemat 25%</span>
+      <div class="b-btns">
+        <a href="#checkout" class="btn-rose"><span>&#128722; Pesan COD &mdash; Rp 89.000</span></a>
+        <a href="https://tokopedia.com/loonars" target="_blank" class="btn-shop-out">Tokopedia</a>
+        <a href="https://shopee.co.id/loonarsskin" target="_blank" class="btn-shop-out">Shopee</a>
       </div>
     </div>
-    <div class="features-img reveal">
-      <img src="img hydraglow1.jpeg" alt="HydraGlow Texture" onerror="this.src='hero1.jpeg'">
+  </div>
+</section>
+
+<!-- INGREDIENTS -->
+<section class="ing-sec">
+  <div class="ing-inner">
+    <div class="s-label rv">Kandungan Aktif</div>
+    <h2 class="s-title rv d1">Formula<br><em>Premium</em></h2>
+    <div class="ing-grid">
+      <div class="ing-c rv d1"><div class="ing-icon">&#128167;</div><div class="ing-name">4 Types Hyaluron</div><div class="ing-role">Deep Hydration Complex</div><div class="ing-desc">Hidrasi berlapis dari permukaan hingga lapisan dalam kulit. Mengunci kelembapan 24 jam.</div></div>
+      <div class="ing-c rv d2"><div class="ing-icon">&#10024;</div><div class="ing-name">Niacinamide</div><div class="ing-role">Brightening Agent</div><div class="ing-desc">Mencerahkan merata, menyamarkan noda hitam, memperkuat skin barrier.</div></div>
+      <div class="ing-c rv d3"><div class="ing-icon">&#127807;</div><div class="ing-name">Squalane</div><div class="ing-role">Emollient Moisturizer</div><div class="ing-desc">Emolien ringan dari tanaman &mdash; melembapkan tanpa rasa berat atau berminyak.</div></div>
+      <div class="ing-c rv d4"><div class="ing-icon">&#129518;</div><div class="ing-name">Non-Comedogenic</div><div class="ing-role">Safe Formula</div><div class="ing-desc">Aman untuk kulit wajah dan tubuh. Tidak menyumbat pori, cocok semua jenis kulit.</div></div>
     </div>
   </div>
 </section>
 
-<section class="ritual reveal">
-  <div class="section-label">Filosofi</div>
-  <h2 class="section-title">"Kulitmu layak<br><em>yang terbaik</em>."</h2>
-  <p>Setiap botol HydraGlow adalah undangan untuk berhenti sejenak — menjadikan rutinitas pagi atau malam sebagai momen yang hanya untukmu.</p>
-  <div class="shop-btns" style="justify-content:center;">
-    <a href="https://instagram.com/loonarsbeauty.official" class="btn-shop btn-main" target="_blank" style="background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);color:var(--white);">📸 Follow @loonarsbeauty.official</a>
+<!-- ABOUT PRODUCT -->
+<section class="ap-sec">
+  <div class="ap-inner">
+    <div class="ap-img rvl">
+      <img src="img hydraglow1.jpeg" alt="HydraGlow" onerror="this.src='hero1.jpeg'">
+      <div class="ap-float">&#127942; BPOM Terdaftar</div>
+    </div>
+    <div class="ap-content rvr">
+      <div class="s-label">Tentang Produk</div>
+      <h2 class="s-title">Bukan Sekadar<br><em>Bodycare</em></h2>
+      <div class="ap-q">"Kulitmu layak yang terbaik."</div>
+      <ul class="ap-list">
+        <li>Tekstur ringan, cepat meresap tanpa rasa lengket</li>
+        <li>Wangi lembut, tidak overwhelm</li>
+        <li>Aman untuk ibu hamil &amp; menyusui (konsultasikan dulu)</li>
+        <li>BPOM terdaftar</li>
+        <li>Cruelty-free</li>
+      </ul>
+      <a href="https://instagram.com/loonarsbeauty.official" target="_blank" class="btn-rose" style="margin-top:2rem;display:inline-flex;"><span>&#128247; @loonarsbeauty.official</span></a>
+    </div>
   </div>
 </section>
 
-<section class="howto">
-  <div class="howto-inner">
-    <div class="howto-header reveal">
-      <div class="section-label">Cara Pakai</div>
-      <h2 class="section-title">Ritual<br><em>Harian</em></h2>
-    </div>
-    <div class="steps">
-      <div class="step reveal"><div class="step-num">01</div><div class="step-title">Bersihkan Kulit</div><div class="step-desc">Setelah mandi atau mencuci wajah, keringkan kulit hingga lembap (tidak terlalu kering).</div></div>
-      <div class="step reveal"><div class="step-num">02</div><div class="step-title">Aplikasikan</div><div class="step-desc">Tuang secukupnya ke telapak tangan. Ratakan ke seluruh tubuh atau area yang diinginkan.</div></div>
-      <div class="step reveal"><div class="step-num">03</div><div class="step-title">Pijat & Resap</div><div class="step-desc">Pijat memutar hingga meresap sempurna. Gunakan pagi & malam untuk hasil optimal.</div></div>
+<!-- HOW TO USE -->
+<section class="ht-sec">
+  <div class="ht-inner">
+    <div class="s-label rv">Cara Pakai</div>
+    <h2 class="s-title rv d1">Ritual<br><em>Harian</em></h2>
+    <div class="ht-steps">
+      <div class="ht-step rv"><div class="ht-num">01</div><div><div class="ht-title">Bersihkan Kulit</div><div class="ht-desc">Setelah mandi atau mencuci wajah, keringkan kulit hingga lembap (tidak terlalu kering).</div></div></div>
+      <div class="ht-step rv"><div class="ht-num">02</div><div><div class="ht-title">Aplikasikan</div><div class="ht-desc">Tuang secukupnya ke telapak tangan. Ratakan ke seluruh tubuh atau area yang diinginkan.</div></div></div>
+      <div class="ht-step rv"><div class="ht-num">03</div><div><div class="ht-title">Pijat &amp; Resap</div><div class="ht-desc">Pijat memutar hingga meresap sempurna. Gunakan pagi &amp; malam untuk hasil optimal.</div></div></div>
     </div>
   </div>
 </section>
 
-<!-- ====== CHECKOUT SECTION ====== -->
-<section id="checkout">
-  <div class="checkout-inner">
-    <div class="checkout-header reveal">
-      <div class="co-badge">🚚 Bayar di Tempat (COD)</div>
-      <h2 class="section-title" style="margin-top:0.5rem">Pesan<br><em>Sekarang</em></h2>
-      <p style="color:var(--text-mid);font-size:0.88rem;margin-top:0.8rem;line-height:1.7">Isi form di bawah → pilih kurir → produk dikirim & bayar saat terima</p>
+<!-- COD ORDER FORM -->
+<section class="cod-sec" id="checkout">
+  <div class="cod-inner">
+    <div class="cod-hdr">
+      <div class="s-label">&#128666; Bayar di Tempat (COD)</div>
+      <h2 class="s-title">Pesan<br><em>Sekarang</em></h2>
+      <span class="cod-badge">Isi form &rarr; produk dikirim &rarr; bayar saat terima</span>
     </div>
-    <div class="co-card reveal">
-      <!-- FORM ORDER -->
-      <div id="co-form">
-        <!-- Step 1: Data pembeli -->
-        <div class="co-step">
-          <div class="co-step-title" data-n="1">Data Penerima</div>
-          <div class="form-row">
-            <div class="fg"><label>Nama Lengkap *</label><input id="co-nama" placeholder="Nama sesuai identitas" required></div>
-            <div class="fg"><label>No. WhatsApp *</label><input id="co-hp" type="tel" placeholder="08xxxxxxxxxx" required></div>
-          </div>
-          <div class="form-row full">
-            <div class="fg"><label>Alamat Lengkap *</label><input id="co-alamat" placeholder="Nama jalan, no rumah, RT/RW" required></div>
-          </div>
-          <div class="form-row">
-            <div class="fg"><label>Kota / Kabupaten *</label><input id="co-kota" placeholder="Yogyakarta" required></div>
-            <div class="fg"><label>Provinsi *</label><input id="co-prov" placeholder="DI Yogyakarta" required></div>
-          </div>
-          <div class="form-row">
-            <div class="fg"><label>Kecamatan</label><input id="co-kec" placeholder="Mlati"></div>
-            <div class="fg"><label>Kode Pos</label><input id="co-kodepos" placeholder="55511" maxlength="5" type="number"></div>
-          </div>
-        </div>
-
-        <!-- Step 2: Produk & qty -->
-        <div class="co-step">
-          <div class="co-step-title" data-n="2">Pesanan</div>
-          <div style="display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;">
-            <div>
-              <div style="font-size:0.92rem;font-weight:500;color:var(--text)">HydraGlow Advanced Brightening Lotion</div>
-              <div style="font-size:0.8rem;color:var(--text-light);margin-top:0.2rem">Rp 89.000 / botol</div>
+    <div class="cod-grid">
+      <div>
+        <div id="bForm">
+          <div class="cod-fb">
+            <div class="cod-fb-title">Data Penerima</div>
+            <div class="cod-fb-sub">Isi lengkap agar pengiriman tepat sasaran</div>
+            <div class="f-g"><label class="f-lbl">Nama Lengkap <span class="f-req" style="color:var(--rose);">*</span></label><input class="f-inp" id="bName" type="text" placeholder="Nama penerima"></div>
+            <div class="f-g"><label class="f-lbl">No. WhatsApp <span class="f-req" style="color:var(--rose);">*</span></label><input class="f-inp" id="bPhone" type="tel" placeholder="08xxxxxxxxxx"></div>
+            <div class="f-g"><label class="f-lbl">Alamat Lengkap <span class="f-req" style="color:var(--rose);">*</span></label><textarea class="f-inp f-ta" id="bAddress" placeholder="Jalan, nomor, RT/RW, kelurahan..."></textarea></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+              <div class="f-g"><label class="f-lbl">Kota / Kabupaten <span class="f-req" style="color:var(--rose);">*</span></label><input class="f-inp" id="bCity" type="text" placeholder="Makassar"></div>
+              <div class="f-g"><label class="f-lbl">Provinsi</label><input class="f-inp" id="bProv" type="text" placeholder="Sulawesi Selatan"></div>
             </div>
-            <div class="qty-ctrl">
-              <button onclick="chgQty(-1)">−</button>
-              <div class="qty-val" id="co-qty-disp">1</div>
-              <button onclick="chgQty(1)">+</button>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+              <div class="f-g"><label class="f-lbl">Kecamatan</label><input class="f-inp" id="bDist" type="text" placeholder="Kecamatan"></div>
+              <div class="f-g"><label class="f-lbl">Kode Pos</label><input class="f-inp" id="bPost" type="text" placeholder="90123"></div>
             </div>
           </div>
-          <div style="margin-top:1rem;padding:0.6rem 0.9rem;background:var(--rose-pale);border-radius:5px;display:flex;justify-content:space-between;">
-            <span style="font-size:0.82rem;color:var(--text-mid)">Subtotal produk</span>
-            <span style="font-size:0.9rem;font-weight:700;color:var(--rose-dark)" id="co-subtotal">Rp 89.000</span>
+          <div class="cod-fb" style="margin-top:1px;">
+            <div class="cod-fb-title">Pesanan</div>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:1rem 0;border-bottom:1px solid rgba(255,255,255,.05);">
+              <div><div style="color:#fff;font-size:.88rem;">HydraGlow Advanced Brightening Lotion</div><div style="color:var(--rose);font-size:.78rem;margin-top:.2rem;">Rp 89.000 / botol</div></div>
+              <div class="qty-c"><button class="q-btn" onclick="bChg(-1)">&#8722;</button><span class="q-val" id="bQty">1</span><button class="q-btn" onclick="bChg(1)">+</button></div>
+            </div>
+            <div style="display:flex;justify-content:space-between;padding:.8rem 0;font-size:.82rem;"><span style="color:rgba(255,255,255,.25);">Subtotal produk</span><span style="color:#fff;" id="bSub">Rp 89.000</span></div>
+            <div class="f-g" style="margin-top:.5rem;"><label class="f-lbl">Catatan (opsional)</label><input class="f-inp" id="bNote" type="text" placeholder="Permintaan khusus..."></div>
           </div>
         </div>
-
-        <!-- Step 3: Pilih kurir -->
-        <div class="co-step">
-          <div class="co-step-title" data-n="3">Pilih Pengiriman</div>
-          <p style="font-size:0.78rem;color:var(--text-light);margin-bottom:0.6rem">Isi kota tujuan dulu, lalu klik "Cek Ongkir"</p>
-          <button onclick="cekOngkir()" id="btn-cek" class="btn-cod" style="margin-bottom:0.8rem;background:var(--rose-pale);color:var(--rose-dark);border:1.5px solid var(--rose-light);font-size:0.82rem;padding:0.7rem 1.2rem;width:auto;justify-content:flex-start;">
-            🔍 Cek Ongkir
-          </button>
-          <div id="kurir-result">
-            <div class="ongkir-empty">Isi data penerima dan klik "Cek Ongkir" untuk melihat pilihan kurir dan harga pengiriman.</div>
-          </div>
-        </div>
-
-        <!-- Step 4: Ringkasan & submit -->
-        <div class="co-step">
-          <div class="co-step-title" data-n="4">Ringkasan & Konfirmasi</div>
-          <table class="summary-table">
-            <tr><td>Produk</td><td id="sum-produk">—</td></tr>
-            <tr><td>Ongkir (<span id="sum-kurir">—</span>)</td><td id="sum-ongkir">—</td></tr>
-            <tr><td>Biaya COD</td><td id="sum-cod">—</td></tr>
-            <tr class="total-row"><td>Total Bayar</td><td id="sum-total">—</td></tr>
-          </table>
-          <div class="co-note">
-            💡 Bayar saat paket tiba. Tidak perlu transfer dulu. Kurir akan menagih sesuai nominal di atas.
-          </div>
-          <div class="fg" style="margin-top:1rem">
-            <label>Catatan untuk seller (opsional)</label>
-            <textarea id="co-catatan" rows="2" placeholder="Warna varian, instruksi khusus, dll..." style="resize:none;font-size:0.85rem;padding:0.6rem 0.9rem;border:1.5px solid #e8e2de;border-radius:5px;font-family:'DM Sans',sans-serif;width:100%;outline:none;transition:border-color 0.2s;" onfocus="this.style.borderColor='var(--rose)'" onblur="this.style.borderColor='#e8e2de'"></textarea>
-          </div>
-          <button id="btn-order" class="btn-cod" style="margin-top:1.2rem" onclick="submitOrder()" disabled>
-            🛒 Konfirmasi Pesanan COD
-          </button>
+        <div class="b-ok" id="bOk">
+          <div class="b-ok-icon">&#127881;</div>
+          <div class="b-ok-title">Pesanan Diterima!</div>
+          <div class="b-ok-desc">Terima kasih sudah memesan HydraGlow.<br>Tim kami akan memproses dan mengirimkan pesananmu.<br>Pantau via WhatsApp: <strong style="color:#fff;">+62 822-2888-5223</strong></div>
+          <a id="bWaLink" href="#" target="_blank" class="btn-wa-lnk">&#128172; Chat via WhatsApp</a>
         </div>
       </div>
-
-      <!-- SUCCESS STATE -->
-      <div class="co-success" id="co-success">
-        <div class="cs-icon">🎉</div>
-        <div class="cs-title">Pesanan Diterima!</div>
-        <div class="cs-sub">
-          Terima kasih sudah memesan HydraGlow.<br>
-          Tim kami akan segera memproses dan mengirimkan pesananmu.<br>
-          Pantau via WhatsApp: <strong>+62 822-2888-5223</strong>
-        </div>
-        <div class="cs-no" id="cs-orderno"></div>
+      <div class="cod-sum">
+        <div class="cs-title">Ringkasan &amp; Konfirmasi</div>
+        <div class="cs-row"><span class="cs-l">Produk</span><span class="cs-v" id="sProd">—</span></div>
+        <div class="cs-row"><span class="cs-l">Ongkir</span><span class="cs-v" id="sOngkir">—</span></div>
+        <div class="cs-row"><span class="cs-l">Biaya COD</span><span class="cs-v" id="sCod">—</span></div>
+        <div class="cs-total"><span class="cs-tl">Total Bayar</span><span class="cs-tv" id="sTotal">—</span></div>
+        <div class="cs-note">&#128161; Bayar saat paket tiba. Tidak perlu transfer dulu.</div>
+        <button class="btn-rose" id="bOrderBtn" onclick="bSubmit()" style="width:100%;justify-content:center;margin-top:1.5rem;"><span>&#128722; Konfirmasi Pesanan COD</span></button>
+        <p style="font-size:.63rem;color:rgba(255,255,255,.15);text-align:center;margin-top:.7rem;line-height:1.5;">Dengan memesan, kamu setuju dihubungi tim kami via WhatsApp.</p>
       </div>
     </div>
   </div>
 </section>
 
-<footer class="footer">
-  <div class="footer-brand">Loonars Beauty · PT. Maha Karya Haluoleo</div>
-  <div class="footer-nav">
-    <a href="/">Beranda</a><a href="/loonars-living">Loonars Living</a><a href="/direktur">Direktur</a><a href="/kontak">Kontak</a>
+<div class="shops-row">
+  <a href="https://tokopedia.com/loonars" target="_blank" class="sh-link">&#128722; Tokopedia Official Store</a>
+  <a href="https://shopee.co.id/loonarsskin" target="_blank" class="sh-link">&#128717; Shopee Official Store</a>
+  <a href="https://instagram.com/loonarsbeauty.official" target="_blank" class="sh-link">&#128247; @loonarsbeauty.official</a>
+</div>
+
+<footer>
+  <div class="ft-brand">Loonars Beauty · PT. Maha Karya Haluoleo</div>
+  <div class="ft-copy">&#169; 2026 haluoleo.id</div>
+  <div class="ft-nav">
+    <a href="loonars-living.html">Loonars Living</a>
+    <a href="al-fath-makassar.html">Al Fath</a>
+    <a href="griya-cariu-indah.html">Griya Cariu</a>
+    <a href="direktur.html">Direktur</a>
+    <a href="beauty.html">Beauty</a>
+    <a href="kontak.html">Kontak</a>
   </div>
 </footer>
-
-<div class="toast-co" id="co-toast"></div>
-
+<a href="https://wa.me/6282228885223" target="_blank" class="wa">&#128172;</a>
+<div class="lb" id="_lb">
+  <button class="lb-close" onclick="closeLb()">&#10005;</button>
+  <button class="lb-prev" onclick="prevLb()">&#8249;</button>
+  <img id="_lbImg" src="" alt="">
+  <button class="lb-next" onclick="nextLb()">&#8250;</button>
+  <div class="lb-cap" id="_lbCap"></div>
+</div>
 <script>
-// ======= CONFIG =======
-const SB_URL = "https://gluoioiimapyhchdasfl.supabase.co";
-const SB_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdsdW9pb2lpbWFweWhjaGRhc2ZsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAwNDQ3MjAsImV4cCI6MjA5NTYyMDcyMH0.dHVB0jJBMjUunJKSsqbaM3MGCAq-ZRSWQEqvEyUjIyk";
-const SH = {"Content-Type":"application/json","apikey":SB_KEY,"Authorization":"Bearer "+SB_KEY};
-const TG_TOKEN = "8972034832:AAGCLi9HuGbmzC9O13wH9X8YxVTPG6kMQr8";
-const TG_CHAT = "-5180682189";
-const HARGA = 89000;
-const ASAL_KOTA = "Sleman"; // kota asal pengiriman (Yogyakarta)
-/* === KiriminAja API KEY ===
-   Ganti string di bawah setelah dapat API key dari KiriminAja dashboard.
-   Selama kosong, sistem pakai fallback ongkos kirim estimasi. */
-const KA_KEY = ""; // <- ISI API KEY KIRIMINAJA DI SINI
+// SUPABASE
+const _sb=supabase.createClient('https://gluoioiimapyhchdasfl.supabase.co','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdsdW9pb2lpbWFweWhjaGRhc2ZsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAwNDQ3MjAsImV4cCI6MjA5NTYyMDcyMH0.dHVB0jJBMjUunJKSsqbaM3MGCAq-ZRSWQEqvEyUjIyk');
 
-// ======= STATE =======
-let qty = 1;
-let selectedKurir = null; // {name, service, etd, price, cod_fee}
+// LOADER
+(function(){
+  const bar=document.getElementById('ldrBar'),pct=document.getElementById('ldrPct'),ldr=document.getElementById('ldr');
+  if(!ldr)return;
+  let n=0;
+  setTimeout(()=>bar&&bar.classList.add('go'),100);
+  const iv=setInterval(()=>{
+    n=Math.min(n+Math.floor(Math.random()*6)+2,100);
+    if(pct)pct.textContent=n+'%';
+    if(n>=100){clearInterval(iv);setTimeout(()=>{if(ldr){ldr.classList.add('out');setTimeout(()=>ldr.style.display='none',1000);}},300);}
+  },28);
+})();
 
-// ======= HELPERS =======
-const fR = n => "Rp "+parseInt(n||0).toLocaleString("id-ID");
-const v = id => document.getElementById(id)?.value?.trim()||"";
-function toast(msg, err=false){
-  const t=document.getElementById("co-toast");
-  t.textContent=msg; t.className="toast-co show"+(err?" error":"");
-  clearTimeout(t._t); t._t=setTimeout(()=>t.classList.remove("show"),3500);
+// CURSOR
+const _dot=document.getElementById('curDot'),_ring=document.getElementById('curRing');
+let _mx=0,_my=0,_rx=0,_ry=0;
+document.addEventListener('mousemove',e=>{_mx=e.clientX;_my=e.clientY;});
+(function aC(){
+  if(_dot){_dot.style.left=_mx+'px';_dot.style.top=_my+'px';}
+  if(_ring){_rx+=(_mx-_rx)*.1;_ry+=(_my-_ry)*.1;_ring.style.left=_rx+'px';_ring.style.top=_ry+'px';}
+  requestAnimationFrame(aC);
+})();
+document.querySelectorAll('a,button,.unit,.g-item,.loc-c,.spec,.pf-item').forEach(el=>{
+  el.addEventListener('mouseenter',()=>document.body.classList.add('hov'));
+  el.addEventListener('mouseleave',()=>document.body.classList.remove('hov'));
+});
+
+// PROGRESS
+window.addEventListener('scroll',()=>{
+  const s=document.documentElement.scrollTop,h=document.documentElement.scrollHeight-document.documentElement.clientHeight;
+  const pb=document.getElementById('pb');if(pb)pb.style.width=(s/h*100)+'%';
+},{passive:true});
+
+// MENU
+function toggleMenu(){
+  document.getElementById('hbg')?.classList.toggle('open');
+  document.getElementById('_sm')?.classList.toggle('open');
+  document.getElementById('_smol')?.classList.toggle('open');
+}
+function closeMenu(){
+  document.getElementById('hbg')?.classList.remove('open');
+  document.getElementById('_sm')?.classList.remove('open');
+  document.getElementById('_smol')?.classList.remove('open');
 }
 
-// ======= QTY =======
-function chgQty(d){
-  qty=Math.max(1,Math.min(10,qty+d));
-  document.getElementById("co-qty-disp").textContent=qty;
-  document.getElementById("co-subtotal").textContent=fR(qty*HARGA);
-  updateSummary();
-}
+// REVEAL
+const _rv=new IntersectionObserver((entries)=>{
+  entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('vis'),i*65);_rv.unobserve(e.target);}});
+},{threshold:.08,rootMargin:'0px 0px -50px 0px'});
+document.querySelectorAll('.rv,.rvl,.rvr').forEach(el=>_rv.observe(el));
 
-// ======= CEK ONGKIR =======
-async function cekOngkir(){
-  const kota=v("co-kota"),prov=v("co-prov");
-  if(!kota||!prov){toast("Isi kota dan provinsi tujuan dulu",true);return;}
-  const el=document.getElementById("kurir-result");
-  el.innerHTML=`<div class="ongkir-loading"><div class="sp"></div>Mengecek ongkir ke ${kota}...</div>`;
-  selectedKurir=null;updateSummary();document.getElementById("btn-order").disabled=true;
+// LIGHTBOX
+let _lbD=[],_lbI=0;
+function openLb(data,idx){_lbD=data;_lbI=idx;const lb=document.getElementById('_lb');lb.classList.add('open');_showLb();document.body.style.overflow='hidden';}
+function _showLb(){const img=document.getElementById('_lbImg'),cap=document.getElementById('_lbCap');if(img)img.src=_lbD[_lbI].url||_lbD[_lbI];if(cap)cap.textContent=_lbD[_lbI].caption||'';}
+function closeLb(){document.getElementById('_lb').classList.remove('open');document.body.style.overflow='';}
+function prevLb(){_lbI=(_lbI-1+_lbD.length)%_lbD.length;_showLb();}
+function nextLb(){_lbI=(_lbI+1)%_lbD.length;_showLb();}
+document.addEventListener('keydown',e=>{const lb=document.getElementById('_lb');if(!lb?.classList.contains('open'))return;if(e.key==='Escape')closeLb();if(e.key==='ArrowLeft')prevLb();if(e.key==='ArrowRight')nextLb();});
 
-  let kurir_list = [];
-
-  // Coba KiriminAja API kalau key sudah diisi
-  if(KA_KEY){
-    try{
-      const r=await fetch(`${SB_URL}/functions/v1/cek-ongkir-ka`,{
-        method:"POST",headers:{...SH,"Authorization":"Bearer "+SB_KEY},
-        body:JSON.stringify({kota_tujuan:kota,provinsi:prov,weight:300*qty})
-      });
-      if(r.ok){const d=await r.json();kurir_list=d.results||[];}
-    }catch(e){console.warn("KA API:",e)}
-  }
-
-  // Fallback: estimasi harga berdasarkan zona
-  if(!kurir_list.length){
-    const inJawa=/jakarta|bandung|bogor|bekasi|depok|tangerang|semarang|yogyakarta|solo|surabaya|malang|surakarta|cirebon|tasik|garut|jawa/i.test(kota+prov);
-    const isSumatra=/medan|palembang|pekanbaru|padang|jambi|lampung|bengkulu|banda aceh|sumatera/i.test(kota+prov);
-    const isLocal=/sleman|bantul|gunung kidul|kulon progo|yogya/i.test(kota+prov);
-
-    const base=isLocal?6000:inJawa?9000:isSumatra?13000:17000;
-    kurir_list=[
-      {name:"JNE",service:"REG",etd:"2-3 hari",price:base+2000,cod:true},
-      {name:"J&T",service:"EZ",etd:"2-4 hari",price:base+1000,cod:true},
-      {name:"SiCepat",service:"BEST",etd:"1-3 hari",price:base+1500,cod:true},
-      {name:"AnterAja",service:"REG",etd:"3-5 hari",price:base,cod:true},
-    ];
-  }
-
-  if(!kurir_list.length){el.innerHTML=`<div class="ongkir-empty">Tidak ada kurir tersedia untuk tujuan ini.</div>`;return;}
-
-  // Hitung cod_fee ~2.5% dari total
-  kurir_list.forEach(k=>{
-    const total=(qty*HARGA)+k.price;
-    k.cod_fee=Math.ceil(total*0.025/100)*100; // 2.5%, rounded ke 100
-  });
-
-  el.innerHTML=`<div class="kurir-list">${kurir_list.map((k,i)=>`
-  <div class="kurir-opt" id="ko${i}" onclick="pilihKurir(${i},${JSON.stringify(k).replace(/"/g,'&quot;')})">
-    <input type="radio" name="kurir" value="${i}">
-    <div class="kurir-info">
-      <div>
-        <div class="kurir-name">${k.name} <span class="kurir-svc">${k.service}</span></div>
-        <span class="kurir-etd">~${k.etd}</span>
-      </div>
-    </div>
-    <div class="kurir-price">${fR(k.price)}</div>
-  </div>`).join("")}</div>`;
-  window._kurir_list=kurir_list;
-}
-
-function pilihKurir(i, k){
-  selectedKurir={name:k.name,service:k.service,etd:k.etd,price:k.price,cod_fee:k.cod_fee};
-  document.querySelectorAll(".kurir-opt").forEach(el=>el.classList.remove("selected"));
-  document.getElementById("ko"+i).classList.add("selected");
-  updateSummary();
-  const btn=document.getElementById("btn-order");
-  const nama=v("co-nama"),hp=v("co-hp"),alamat=v("co-alamat"),kota=v("co-kota");
-  btn.disabled=!(nama&&hp&&alamat&&kota);
-}
-
-function updateSummary(){
-  const sp=qty*HARGA;
-  document.getElementById("sum-produk").textContent=fR(sp);
-  if(selectedKurir){
-    document.getElementById("sum-kurir").textContent=selectedKurir.name+" "+selectedKurir.service;
-    document.getElementById("sum-ongkir").textContent=fR(selectedKurir.price);
-    document.getElementById("sum-cod").textContent=fR(selectedKurir.cod_fee);
-    document.getElementById("sum-total").textContent=fR(sp+selectedKurir.price+selectedKurir.cod_fee);
-  }else{
-    ["sum-kurir","sum-ongkir","sum-cod","sum-total"].forEach(id=>{
-      document.getElementById(id).textContent="—";
-    });
-  }
-}
-
-// ======= SUBMIT ORDER =======
-async function submitOrder(){
-  const nama=v("co-nama"),hp=v("co-hp"),alamat=v("co-alamat");
-  const kota=v("co-kota"),prov=v("co-prov"),kec=v("co-kec"),kpos=v("co-kodepos");
-  const catatan=v("co-catatan");
-  if(!nama||!hp||!alamat||!kota){toast("Lengkapi nama, HP, alamat, dan kota",true);return;}
-  if(!selectedKurir){toast("Pilih kurir pengiriman dulu",true);return;}
-
-  const btn=document.getElementById("btn-order");
-  btn.disabled=true; btn.textContent="⏳ Memproses...";
-
+// GALLERY FROM SUPABASE
+async function loadGallery(slug,gridId){
+  const grid=document.getElementById(gridId);if(!grid)return;
+  grid.innerHTML='<div class="g-loading">&#9203; Memuat galeri...</div>';
   try{
-    // Ambil nomor order
-    const rno=await fetch(`${SB_URL}/rest/v1/rpc/next_mkh_no`,{method:"POST",headers:SH,body:JSON.stringify({p_prefix:"LB"})});
-    const noVal=rno.ok?await rno.json():Math.floor(Math.random()*9000)+1000;
-    const order_no="LB-"+String(noVal).padStart(4,"0");
+    const {data,error}=await _sb.from('project_images').select('*').eq('project_slug',slug).order('display_order',{ascending:true});
+    if(error)throw error;
+    if(!data?.length){grid.innerHTML='<div class="g-loading">Belum ada foto.</div>';return;}
+    window['_gd'+gridId]=data;
+    grid.innerHTML=data.map((img,i)=>`<div class="g-item" onclick="openLb(window['_gd${gridId}']],${i})"><img src="${img.url}" alt="${img.caption||''}" loading="lazy" onerror="this.parentElement.style.display='none'"></div>`).join('').replace(/\]\]/g,']');
+  }catch(ex){grid.innerHTML='<div class="g-loading">Gagal memuat galeri.</div>';}
+}
 
-    const totalBayar=(qty*HARGA)+selectedKurir.price+selectedKurir.cod_fee;
-    const payload={
-      order_no, nama, hp, alamat,
-      kecamatan:kec, kota, provinsi:prov, kode_pos:kpos,
-      qty, harga_satuan:HARGA,
-      kurir:selectedKurir.name, layanan:selectedKurir.service,
-      ongkir:selectedKurir.price, cod_fee:selectedKurir.cod_fee,
-      total_bayar:totalBayar, catatan, status:"pending"
-    };
-    const res=await fetch(`${SB_URL}/rest/v1/beauty_orders`,{
-      method:"POST",headers:{...SH,"Prefer":"return=minimal"},
-      body:JSON.stringify(payload)
+// MAGNETIC
+function addMag(sel){
+  document.querySelectorAll(sel).forEach(btn=>{
+    btn.addEventListener('mousemove',e=>{
+      const r=btn.getBoundingClientRect();
+      const x=e.clientX-r.left-r.width/2,y=e.clientY-r.top-r.height/2;
+      btn.style.transform=`translate(${x*.2}px,${y*.3}px)`;
     });
-    if(!res.ok) throw new Error(await res.text());
+    btn.addEventListener('mouseleave',()=>btn.style.transform='');
+  });
+}
+addMag('.btn-p,.btn-o,.wa,.nav-cta');
 
-    // Notif Telegram
-    const tgMsg=`💄 <b>ORDER BARU — LOONARS BEAUTY</b>\n\n📦 Order: <b>${order_no}</b>\n👤 Nama: <b>${nama}</b>\n📱 HP: <b>${hp}</b>\n📍 Alamat: <b>${alamat}, ${kec?kec+", ":""}${kota}, ${prov}</b>\n\n🧴 Produk: HydraGlow × ${qty}\n🚚 Kurir: <b>${selectedKurir.name} ${selectedKurir.service}</b> (~${selectedKurir.etd})\n💰 Ongkir: ${fR(selectedKurir.price)}\n💵 Total COD: <b>${fR(totalBayar)}</b>\n\n📝 Catatan: ${catatan||"—"}\n\n⚡ Proses di Loonars Dashboard`;
-    fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage?chat_id=${TG_CHAT}&parse_mode=HTML&text=${encodeURIComponent(tgMsg)}`,{method:"GET",mode:"no-cors"}).catch(()=>{});
-
-    // Show success
-    document.getElementById("co-form").style.display="none";
-    const suc=document.getElementById("co-success");
-    suc.style.display="block";
-    document.getElementById("cs-orderno").textContent=order_no;
-    document.getElementById("checkout").scrollIntoView({behavior:"smooth",block:"start"});
-  }catch(e){
-    toast("Gagal mengirim pesanan: "+e.message,true);
-    btn.disabled=false; btn.textContent="🛒 Konfirmasi Pesanan COD";
+// PARTICLES
+function spawnParticles(containerId){
+  const c=document.getElementById(containerId);if(!c)return;
+  const cols=['#7a9e6e','#c9a84c','#c9948a','rgba(255,255,255,.25)'];
+  for(let i=0;i<20;i++){
+    const p=document.createElement('div');p.className='particle';
+    const sz=Math.random()*2.5+.5,dur=Math.random()*18+8,del=Math.random()*25,l=Math.random()*100;
+    p.style.cssText=`width:${sz}px;height:${sz}px;background:${cols[Math.floor(Math.random()*cols.length)]};left:${l}%;animation-duration:${dur}s;animation-delay:-${del}s;`;
+    c.appendChild(p);
   }
 }
 
-// ======= REVEAL ANIM =======
-const obs=new IntersectionObserver(entries=>{entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),i*80);obs.unobserve(e.target);}});},{threshold:0.1});
-document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+// KONTAK FORM
+async function submitKontak(e){
+  e.preventDefault();
+  const name=document.getElementById('kName')?.value.trim();
+  const phone=document.getElementById('kPhone')?.value.trim();
+  if(!name||!phone){alert('Nama dan nomor WhatsApp wajib diisi.');return;}
+  const btn=document.getElementById('kBtn');
+  if(btn){btn.disabled=true;btn.querySelector('span').textContent='Mengirim...';}
+  try{
+    await _sb.from('contact_messages').insert([{
+      name,phone,
+      project:document.getElementById('kProject')?.value,
+      message:document.getElementById('kMsg')?.value.trim(),
+      created_at:new Date().toISOString()
+    }]);
+  }catch(ex){console.warn(ex);}
+  document.getElementById('kForm').style.display='none';
+  document.getElementById('kOk').style.display='block';
+}
+
+spawnParticles('pB');
+addMag('.btn-rose,.btn-shop-out,.sh-link,.wa');
+
+const BPRICE=89000;let bQty=1;
+function fRp(n){return'Rp '+n.toLocaleString('id-ID');}
+function bChg(d){bQty=Math.max(1,Math.min(99,bQty+d));document.getElementById('bQty').textContent=bQty;document.getElementById('bSub').textContent=fRp(BPRICE*bQty);document.getElementById('sProd').textContent=fRp(BPRICE*bQty);document.getElementById('sTotal').textContent=fRp(BPRICE*bQty);}
+window.addEventListener('DOMContentLoaded',()=>{document.getElementById('sProd').textContent=fRp(BPRICE);document.getElementById('sTotal').textContent=fRp(BPRICE);});
+
+async function bSubmit(){
+  const name=document.getElementById('bName').value.trim();
+  const phone=document.getElementById('bPhone').value.trim();
+  const address=document.getElementById('bAddress').value.trim();
+  const city=document.getElementById('bCity').value.trim();
+  if(!name||!phone||!address||!city){alert('Nama, nomor WA, alamat, dan kota wajib diisi.');return;}
+  const btn=document.getElementById('bOrderBtn');
+  btn.disabled=true;btn.querySelector('span').textContent='Memproses...';
+  const payload={product:'HydraGlow Advanced Brightening Lotion',customer_name:name,phone,
+    address:address+', '+city,city,province:document.getElementById('bProv').value,
+    district:document.getElementById('bDist').value,postal_code:document.getElementById('bPost').value,
+    qty:bQty,unit_price:BPRICE,total_price:BPRICE*bQty,
+    note:document.getElementById('bNote').value,payment_method:'COD',status:'baru',
+    source:'website-beauty',created_at:new Date().toISOString()};
+  try{await _sb.from('beauty_orders').insert([payload]);}catch(ex){console.warn(ex);}
+  const wm=encodeURIComponent('Halo Loonars Beauty! Saya order HydraGlow.\nNama: '+name+'\nWA: '+phone+'\nJumlah: '+bQty+' botol\nTotal: '+fRp(BPRICE*bQty)+'\nAlamat: '+address+', '+city);
+  document.getElementById('bWaLink').href='https://wa.me/6282228885223?text='+wm;
+  document.getElementById('bForm').style.display='none';
+  document.getElementById('bOk').style.display='block';
+}
 </script>
-</body>
-</html>
+</body></html>
