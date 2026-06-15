@@ -98,7 +98,14 @@ footer{background:#040102;padding:2.5rem 4rem;display:flex;align-items:center;ju
 .bb3{width:350px;height:350px;background:var(--gold);opacity:.04;top:40%;left:35%;animation:bfloat 8s 2s ease-in-out infinite;}
 @keyframes bfloat{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(25px,-20px) scale(1.03)}66%{transform:translate(-18px,18px) scale(.97)}}
 .b-grid{position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(201,148,138,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(201,148,138,.03) 1px,transparent 1px);background-size:80px 80px;}
-.b-hero-inner{position:relative;z-index:5;padding:0 4rem 6rem;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:flex-end;}
+.b-hero-inner{position:relative;z-index:5;padding:0 4rem 6rem;width:100%;display:grid;grid-template-columns:1fr 1fr 1fr;gap:3rem;align-items:flex-end;}
+.b-left{}
+.b-hero-img{position:relative;display:flex;justify-content:center;align-items:flex-end;}
+.b-hero-img img{width:100%;max-width:260px;height:380px;object-fit:cover;border-radius:16px;box-shadow:0 30px 80px rgba(0,0,0,.6);filter:brightness(.9) saturate(1.1);animation:heroImgFloat 6s ease-in-out infinite;}
+@keyframes heroImgFloat{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-14px) rotate(1deg)}}
+.b-hero-img-badge{position:absolute;bottom:1.5rem;left:50%;transform:translateX(-50%);background:rgba(6,2,3,.8);backdrop-filter:blur(12px);border:1px solid rgba(201,148,138,.15);border-radius:8px;padding:.6rem 1.2rem;text-align:center;white-space:nowrap;}
+.bhib-tag{font-size:.55rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.3);}
+.bhib-name{font-family:'Cormorant Garamond',serif;font-size:1rem;color:#fff;letter-spacing:.1em;}
 .b-eyebrow{font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--rose);margin-bottom:1.2rem;display:flex;align-items:center;gap:.8rem;opacity:0;animation:fu .6s .3s forwards;}
 .b-eyebrow::before{content:'';display:block;width:18px;height:1px;background:var(--rose);}
 .b-title{font-family:'Cormorant Garamond',serif;font-size:clamp(5rem,12vw,10rem);font-weight:300;color:#fff;line-height:.85;overflow:hidden;}
@@ -272,6 +279,8 @@ footer{background:#040102;padding:2.5rem 4rem;display:flex;align-items:center;ju
   .nav-links,.nav-cta{display:none;}
   .hamburger{display:flex;}
   .b-hero-inner{grid-template-columns:1fr;padding:0 1.5rem 5rem;gap:2rem;}
+  .b-hero-img{order:-1;margin-top:6rem;}
+  .b-hero-img img{max-width:200px;height:280px;}
   .b-title{font-size:clamp(4.5rem,18vw,8rem);}
   .b-price-new{font-size:3.5rem;}
   .b-btns{flex-direction:column;gap:.7rem;}
@@ -328,7 +337,7 @@ footer{background:#040102;padding:2.5rem 4rem;display:flex;align-items:center;ju
   <div class="b-grid"></div>
   <div class="particles" id="pB"></div>
   <div class="b-hero-inner">
-    <div>
+    <div class="b-left">
       <a href="index.html" class="d-hero-back" style="color:rgba(255,255,255,.3);">&#8592; Beranda</a>
       <div class="b-eyebrow">Loonars Beauty</div>
       <h1 class="b-title">
@@ -336,6 +345,14 @@ footer{background:#040102;padding:2.5rem 4rem;display:flex;align-items:center;ju
         <span class="wl"><span><em>Glow</em></span></span>
       </h1>
       <p class="b-sub">Advanced Brightening Lotion</p>
+    </div>
+    <div class="b-hero-img">
+      <img src="img%20hydraglow1.jpeg" alt="HydraGlow"
+        onerror="this.src='img%20hydraglow2.jpeg';this.onerror=function(){this.style.display='none';};">
+      <div class="b-hero-img-badge">
+        <div class="bhib-tag">Pure Skin Luxury</div>
+        <div class="bhib-name">LOONARS</div>
+      </div>
     </div>
     <div class="b-right">
       <div class="b-tags">
