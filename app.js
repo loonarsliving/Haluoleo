@@ -394,6 +394,9 @@ function initPanoViewer(){
   panoCamera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
   panoRenderer = new THREE.WebGLRenderer({ canvas: uvPanoCanvas, antialias:true, alpha:false });
   panoRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  window.panoRenderer = panoRenderer;
+  window.panoScene = panoScene;
+  window.panoCamera = panoCamera;
 
   const geo = new THREE.SphereGeometry(50, 60, 40);
   geo.scale(-1, 1, 1); // invert so texture renders on the inside
@@ -416,10 +419,12 @@ function resizePanoRenderer(){
 window.addEventListener('resize', () => { if(panoRenderer) resizePanoRenderer(); });
 
 function loadPanorama(url){
+  if(window.panoDebugShow) window.panoDebugShow('loadPanorama called with: ' + url);
   if(panoTextureCache[url]){
     panoSphere.material.map = panoTextureCache[url];
     panoSphere.material.color.set(0xffffff);
     panoSphere.material.needsUpdate = true;
+    if(window.panoDebugShow) window.panoDebugShow('used cached texture for: ' + url);
     return;
   }
   const loader = new THREE.TextureLoader();
@@ -430,6 +435,9 @@ function loadPanorama(url){
     panoSphere.material.map = tex;
     panoSphere.material.color.set(0xffffff);
     panoSphere.material.needsUpdate = true;
+    if(window.panoDebugShow) window.panoDebugShow('THREE texture loaded OK: ' + url + ' (' + tex.image.width + 'x' + tex.image.height + ')');
+  }, undefined, function(err){
+    if(window.panoDebugShow) window.panoDebugShow('THREE texture FAILED: ' + url + ' err=' + (err && err.message ? err.message : JSON.stringify(err)));
   });
 }
 
