@@ -29,9 +29,9 @@ const UNIT_PHOTOSETS = {
   default: {
     typeTag:'TYPE 40 · 6×13',
     rooms:[
-      { key:'exterior', label:'Tampak Depan', sub:'Fasad utama & akses masuk', img:'render_exterior.jpg' },
-      { key:'living', label:'Ruang Tamu & Dapur', sub:'Area sosial dengan konsep terbuka', img:'render_living.jpg' },
-      { key:'bedroom', label:'Kamar Tidur', sub:'Pencahayaan alami & interior hangat', img:'render_bedroom.jpg' },
+      { key:'exterior', label:'Tampak Depan', sub:'Fasad utama & akses masuk', img:'render%20exterior.jpeg' },
+      { key:'living', label:'Ruang Tamu & Dapur', sub:'Area sosial dengan konsep terbuka', img:'render%20living.jpeg' },
+      { key:'bedroom', label:'Kamar Tidur', sub:'Pencahayaan alami & interior hangat', img:'render%20bedroom.jpeg' },
     ]
   }
 };
@@ -80,7 +80,7 @@ function initThree(){
 
   // Ground plane with siteplan texture
   const loader = new THREE.TextureLoader();
-  loader.load('siteplan_final.jpg', function(tex){
+  loader.load('siteplan%20final.jpeg', function(tex){
     tex.colorSpace = THREE.SRGBColorSpace || THREE.sRGBEncoding;
     const aspect = tex.image.width / tex.image.height;
     const planeW = 16;
