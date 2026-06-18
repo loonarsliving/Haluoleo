@@ -31,7 +31,7 @@ const UNIT_PHOTOSETS = {
     rooms:[
       { key:'carport', label:'Carport & Depan Unit', sub:'Akses masuk dan area parkir unit', img:'pano_carport.jpg', panorama:true },
       { key:'kawasan', label:'Lingkungan Kawasan', sub:'Suasana jalan & lanskap kompleks', img:'pano_kawasan.jpg', panorama:true },
-      { key:'living', label:'Ruang Tamu & Dapur', sub:'Area sosial dengan konsep terbuka', img:'pano_living.jpg', panorama:true },
+      { key:'living', label:'Ruang Tamu & Dapur', sub:'Area sosial dengan konsep terbuka', img:'pano%20living.jpeg', panorama:true },
       { key:'bedroom', label:'Kamar Tidur', sub:'Pencahayaan alami & interior hangat', img:'pano_bedroom.jpg', panorama:true },
     ]
   }
