@@ -29,9 +29,10 @@ const UNIT_PHOTOSETS = {
   default: {
     typeTag:'TYPE 40 · 6×13',
     rooms:[
-      { key:'exterior', label:'Tampak Depan', sub:'Fasad utama & akses masuk', img:'render%20exterior.jpeg' },
-      { key:'living', label:'Ruang Tamu & Dapur', sub:'Area sosial dengan konsep terbuka', img:'render%20living.jpeg' },
-      { key:'bedroom', label:'Kamar Tidur', sub:'Pencahayaan alami & interior hangat', img:'render%20bedroom.jpeg' },
+      { key:'carport', label:'Carport & Depan Unit', sub:'Akses masuk dan area parkir unit', img:'pano_carport.jpg', panorama:true },
+      { key:'kawasan', label:'Lingkungan Kawasan', sub:'Suasana jalan & lanskap kompleks', img:'pano_kawasan.jpg', panorama:true },
+      { key:'living', label:'Ruang Tamu & Dapur', sub:'Area sosial dengan konsep terbuka', img:'pano_living.jpg', panorama:true },
+      { key:'bedroom', label:'Kamar Tidur', sub:'Pencahayaan alami & interior hangat', img:'pano_bedroom.jpg', panorama:true },
     ]
   }
 };
@@ -373,8 +374,126 @@ const uvDots = document.getElementById('uvDots');
 const uvUnitTag = document.getElementById('uvUnitTag');
 const uvPlanBtn = document.getElementById('uvPlanBtn');
 const uvContactBtn = document.getElementById('uvContactBtn');
+const uvPanoCanvas = document.getElementById('uvPanoCanvas');
+const uvPanoHint = document.getElementById('uvPanoHint');
+const uvPanoBadge = document.getElementById('uvPanoBadge');
 
 let frameEls = [];
+
+/* ---------------- 360 PANORAMA VIEWER (separate mini Three.js scene) ---------------- */
+let panoScene, panoCamera, panoRenderer, panoSphere;
+let panoLon = 0, panoLat = 0;
+let panoTargetLon = 0, panoTargetLat = 0;
+let panoDragging = false, panoPrevX = 0, panoPrevY = 0;
+let panoActive = false;
+let panoTextureCache = {};
+let panoHintTimeout = null;
+
+function initPanoViewer(){
+  panoScene = new THREE.Scene();
+  panoCamera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
+  panoRenderer = new THREE.WebGLRenderer({ canvas: uvPanoCanvas, antialias:true, alpha:false });
+  panoRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+  const geo = new THREE.SphereGeometry(50, 60, 40);
+  geo.scale(-1, 1, 1); // invert so texture renders on the inside
+  const mat = new THREE.MeshBasicMaterial({ color: 0x111111 });
+  panoSphere = new THREE.Mesh(geo, mat);
+  panoScene.add(panoSphere);
+
+  bindPanoControls();
+  resizePanoRenderer();
+  animatePano();
+}
+
+function resizePanoRenderer(){
+  const w = uvStage.clientWidth || window.innerWidth;
+  const h = uvStage.clientHeight || window.innerHeight;
+  panoRenderer.setSize(w, h, false);
+  panoCamera.aspect = w / h;
+  panoCamera.updateProjectionMatrix();
+}
+window.addEventListener('resize', () => { if(panoRenderer) resizePanoRenderer(); });
+
+function loadPanorama(url){
+  if(panoTextureCache[url]){
+    panoSphere.material.map = panoTextureCache[url];
+    panoSphere.material.color.set(0xffffff);
+    panoSphere.material.needsUpdate = true;
+    return;
+  }
+  const loader = new THREE.TextureLoader();
+  loader.load(url, function(tex){
+    tex.colorSpace = THREE.SRGBColorSpace || THREE.sRGBEncoding;
+    tex.minFilter = THREE.LinearFilter;
+    panoTextureCache[url] = tex;
+    panoSphere.material.map = tex;
+    panoSphere.material.color.set(0xffffff);
+    panoSphere.material.needsUpdate = true;
+  });
+}
+
+function bindPanoControls(){
+  uvPanoCanvas.addEventListener('mousedown', e => {
+    panoDragging = true;
+    panoPrevX = e.clientX; panoPrevY = e.clientY;
+    hidePanoHint();
+  });
+  window.addEventListener('mousemove', e => {
+    if(!panoDragging || !panoActive) return;
+    const dx = e.clientX - panoPrevX;
+    const dy = e.clientY - panoPrevY;
+    panoTargetLon -= dx * 0.18;
+    panoTargetLat = Math.max(-85, Math.min(85, panoTargetLat + dy * 0.18));
+    panoPrevX = e.clientX; panoPrevY = e.clientY;
+  });
+  window.addEventListener('mouseup', () => panoDragging = false);
+
+  uvPanoCanvas.addEventListener('touchstart', e => {
+    if(e.touches.length===1){
+      panoDragging = true;
+      panoPrevX = e.touches[0].clientX; panoPrevY = e.touches[0].clientY;
+      hidePanoHint();
+    }
+  }, {passive:true});
+  uvPanoCanvas.addEventListener('touchmove', e => {
+    if(!panoDragging || !panoActive || e.touches.length!==1) return;
+    const dx = e.touches[0].clientX - panoPrevX;
+    const dy = e.touches[0].clientY - panoPrevY;
+    panoTargetLon -= dx * 0.18;
+    panoTargetLat = Math.max(-85, Math.min(85, panoTargetLat + dy * 0.18));
+    panoPrevX = e.touches[0].clientX; panoPrevY = e.touches[0].clientY;
+  }, {passive:true});
+  uvPanoCanvas.addEventListener('touchend', () => panoDragging = false);
+}
+
+function showPanoHint(){
+  clearTimeout(panoHintTimeout);
+  uvPanoHint.classList.add('show');
+  panoHintTimeout = setTimeout(hidePanoHint, 4500);
+}
+function hidePanoHint(){
+  uvPanoHint.classList.remove('show');
+}
+
+function animatePano(){
+  requestAnimationFrame(animatePano);
+  if(!panoActive) return;
+  panoLon += (panoTargetLon - panoLon) * 0.1;
+  panoLat += (panoTargetLat - panoLat) * 0.1;
+
+  const phi = THREE.MathUtils ? THREE.MathUtils.degToRad(90 - panoLat) : (90-panoLat)*Math.PI/180;
+  const theta = THREE.MathUtils ? THREE.MathUtils.degToRad(panoLon) : panoLon*Math.PI/180;
+
+  const target = new THREE.Vector3();
+  target.x = 50 * Math.sin(phi) * Math.cos(theta);
+  target.y = 50 * Math.cos(phi);
+  target.z = 50 * Math.sin(phi) * Math.sin(theta);
+
+  panoCamera.position.set(0,0,0);
+  panoCamera.lookAt(target);
+  panoRenderer.render(panoScene, panoCamera);
+}
 
 function openUnitViewer(cluster){
   const set = UNIT_PHOTOSETS.default;
@@ -411,10 +530,25 @@ function setRoom(index){
   activeRoomIndex = (index + set.rooms.length) % set.rooms.length;
   const room = set.rooms[activeRoomIndex];
 
-  frameEls.forEach((f,i) => f.classList.toggle('active', i===activeRoomIndex));
+  frameEls.forEach((f,i) => f.classList.toggle('active', i===activeRoomIndex && !room.panorama));
   uvRoomLabel.textContent = room.label;
   uvRoomSub.textContent = room.sub;
   Array.from(uvDots.children).forEach((d,i) => d.classList.toggle('active', i===activeRoomIndex));
+
+  if(room.panorama){
+    panoActive = true;
+    uvPanoCanvas.classList.add('active');
+    uvPanoBadge.classList.add('show');
+    panoTargetLon = 0; panoTargetLat = 0; panoLon = 0; panoLat = 0;
+    resizePanoRenderer();
+    loadPanorama(room.img);
+    showPanoHint();
+  } else {
+    panoActive = false;
+    uvPanoCanvas.classList.remove('active');
+    uvPanoBadge.classList.remove('show');
+    hidePanoHint();
+  }
 }
 
 uvPrev.addEventListener('click', () => setRoom(activeRoomIndex-1));
@@ -424,6 +558,8 @@ uvClose.addEventListener('click', closeUnitViewer);
 
 function closeUnitViewer(){
   unitViewer.classList.remove('show');
+  panoActive = false;
+  hidePanoHint();
 }
 
 // keyboard nav
@@ -464,5 +600,6 @@ window.addEventListener('keydown', e => {
 
 /* ---------------- INIT ---------------- */
 initThree();
+initPanoViewer();
 
 })();
