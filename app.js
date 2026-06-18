@@ -434,7 +434,12 @@ function resizePanoRenderer(){
 }
 window.addEventListener('resize', () => { if(panoActive) resizePanoRenderer(); });
 
+let panoLoadToken = 0;
+
 function loadPanorama(url){
+  panoLoadToken++;
+  const myToken = panoLoadToken;
+
   if(panoTextureCache[url]){
     panoSphere.material.map = panoTextureCache[url];
     panoSphere.material.color.set(0xffffff);
@@ -442,14 +447,28 @@ function loadPanorama(url){
     return;
   }
   const loader = new THREE.TextureLoader();
-  loader.load(url, function(tex){
-    tex.colorSpace = THREE.SRGBColorSpace || THREE.sRGBEncoding;
-    tex.minFilter = THREE.LinearFilter;
-    panoTextureCache[url] = tex;
-    panoSphere.material.map = tex;
-    panoSphere.material.color.set(0xffffff);
-    panoSphere.material.needsUpdate = true;
-  });
+  loader.load(
+    url,
+    function(tex){
+      if(myToken !== panoLoadToken) return; // a newer room was selected before this finished loading
+      tex.colorSpace = THREE.SRGBColorSpace || THREE.sRGBEncoding;
+      tex.minFilter = THREE.LinearFilter;
+      panoTextureCache[url] = tex;
+      panoSphere.material.map = tex;
+      panoSphere.material.color.set(0xffffff);
+      panoSphere.material.needsUpdate = true;
+    },
+    undefined,
+    function(err){
+      if(myToken !== panoLoadToken) return;
+      console.error('Gagal memuat panorama:', url, err);
+      // make the failure visible instead of silently keeping the previous image
+      panoSphere.material.map = null;
+      panoSphere.material.color.set(0x2a2a32);
+      panoSphere.material.needsUpdate = true;
+      uvRoomSub.textContent = 'Gagal memuat gambar 360° (periksa nama file: ' + url + ')';
+    }
+  );
 }
 
 function bindPanoControls(){
