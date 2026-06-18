@@ -9,18 +9,18 @@
 // Positions are normalized to the siteplan image plane (x: -1..1 left-right, z: -1..1 top-bottom)
 // Approximated from visual reading of SITEPLAN_ALFIH_REV_04C
 const CLUSTERS = [
-  { id:'c19', name:'Cluster Utara', type:'TYPE 38', size:'5×14 m', units:19, x:0.10, z:-0.60, color:0xc9a961 },
-  { id:'c18', name:'Cluster Timur Laut', type:'TYPE 38', size:'5×14 m', units:18, x:0.32, z:-0.30, color:0xc9a961 },
-  { id:'c9a', name:'Cluster Timur', type:'TYPE 38', size:'5×14 m', units:9, x:0.42, z:-0.05, color:0xc9a961 },
-  { id:'c40-9', name:'Cluster Barat Laut', type:'TYPE 40', size:'6×13 m', units:9, x:-0.40, z:-0.55, color:0x8fa68e },
-  { id:'c40-12', name:'Cluster Barat', type:'TYPE 40', size:'6×14 m', units:12, x:-0.42, z:-0.05, color:0x8fa68e },
-  { id:'c10', name:'Cluster Barat Daya', type:'TYPE 38', size:'5×14 m', units:10, x:-0.28, z:0.32, color:0xc9a961 },
-  { id:'c7', name:'Cluster Tenggara', type:'TYPE 38', size:'5×14 m', units:7, x:0.36, z:0.22, color:0xc9a961 },
-  { id:'c3a', name:'Cluster Timur Kecil A', type:'TYPE 38', size:'5×14 m', units:3, x:0.49, z:0.15, color:0xc9a961 },
-  { id:'c3b', name:'Cluster Timur Kecil B', type:'TYPE 38', size:'5×14 m', units:3, x:0.44, z:0.34, color:0xc9a961 },
-  { id:'c3c', name:'Cluster Selatan Kecil', type:'TYPE 38', size:'5×14 m', units:3, x:0.08, z:0.48, color:0xc9a961 },
-  { id:'fasum', name:'Fasum / Clubhouse', type:'FASILITAS', size:'Umum', units:1, x:-0.08, z:0.58, color:0x9b8bb0 },
-  { id:'kostel', name:'Kostel', type:'KOSTEL', size:'3.2×12 m', units:6, x:0.10, z:0.72, color:0x9b8bb0 },
+  { id:'c19', name:'Cluster Utara', type:'TYPE 38', size:'5×14 m', units:19, x:-0.158, z:-0.295, color:0xc9a961 },
+  { id:'c18', name:'Cluster Timur Laut', type:'TYPE 38', size:'5×14 m', units:18, x:0.106, z:-0.277, color:0xc9a961 },
+  { id:'c9a', name:'Cluster Timur', type:'TYPE 38', size:'5×14 m', units:9, x:0.249, z:-0.233, color:0xc9a961 },
+  { id:'c40-9', name:'Cluster Barat Laut', type:'TYPE 40', size:'6×13 m', units:9, x:-0.393, z:-0.259, color:0x8fa68e },
+  { id:'c40-12', name:'Cluster Barat', type:'TYPE 40', size:'6×14 m', units:12, x:-0.414, z:-0.126, color:0x8fa68e },
+  { id:'c10', name:'Cluster Barat Daya', type:'TYPE 38', size:'5×14 m', units:10, x:-0.336, z:-0.037, color:0xc9a961 },
+  { id:'c7', name:'Cluster Tenggara', type:'TYPE 38', size:'5×14 m', units:7, x:0.178, z:-0.206, color:0xc9a961 },
+  { id:'c3a', name:'Cluster Timur Kecil A', type:'TYPE 38', size:'5×14 m', units:3, x:0.213, z:-0.250, color:0xc9a961 },
+  { id:'c3b', name:'Cluster Timur Kecil B', type:'TYPE 38', size:'5×14 m', units:3, x:0.121, z:-0.179, color:0xc9a961 },
+  { id:'c3c', name:'Cluster Selatan Kecil', type:'TYPE 38', size:'5×14 m', units:3, x:-0.036, z:-0.215, color:0xc9a961 },
+  { id:'fasum', name:'Fasum / Clubhouse', type:'FASILITAS', size:'Umum', units:1, x:0.178, z:-0.072, color:0x9b8bb0 },
+  { id:'kostel', name:'Kostel', type:'KOSTEL', size:'3.2×12 m', units:6, x:0.213, z:0.079, color:0x9b8bb0 },
 ];
 
 // Photo sets per "experience" — currently we have one full real photo set (Type 40 sample)
