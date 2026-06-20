@@ -91,22 +91,18 @@ footer{background:#040102;padding:2.5rem 4rem;display:flex;align-items:center;ju
 .ft-nav a:hover{color:var(--rose);}
 
 /* ── HERO ── */
-.b-hero{min-height:100vh;position:relative;display:flex;align-items:flex-end;overflow:hidden;background:linear-gradient(135deg,#1e0804,#130508,#08030a);}
-.b-blob{position:absolute;border-radius:50%;filter:blur(120px);pointer-events:none;}
-.bb1{width:700px;height:700px;background:var(--rose);opacity:.09;top:-200px;right:-200px;animation:bfloat 10s ease-in-out infinite;}
-.bb2{width:500px;height:500px;background:#5a1f1a;opacity:.07;bottom:-100px;left:-150px;animation:bfloat 13s 4s ease-in-out infinite;}
-.bb3{width:350px;height:350px;background:var(--gold);opacity:.04;top:40%;left:35%;animation:bfloat 8s 2s ease-in-out infinite;}
+.b-hero{min-height:100vh;position:relative;display:flex;align-items:flex-end;overflow:hidden;background:#08030a;}
+.b-hero-video{position:absolute;inset:0;overflow:hidden;z-index:1;}
+.b-hero-video video{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);min-width:100%;min-height:100%;width:auto;height:auto;object-fit:cover;filter:brightness(.55) saturate(1.15);}
+.b-hero-video::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(8,3,10,.35) 0%,rgba(8,3,10,.1) 30%,rgba(8,3,10,.15) 50%,rgba(8,3,10,.65) 78%,rgba(8,3,10,.96) 100%);}
+.b-blob{position:absolute;border-radius:50%;filter:blur(120px);pointer-events:none;z-index:2;}
+.bb1{width:700px;height:700px;background:var(--rose);opacity:.07;top:-200px;right:-200px;animation:bfloat 10s ease-in-out infinite;}
+.bb2{width:500px;height:500px;background:#5a1f1a;opacity:.05;bottom:-100px;left:-150px;animation:bfloat 13s 4s ease-in-out infinite;}
+.bb3{width:350px;height:350px;background:var(--gold);opacity:.03;top:40%;left:35%;animation:bfloat 8s 2s ease-in-out infinite;}
 @keyframes bfloat{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(25px,-20px) scale(1.03)}66%{transform:translate(-18px,18px) scale(.97)}}
-.b-grid{position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(201,148,138,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(201,148,138,.03) 1px,transparent 1px);background-size:80px 80px;}
-.b-hero-inner{position:relative;z-index:5;padding:0 4rem 6rem;width:100%;display:grid;grid-template-columns:1fr 1fr 1fr;gap:3rem;align-items:flex-end;}
+.b-grid{position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(201,148,138,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(201,148,138,.03) 1px,transparent 1px);background-size:80px 80px;z-index:2;}
+.b-hero-inner{position:relative;z-index:5;padding:0 4rem 6rem;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:flex-end;}
 .b-left{}
-.b-hero-img{position:relative;display:flex;justify-content:center;align-items:flex-end;}
-.b-hero-img img{width:100%;max-width:260px;height:380px;object-fit:cover;border-radius:16px;box-shadow:0 30px 80px rgba(0,0,0,.6);filter:brightness(.9) saturate(1.1);animation:heroImgFloat 6s ease-in-out infinite;}
-@keyframes heroImgFloat{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-14px) rotate(1deg)}}
-.b-hero-img-badge{position:absolute;bottom:1.5rem;left:50%;transform:translateX(-50%);background:rgba(6,2,3,.8);backdrop-filter:blur(12px);border:1px solid rgba(201,148,138,.15);border-radius:8px;padding:.6rem 1.2rem;text-align:center;white-space:nowrap;}
-.b-hero-img video{width:100%;max-width:260px;height:380px;object-fit:cover;border-radius:16px;box-shadow:0 30px 80px rgba(0,0,0,.6);filter:brightness(.95) saturate(1.1);}
-.bhib-tag{font-size:.55rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.3);}
-.bhib-name{font-family:'Cormorant Garamond',serif;font-size:1rem;color:#fff;letter-spacing:.1em;}
 .b-eyebrow{font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--rose);margin-bottom:1.2rem;display:flex;align-items:center;gap:.8rem;opacity:0;animation:fu .6s .3s forwards;}
 .b-eyebrow::before{content:'';display:block;width:18px;height:1px;background:var(--rose);}
 .b-title{font-family:'Cormorant Garamond',serif;font-size:clamp(5rem,12vw,10rem);font-weight:300;color:#fff;line-height:.85;overflow:hidden;}
@@ -280,8 +276,6 @@ footer{background:#040102;padding:2.5rem 4rem;display:flex;align-items:center;ju
   .nav-links,.nav-cta{display:none;}
   .hamburger{display:flex;}
   .b-hero-inner{grid-template-columns:1fr;padding:0 1.5rem 5rem;gap:2rem;}
-  .b-hero-img{order:-1;margin-top:6rem;}
-  .b-hero-img img{max-width:200px;height:280px;}
   .b-title{font-size:clamp(4.5rem,18vw,8rem);}
   .b-price-new{font-size:3.5rem;}
   .b-btns{flex-direction:column;gap:.7rem;}
@@ -334,6 +328,12 @@ footer{background:#040102;padding:2.5rem 4rem;display:flex;align-items:center;ju
 
 <!-- HERO -->
 <section class="b-hero">
+  <div class="b-hero-video">
+    <video autoplay muted loop playsinline poster="beauty-hero-poster.jpg">
+      <source src="beauty-hero.webm" type="video/webm">
+      <source src="beauty-hero.mp4" type="video/mp4">
+    </video>
+  </div>
   <div class="b-blob bb1"></div><div class="b-blob bb2"></div><div class="b-blob bb3"></div>
   <div class="b-grid"></div>
   <div class="particles" id="pB"></div>
@@ -346,16 +346,6 @@ footer{background:#040102;padding:2.5rem 4rem;display:flex;align-items:center;ju
         <span class="wl"><span><em>Glow</em></span></span>
       </h1>
       <p class="b-sub">Advanced Brightening Lotion</p>
-    </div>
-    <div class="b-hero-img">
-      <video autoplay muted loop playsinline poster="beauty-hero-poster.jpg">
-        <source src="beauty-hero.webm" type="video/webm">
-        <source src="beauty-hero.mp4" type="video/mp4">
-      </video>
-      <div class="b-hero-img-badge">
-        <div class="bhib-tag">Pure Skin Luxury</div>
-        <div class="bhib-name">LOONARS</div>
-      </div>
     </div>
     <div class="b-right">
       <div class="b-tags">
