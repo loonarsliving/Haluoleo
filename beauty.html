@@ -104,6 +104,7 @@ footer{background:#040102;padding:2.5rem 4rem;display:flex;align-items:center;ju
 .b-hero-img img{width:100%;max-width:260px;height:380px;object-fit:cover;border-radius:16px;box-shadow:0 30px 80px rgba(0,0,0,.6);filter:brightness(.9) saturate(1.1);animation:heroImgFloat 6s ease-in-out infinite;}
 @keyframes heroImgFloat{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-14px) rotate(1deg)}}
 .b-hero-img-badge{position:absolute;bottom:1.5rem;left:50%;transform:translateX(-50%);background:rgba(6,2,3,.8);backdrop-filter:blur(12px);border:1px solid rgba(201,148,138,.15);border-radius:8px;padding:.6rem 1.2rem;text-align:center;white-space:nowrap;}
+.b-hero-img video{width:100%;max-width:260px;height:380px;object-fit:cover;border-radius:16px;box-shadow:0 30px 80px rgba(0,0,0,.6);filter:brightness(.95) saturate(1.1);}
 .bhib-tag{font-size:.55rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.3);}
 .bhib-name{font-family:'Cormorant Garamond',serif;font-size:1rem;color:#fff;letter-spacing:.1em;}
 .b-eyebrow{font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--rose);margin-bottom:1.2rem;display:flex;align-items:center;gap:.8rem;opacity:0;animation:fu .6s .3s forwards;}
@@ -347,8 +348,10 @@ footer{background:#040102;padding:2.5rem 4rem;display:flex;align-items:center;ju
       <p class="b-sub">Advanced Brightening Lotion</p>
     </div>
     <div class="b-hero-img">
-      <img src="img%20hydraglow1.jpeg" alt="HydraGlow"
-        onerror="this.src='img%20hydraglow2.jpeg';this.onerror=function(){this.style.display='none';};">
+      <video autoplay muted loop playsinline poster="beauty-hero-poster.jpg">
+        <source src="beauty-hero.webm" type="video/webm">
+        <source src="beauty-hero.mp4" type="video/mp4">
+      </video>
       <div class="b-hero-img-badge">
         <div class="bhib-tag">Pure Skin Luxury</div>
         <div class="bhib-name">LOONARS</div>
