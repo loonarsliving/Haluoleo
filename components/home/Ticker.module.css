@@ -1,3 +1,5 @@
+@keyframes tkr{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
 .ticker{overflow:hidden;background:#0d160c;padding:.75rem 0;border-top:1px solid rgba(255,255,255,.03);border-bottom:1px solid rgba(255,255,255,.03);}
 .tickerT{display:flex;gap:0;animation:tkr 28s linear infinite;white-space:nowrap;}
 .tickerI{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.4);display:flex;align-items:center;gap:1.5rem;padding:0 1.5rem;flex-shrink:0;}

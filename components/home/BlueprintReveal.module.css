@@ -1,0 +1,13 @@
+.wrap{position:relative;height:560px;border-radius:6px;overflow:hidden;background:#0a0f09;}
+.canvasMount{position:absolute;inset:0;}
+.canvasMount canvas{display:block;width:100%;height:100%;}
+.fallback{background-image:url('/render-exterior.jpeg');background-size:cover;background-position:center;}
+
+.badge{position:absolute;bottom:1.2rem;left:1.2rem;display:flex;gap:.6rem;z-index:2;}
+.badgeDotBlue,.badgeDotGreen{font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;padding:.32rem .8rem;border-radius:50px;backdrop-filter:blur(8px);}
+.badgeDotBlue{background:rgba(122,158,110,.1);border:1px solid rgba(122,158,110,.2);color:rgba(255,255,255,.5);}
+.badgeDotGreen{background:rgba(122,158,110,.18);border:1px solid rgba(122,158,110,.3);color:var(--sage);}
+
+@media(max-width:900px){
+  .wrap{height:340px;}
+}

@@ -3,8 +3,7 @@ import Footer from '@/components/Footer';
 import WhatsAppButton from '@/components/WhatsAppButton';
 import Hero from '@/components/home/Hero';
 import Ticker from '@/components/home/Ticker';
-import Stats from '@/components/home/Stats';
-import About from '@/components/home/About';
+import Company from '@/components/home/Company';
 import Projects from '@/components/home/Projects';
 import Marquee from '@/components/home/Marquee';
 import Portfolio from '@/components/home/Portfolio';
@@ -16,8 +15,7 @@ export default function Home() {
       <Nav />
       <Hero />
       <Ticker />
-      <Stats />
-      <About />
+      <Company />
       <Projects />
       <Marquee />
       <Portfolio />

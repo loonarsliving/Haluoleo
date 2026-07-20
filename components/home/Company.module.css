@@ -1,0 +1,16 @@
+.company{padding:10rem 4rem;background:var(--dark);}
+.companyInner{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center;}
+
+.stats{display:flex;align-items:center;gap:1.5rem;margin-top:2.5rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,.06);}
+.statItem{text-align:left;}
+.statNum{font-family:var(--font-serif),serif;font-size:2.4rem;color:#fff;font-weight:300;line-height:1;}
+.statNum em{font-style:normal;color:var(--sage);}
+.statLbl{font-size:.56rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-top:.3rem;}
+.statSep{width:1px;height:38px;background:rgba(255,255,255,.06);}
+
+@media(max-width:900px){
+  .company{padding:6rem 1.5rem;}
+  .companyInner{grid-template-columns:1fr;gap:3rem;}
+  .stats{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;}
+  .statSep{display:none;}
+}

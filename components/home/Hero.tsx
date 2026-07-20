@@ -3,7 +3,7 @@
 import { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import useMagnetic from '../useMagnetic';
-import Particles from './Particles';
+import HeroAtmosphere from './HeroAtmosphere';
 import styles from './Hero.module.css';
 
 export default function Hero() {
@@ -31,13 +31,15 @@ export default function Hero() {
         </video>
       </div>
 
+      <div className={styles.heroTagline}>Building the Future of Living.</div>
+
       <div ref={bgTextRef} className={styles.heroBgText}>
         <span className={styles.htLine}>Dari Tanah</span>
         <span className={`${styles.htLine} ${styles.htLine2}`}>Menjadi Karya</span>
       </div>
 
       <div className={styles.heroVignette} />
-      <Particles />
+      <HeroAtmosphere />
 
       <div className={styles.heroContent}>
         <div className={styles.heroLeft}>

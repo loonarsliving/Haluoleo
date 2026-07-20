@@ -1,0 +1,2 @@
+.atmosphere{position:absolute;inset:0;z-index:4;pointer-events:none;overflow:hidden;}
+.atmosphere canvas{display:block;}
