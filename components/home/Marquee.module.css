@@ -1,0 +1,6 @@
+@keyframes tkr{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+.marquee{padding:4rem 0;background:#0d160c;overflow:hidden;}
+.mqInner{display:flex;gap:3rem;white-space:nowrap;animation:tkr 30s linear infinite;}
+.mqI{font-family:var(--font-serif),serif;font-size:2.2rem;color:rgba(255,255,255,.12);font-style:italic;flex-shrink:0;}
+.mqI.hi{color:rgba(255,255,255,.45);}

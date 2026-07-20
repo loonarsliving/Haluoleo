@@ -1,0 +1,8 @@
+.ldr{position:fixed;inset:0;background:var(--dark);z-index:8000;display:flex;align-items:center;justify-content:center;flex-direction:column;transition:opacity 1s,transform 1s;}
+.ldr.out{opacity:0;pointer-events:none;transform:scale(1.03);}
+.ldrChars{display:flex;gap:.1em;overflow:hidden;}
+.ldrC{font-family:var(--font-serif),serif;font-size:clamp(3rem,8vw,7rem);font-weight:300;color:#fff;opacity:0;transform:translateY(60px);animation:cUp .55s forwards;}
+@keyframes cUp{to{opacity:1;transform:translateY(0)}}
+.ldrLine{width:0;height:1px;background:linear-gradient(90deg,transparent,var(--sage),transparent);margin-top:1.5rem;transition:width 1.6s ease;}
+.ldrLine.go{width:240px;}
+.ldrPct{font-size:.58rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.18);margin-top:.8rem;}

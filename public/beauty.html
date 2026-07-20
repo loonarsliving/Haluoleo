@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Loonars Beauty HydraGlow — Skincare Premium Indonesia</title>
+<meta name="description" content="Loonars Beauty HydraGlow Advanced Brightening Lotion — 4 Types Hyaluron, Niacinamide & Squalane. Rp 89.000.">
+<meta property="og:title" content="Loonars Beauty HydraGlow — Advanced Brightening Lotion">
+<meta property="og:image" content="https://haluoleo.id/img hydraglow1.jpeg">
+<link rel="canonical" href="https://haluoleo.id/beauty">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js" defer></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:#060203;color:#fff;overflow-x:hidden;cursor:none;}
+:root{
+  --rose:#c9948a;--rose-d:#a06660;--rose-deep:#7a3f3a;
+  --gold:#c9a84c;--sage:#7a9e6e;--sage-d:#4e7244;--sage-deep:#2d4d25;
+  --dark:#060203;
+}
+
+/* CURSOR */
+.cur-dot{width:8px;height:8px;background:var(--rose);border-radius:50%;position:fixed;transform:translate(-50%,-50%);pointer-events:none;z-index:9999;mix-blend-mode:difference;transition:width .2s,height .2s;}
+.cur-ring{width:40px;height:40px;border:1px solid rgba(201,148,138,.4);border-radius:50%;position:fixed;transform:translate(-50%,-50%);pointer-events:none;z-index:9998;transition:width .3s,height .3s,border-color .3s;}
+body.hov .cur-dot{width:4px;height:4px;}
+body.hov .cur-ring{width:64px;height:64px;border-color:var(--rose);}
+
+/* PROGRESS */
+#pb{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--rose),var(--gold));z-index:9000;width:0;transition:width .08s;}
+
+/* LOADER */
+#ldr{position:fixed;inset:0;background:var(--dark);z-index:8000;display:flex;align-items:center;justify-content:center;flex-direction:column;transition:opacity .9s,transform .9s;}
+#ldr.out{opacity:0;transform:scale(1.04);pointer-events:none;}
+.ldr-line{display:flex;overflow:hidden;margin-bottom:.5rem;}
+.ldr-char{font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,7vw,6rem);font-weight:300;color:#fff;opacity:0;transform:translateY(50px);animation:charUp .5s forwards;}
+@keyframes charUp{to{opacity:1;transform:translateY(0)}}
+.ldr-bar{width:0;height:1px;background:linear-gradient(90deg,transparent,var(--rose),transparent);margin-top:1.5rem;transition:width 1.6s ease;}
+.ldr-bar.go{width:260px;}
+.ldr-pct{font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.2);margin-top:.8rem;}
+
+/* NAV */
+nav{position:fixed;top:0;width:100%;z-index:1000;padding:1.5rem 3rem;display:flex;align-items:center;justify-content:space-between;mix-blend-mode:difference;}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:#fff;text-decoration:none;letter-spacing:.08em;display:flex;align-items:center;gap:.5rem;cursor:none;}
+.nav-dot{width:7px;height:7px;background:var(--rose);border-radius:50%;}
+.nav-links{display:flex;gap:2.5rem;list-style:none;}
+.nav-links a{font-size:.68rem;color:rgba(255,255,255,.5);text-decoration:none;letter-spacing:.15em;text-transform:uppercase;transition:color .25s;cursor:none;}
+.nav-links a:hover{color:#fff;}
+.nav-cta{font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:#fff;border:1px solid rgba(255,255,255,.2);padding:.5rem 1.2rem;border-radius:50px;text-decoration:none;transition:all .3s;cursor:none;}
+.nav-cta:hover{background:#fff;color:#000;}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:none;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);width:42px;height:42px;border-radius:50%;align-items:center;justify-content:center;}
+.hamburger span{display:block;width:16px;height:1.5px;background:#fff;transition:all .3s;}
+.hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg);}
+.hamburger.open span:nth-child(2){opacity:0;}
+.hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}
+
+/* SIDE MENU */
+.smol{position:fixed;inset:0;z-index:998;opacity:0;pointer-events:none;transition:opacity .4s;background:rgba(0,0,0,.6);backdrop-filter:blur(6px);}
+.smol.open{opacity:1;pointer-events:all;}
+.side-menu{position:fixed;top:0;right:-100%;width:300px;height:100vh;background:#100303;z-index:999;padding:5rem 2.5rem 3rem;transition:right .5s cubic-bezier(.77,0,.175,1);border-left:1px solid rgba(255,255,255,.04);}
+.side-menu.open{right:0;}
+.sm-item{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;color:rgba(255,255,255,.55);text-decoration:none;padding:.7rem 0;border-bottom:1px solid rgba(255,255,255,.05);display:block;transition:all .25s;cursor:none;}
+.sm-item:hover{color:#fff;padding-left:.5rem;}
+.sm-item.rose{color:var(--rose);}
+
+/* WA */
+.wa{position:fixed;bottom:2rem;right:2rem;z-index:500;width:52px;height:52px;border-radius:50%;background:#25d366;color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.4rem;text-decoration:none;box-shadow:0 4px 24px rgba(37,211,102,.3);transition:transform .3s;cursor:none;}
+.wa:hover{transform:scale(1.12);}
+
+/* LIGHTBOX */
+.lb{position:fixed;inset:0;background:rgba(0,0,0,.95);z-index:5000;display:none;align-items:center;justify-content:center;backdrop-filter:blur(10px);}
+.lb.open{display:flex;}
+.lb img{max-width:90vw;max-height:82vh;object-fit:contain;border-radius:6px;}
+.lb-close{position:absolute;top:1.5rem;right:1.5rem;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.08);border:none;color:#fff;font-size:1.2rem;cursor:none;display:flex;align-items:center;justify-content:center;}
+.lb-prev,.lb-next{position:absolute;top:50%;transform:translateY(-50%);width:50px;height:50px;border-radius:50%;background:rgba(255,255,255,.08);border:none;color:#fff;font-size:1.3rem;cursor:none;display:flex;align-items:center;justify-content:center;}
+.lb-prev{left:1.5rem;} .lb-next{right:1.5rem;}
+
+/* REVEAL */
+.rv{opacity:0;transform:translateY(40px);transition:opacity .9s ease,transform .9s cubic-bezier(.77,0,.175,1);}
+.rv.vis{opacity:1;transform:translateY(0);}
+.rvl{opacity:0;transform:translateX(-40px);transition:opacity .9s ease,transform .9s cubic-bezier(.77,0,.175,1);}
+.rvl.vis{opacity:1;transform:translateX(0);}
+.rvr{opacity:0;transform:translateX(40px);transition:opacity .9s ease,transform .9s cubic-bezier(.77,0,.175,1);}
+.rvr.vis{opacity:1;transform:translateX(0);}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
+
+/* FOOTER */
+footer{background:#040102;padding:2.5rem 4rem;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(255,255,255,.04);}
+.ft-brand{font-family:'Cormorant Garamond',serif;font-size:1rem;color:rgba(255,255,255,.3);}
+.ft-copy{font-size:.67rem;color:rgba(255,255,255,.14);}
+.ft-nav{display:flex;gap:2rem;flex-wrap:wrap;}
+.ft-nav a{font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.18);text-decoration:none;transition:color .2s;cursor:none;}
+.ft-nav a:hover{color:var(--rose);}
+
+/* ── HERO ── */
+.b-hero{min-height:100vh;position:relative;display:flex;align-items:flex-end;overflow:hidden;background:#08030a;}
+.b-hero-video{position:absolute;inset:0;overflow:hidden;z-index:1;}
+.b-hero-video video{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);min-width:100%;min-height:100%;width:auto;height:auto;object-fit:cover;filter:brightness(.55) saturate(1.15);}
+.b-hero-video::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(8,3,10,.35) 0%,rgba(8,3,10,.1) 30%,rgba(8,3,10,.15) 50%,rgba(8,3,10,.65) 78%,rgba(8,3,10,.96) 100%);}
+.b-blob{position:absolute;border-radius:50%;filter:blur(120px);pointer-events:none;z-index:2;}
+.bb1{width:700px;height:700px;background:var(--rose);opacity:.07;top:-200px;right:-200px;animation:bfloat 10s ease-in-out infinite;}
+.bb2{width:500px;height:500px;background:#5a1f1a;opacity:.05;bottom:-100px;left:-150px;animation:bfloat 13s 4s ease-in-out infinite;}
+.bb3{width:350px;height:350px;background:var(--gold);opacity:.03;top:40%;left:35%;animation:bfloat 8s 2s ease-in-out infinite;}
+@keyframes bfloat{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(25px,-20px) scale(1.03)}66%{transform:translate(-18px,18px) scale(.97)}}
+.b-grid{position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(201,148,138,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(201,148,138,.03) 1px,transparent 1px);background-size:80px 80px;z-index:2;}
+.b-hero-inner{position:relative;z-index:5;padding:0 4rem 6rem;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:flex-end;}
+.b-left{}
+.b-eyebrow{font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--rose);margin-bottom:1.2rem;display:flex;align-items:center;gap:.8rem;opacity:0;animation:fu .6s .3s forwards;}
+.b-eyebrow::before{content:'';display:block;width:18px;height:1px;background:var(--rose);}
+.b-title{font-family:'Cormorant Garamond',serif;font-size:clamp(5rem,12vw,10rem);font-weight:300;color:#fff;line-height:.85;overflow:hidden;}
+.b-title .wl{display:block;overflow:hidden;}
+.b-title .wl span{display:block;opacity:0;transform:translateY(100%);animation:wu 1s cubic-bezier(.77,0,.175,1) forwards;}
+.b-title .wl:nth-child(1) span{animation-delay:.4s;}
+.b-title .wl:nth-child(2) span{animation-delay:.6s;}
+.b-title em{font-style:italic;color:var(--rose);}
+.b-sub{font-size:.88rem;color:rgba(255,255,255,.3);margin-top:.8rem;letter-spacing:.06em;opacity:0;animation:fu .6s .9s forwards;}
+.b-right{opacity:0;animation:fu .9s .7s forwards;}
+.b-tags{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.5rem;}
+.b-tag{padding:.28rem .85rem;border-radius:50px;background:rgba(201,148,138,.08);border:1px solid rgba(201,148,138,.18);font-size:.63rem;letter-spacing:.07em;color:var(--rose);}
+.b-price-old{font-size:.88rem;color:rgba(255,255,255,.18);text-decoration:line-through;margin-bottom:.4rem;}
+.b-price-new{font-family:'Cormorant Garamond',serif;font-size:4.5rem;color:var(--rose);font-weight:300;line-height:.9;}
+.b-price-save{display:inline-flex;align-items:center;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;background:rgba(201,148,138,.1);border:1px solid rgba(201,148,138,.2);border-radius:50px;padding:.22rem .8rem;color:var(--rose);margin-top:.5rem;}
+.b-btns{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1.8rem;}
+.btn-rose{display:inline-flex;align-items:center;gap:.6rem;padding:1rem 2rem;border-radius:6px;background:var(--rose);color:#fff;font-size:.76rem;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;transition:all .35s;position:relative;overflow:hidden;cursor:none;border:none;font-family:'DM Sans',sans-serif;}
+.btn-rose::before{content:'';position:absolute;inset:0;background:var(--rose-d);transform:translateX(-100%);transition:transform .4s cubic-bezier(.77,0,.175,1);}
+.btn-rose:hover::before{transform:translateX(0);}
+.btn-rose span{position:relative;z-index:1;}
+.btn-shop-out{display:inline-flex;align-items:center;gap:.6rem;padding:.85rem 1.5rem;border-radius:6px;border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.45);font-size:.73rem;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;transition:all .3s;cursor:none;}
+.btn-shop-out:hover{border-color:rgba(255,255,255,.35);color:#fff;}
+
+/* ── INGREDIENTS ── */
+.ing-sec{background:#0f0306;padding:8rem 4rem;position:relative;}
+.ing-inner{max-width:1300px;margin:0 auto;}
+.ing-inner .s-label{color:var(--rose);font-size:.62rem;letter-spacing:.25em;text-transform:uppercase;margin-bottom:1rem;display:flex;align-items:center;gap:.8rem;}
+.ing-inner .s-label::before{content:'';display:block;width:20px;height:1px;background:var(--rose);}
+.ing-inner .s-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,4vw,3.5rem);font-weight:300;color:#fff;line-height:1.05;}
+.ing-inner .s-title em{font-style:italic;color:rgba(201,148,138,.45);}
+.ing-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(201,148,138,.07);margin-top:3rem;}
+.ing-c{background:#060203;padding:2.5rem 2rem;transition:background .35s;position:relative;overflow:hidden;}
+.ing-c::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--rose),var(--gold));transform:scaleX(0);transform-origin:left;transition:transform .45s cubic-bezier(.77,0,.175,1);}
+.ing-c:hover::after{transform:scaleX(1);}
+.ing-c:hover{background:rgba(201,148,138,.05);}
+.ing-icon{font-size:1.8rem;margin-bottom:1.2rem;}
+.ing-name{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:#fff;margin-bottom:.3rem;}
+.ing-role{font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:var(--rose);margin-bottom:.8rem;}
+.ing-desc{font-size:.78rem;color:rgba(255,255,255,.5);line-height:1.75;}
+
+/* ── ABOUT PRODUCT ── */
+.ap-sec{background:#0a0205;padding:8rem 4rem;position:relative;z-index:0;}
+.ap-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center;}
+
+/* Dual photo stack */
+.ap-img{position:relative;}
+.ap-dual-wrap{position:relative;height:520px;width:100%;}
+.ap-photo-main{position:absolute;top:0;left:0;width:73%;height:430px;border-radius:10px;overflow:hidden;z-index:2;box-shadow:0 24px 60px rgba(0,0,0,.55);}
+.ap-photo-main img{width:100%;height:100%;object-fit:cover;}
+.ap-photo-accent{position:absolute;bottom:0;right:0;width:56%;height:290px;border-radius:10px;overflow:hidden;z-index:3;box-shadow:0 16px 40px rgba(0,0,0,.6);border:4px solid #0a0205;}
+.ap-photo-accent img{width:100%;height:100%;object-fit:cover;}
+.ap-photo-badge{position:absolute;top:1.5rem;right:-0.5rem;background:rgba(10,2,5,.9);backdrop-filter:blur(12px);border:1px solid rgba(201,148,138,.2);border-radius:6px;padding:.6rem 1.1rem;font-size:.75rem;color:var(--rose);z-index:4;white-space:nowrap;}
+
+/* Content */
+.ap-content{position:relative;z-index:1;}
+.ap-s-label{font-size:.62rem;letter-spacing:.25em;text-transform:uppercase;color:var(--rose);margin-bottom:1rem;display:flex;align-items:center;gap:.8rem;}
+.ap-s-label::before{content:'';display:block;width:20px;height:1px;background:var(--rose);}
+.ap-s-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,4vw,3.5rem);font-weight:300;color:#fff;line-height:1.05;margin-bottom:1.5rem;}
+.ap-s-title em{font-style:italic;color:rgba(201,148,138,.45);}
+.ap-q{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-style:italic;color:rgba(255,255,255,.45);border-left:2px solid var(--rose);padding-left:1.5rem;margin:1.5rem 0;line-height:1.65;}
+.ap-list{list-style:none;margin-bottom:1.5rem;}
+.ap-list li{font-size:.85rem;color:rgba(255,255,255,.55);padding:.4rem 0;display:flex;align-items:center;gap:.7rem;border-bottom:1px solid rgba(255,255,255,.05);}
+.ap-list li::before{content:'';display:block;width:4px;height:4px;background:var(--rose);border-radius:50%;flex-shrink:0;}
+
+/* ── HOW TO USE ── */
+.ht-sec{background:#0f0306;padding:8rem 4rem;position:relative;}
+.ht-inner{max-width:860px;margin:0 auto;}
+.ht-s-label{font-size:.62rem;letter-spacing:.25em;text-transform:uppercase;color:var(--rose);margin-bottom:1rem;display:flex;align-items:center;gap:.8rem;}
+.ht-s-label::before{content:'';display:block;width:20px;height:1px;background:var(--rose);}
+.ht-s-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,5vw,4rem);font-weight:300;color:#fff;line-height:1.05;margin-bottom:3rem;}
+.ht-s-title em{font-style:italic;color:rgba(201,148,138,.45);}
+.ht-steps{display:flex;flex-direction:column;gap:3rem;}
+.ht-step{display:flex;gap:2.5rem;align-items:flex-start;}
+.ht-num{font-family:'Cormorant Garamond',serif;font-size:4rem;color:rgba(201,148,138,.15);font-weight:300;line-height:1;flex-shrink:0;width:70px;}
+.ht-title{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:#fff;margin-bottom:.4rem;}
+.ht-desc{font-size:.85rem;color:rgba(255,255,255,.5);line-height:1.9;}
+
+/* ── PRODUCT SHOWCASE (section sebelum form) ── */
+.prod-showcase{background:#0a0205;padding:7rem 4rem;position:relative;}
+.ps-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center;}
+.ps-visual{display:flex;justify-content:center;}
+.ps-bottle{width:300px;height:400px;background:linear-gradient(160deg,#2a0f0d,#1a0a0e,#0d0305);border-radius:16px;border:1px solid rgba(201,148,138,.12);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2.5rem;text-align:center;position:relative;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.5);}
+.psb-glow{position:absolute;width:200px;height:200px;background:var(--rose);opacity:.08;border-radius:50%;filter:blur(60px);top:50%;left:50%;transform:translate(-50%,-50%);}
+.psb-icon{font-size:5rem;margin-bottom:1rem;animation:bFloat 3.5s ease-in-out infinite;position:relative;z-index:1;}
+@keyframes bFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.psb-name{font-family:'Cormorant Garamond',serif;font-size:2rem;color:#fff;font-weight:300;position:relative;z-index:1;}
+.psb-sub{font-size:.68rem;letter-spacing:.1em;color:rgba(255,255,255,.3);margin:.3rem 0 1.5rem;position:relative;z-index:1;}
+.psb-tags{display:flex;flex-direction:column;gap:.4rem;width:100%;margin-bottom:1.5rem;position:relative;z-index:1;}
+.psb-tags span{font-size:.72rem;color:rgba(201,148,138,.7);border:1px solid rgba(201,148,138,.15);padding:.3rem .8rem;border-radius:50px;}
+.psb-price-wrap{display:flex;align-items:baseline;gap:.8rem;position:relative;z-index:1;}
+.psb-old{font-size:.85rem;color:rgba(255,255,255,.2);text-decoration:line-through;}
+.psb-new{font-family:'Cormorant Garamond',serif;font-size:1.8rem;color:var(--rose);}
+.ps-info .ps-s-label{font-size:.62rem;letter-spacing:.25em;text-transform:uppercase;color:var(--rose);margin-bottom:1rem;display:flex;align-items:center;gap:.8rem;}
+.ps-info .ps-s-label::before{content:'';display:block;width:20px;height:1px;background:var(--rose);}
+.ps-info .ps-s-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,4vw,3.5rem);font-weight:300;color:#fff;line-height:1.05;margin-bottom:1.5rem;}
+.ps-info .ps-s-title em{font-style:italic;color:rgba(201,148,138,.45);}
+.ps-info p{color:rgba(255,255,255,.5);font-size:.88rem;line-height:1.85;font-weight:300;margin-bottom:1.5rem;}
+.ps-badges{display:flex;flex-direction:column;gap:.7rem;}
+.ps-badge{display:flex;align-items:center;gap:.8rem;padding:.7rem 1rem;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:4px;font-size:.82rem;color:rgba(255,255,255,.55);}
+
+/* ── COD FORM ── */
+.cod-sec{background:#060203;padding:8rem 4rem;position:relative;}
+.cod-inner{max-width:1100px;margin:0 auto;}
+.cod-hdr{text-align:center;margin-bottom:4rem;}
+.cod-hdr-label{font-size:.62rem;letter-spacing:.25em;text-transform:uppercase;color:var(--rose);margin-bottom:1rem;display:flex;align-items:center;justify-content:center;gap:.8rem;}
+.cod-hdr-label::before{content:'';display:block;width:20px;height:1px;background:var(--rose);}
+.cod-hdr-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,6vw,4.5rem);font-weight:300;color:#fff;line-height:1.05;}
+.cod-hdr-title em{font-style:italic;color:rgba(201,148,138,.45);}
+.cod-badge{display:inline-block;margin-top:1rem;padding:.5rem 1.3rem;border-radius:50px;background:rgba(201,148,138,.07);border:1px solid rgba(201,148,138,.18);font-size:.68rem;letter-spacing:.1em;color:var(--rose);}
+.cod-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:3rem;align-items:start;}
+.cod-fb{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.05);border-radius:8px;padding:2.5rem;margin-bottom:1rem;}
+.cod-fb-title{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:#fff;margin-bottom:.3rem;}
+.cod-fb-sub{font-size:.75rem;color:rgba(255,255,255,.25);margin-bottom:2rem;}
+.f-g{margin-bottom:1.2rem;}
+.f-lbl{display:block;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:.4rem;}
+.f-inp{width:100%;padding:.8rem 1rem;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:4px;color:#fff;font-family:'DM Sans',sans-serif;font-size:.88rem;outline:none;transition:border-color .2s;}
+.f-inp:focus{border-color:var(--rose);}
+.f-inp::placeholder{color:rgba(255,255,255,.22);}
+.f-ta{resize:vertical;min-height:80px;}
+.form-row-2{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.prod-row{display:flex;align-items:center;justify-content:space-between;padding:1rem 0;border-bottom:1px solid rgba(255,255,255,.05);margin-bottom:1rem;}
+.prod-name{color:#fff;font-size:.88rem;}
+.prod-price{color:var(--rose);font-size:.8rem;margin-top:.2rem;}
+.qty-c{display:flex;align-items:center;border:1px solid rgba(255,255,255,.08);border-radius:4px;overflow:hidden;}
+.q-btn{width:38px;height:38px;background:rgba(255,255,255,.04);border:none;color:rgba(255,255,255,.5);font-size:1rem;cursor:none;transition:all .2s;}
+.q-btn:hover{background:rgba(201,148,138,.15);color:var(--rose);}
+.q-val{width:36px;text-align:center;color:#fff;font-size:.92rem;}
+.subtotal-row{display:flex;justify-content:space-between;padding:.6rem 0;font-size:.82rem;color:rgba(255,255,255,.35);}
+.subtotal-val{color:#fff;}
+
+/* Summary box */
+.cod-sum{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.05);border-radius:8px;padding:2rem;position:sticky;top:5rem;}
+.cs-title{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:#fff;margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:1px solid rgba(255,255,255,.06);}
+.cs-row{display:flex;justify-content:space-between;padding:.5rem 0;font-size:.82rem;border-bottom:1px solid rgba(255,255,255,.04);}
+.cs-l{color:rgba(255,255,255,.3);}
+.cs-v{color:rgba(255,255,255,.85);}
+.cs-total{display:flex;justify-content:space-between;padding:1rem 0;margin-top:.5rem;border-top:1px solid rgba(255,255,255,.08);}
+.cs-tl{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.35);}
+.cs-tv{font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--rose);}
+.cs-note{font-size:.67rem;color:rgba(255,255,255,.2);margin-top:1rem;line-height:1.6;font-style:italic;}
+.btn-order{width:100%;padding:1rem;background:var(--rose);border:none;border-radius:6px;color:#fff;font-family:'DM Sans',sans-serif;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;cursor:none;transition:background .3s;margin-top:1.5rem;}
+.btn-order:hover{background:var(--rose-d);}
+.btn-order:disabled{opacity:.5;cursor:not-allowed;}
+.cod-note{font-size:.66rem;color:rgba(255,255,255,.18);text-align:center;margin-top:.8rem;line-height:1.5;}
+
+/* Success */
+.b-ok{display:none;text-align:center;padding:4rem 1rem;}
+.b-ok-icon{font-size:3.5rem;margin-bottom:1rem;}
+.b-ok-title{font-family:'Cormorant Garamond',serif;font-size:2rem;color:#fff;margin-bottom:.8rem;}
+.b-ok-desc{font-size:.86rem;color:rgba(255,255,255,.4);line-height:1.85;margin-bottom:1.5rem;}
+.btn-wa-lnk{display:inline-flex;align-items:center;gap:.6rem;background:#25d366;color:#fff;padding:.85rem 2rem;border-radius:6px;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;transition:opacity .2s;cursor:none;}
+.btn-wa-lnk:hover{opacity:.85;}
+
+/* Shops */
+.shops-row{background:#040102;padding:4rem;border-top:1px solid rgba(255,255,255,.04);display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+.sh-link{display:flex;align-items:center;gap:.7rem;padding:1rem 2rem;border:1px solid rgba(255,255,255,.07);border-radius:6px;color:rgba(255,255,255,.35);text-decoration:none;font-size:.8rem;transition:all .3s;cursor:none;}
+.sh-link:hover{border-color:rgba(201,148,138,.3);color:var(--rose);transform:translateY(-2px);}
+
+/* PARTICLES */
+.particles{position:absolute;inset:0;pointer-events:none;overflow:hidden;}
+.particle{position:absolute;border-radius:50%;animation:pdrift linear infinite;}
+@keyframes pdrift{0%{transform:translateY(100vh) scale(0);opacity:0}10%{opacity:1}90%{opacity:.35}100%{transform:translateY(-10vh) scale(1);opacity:0}}
+
+@keyframes fu{to{opacity:1;transform:translateY(0)}}
+@keyframes wu{to{opacity:1;transform:translateY(0)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  nav{padding:1rem 1.5rem;mix-blend-mode:normal;background:rgba(6,2,3,.9);}
+  .nav-links,.nav-cta{display:none;}
+  .hamburger{display:flex;}
+  .b-hero-inner{grid-template-columns:1fr;padding:0 1.5rem 5rem;gap:2rem;}
+  .b-title{font-size:clamp(4.5rem,18vw,8rem);}
+  .b-price-new{font-size:3.5rem;}
+  .b-btns{flex-direction:column;gap:.7rem;}
+  .btn-rose,.btn-shop-out{width:100%;justify-content:center;padding:.95rem 1.5rem;}
+  .ing-sec,.ap-sec,.ht-sec,.cod-sec,.prod-showcase{padding:5rem 1.5rem;}
+  .ing-grid{grid-template-columns:1fr 1fr;}
+  .ap-inner,.ps-inner{grid-template-columns:1fr;gap:3rem;}
+  .ap-dual-wrap{height:340px;}
+  .ap-photo-main{width:70%;height:265px;}
+  .ap-photo-accent{width:58%;height:200px;}
+  .ap-photo-badge{display:none;}
+  .ps-bottle{width:100%;max-width:260px;height:320px;}
+  .ps-visual{margin-bottom:1rem;}
+  .cod-grid{grid-template-columns:1fr;gap:2rem;}
+  .cod-sum{position:static;}
+  .form-row-2{grid-template-columns:1fr;}
+  .cs-tv{font-size:1.5rem;}
+  .shops-row{padding:3rem 1.5rem;flex-direction:column;align-items:center;}
+  footer{padding:2rem 1.5rem;flex-direction:column;gap:1rem;text-align:center;}
+  .ft-nav{justify-content:center;}
+}
+</style>
+</head>
+<body>
+
+<div id="ldr"><div class="ldr-line"><span class="ldr-char" style="animation-delay:0.00s">B</span><span class="ldr-char" style="animation-delay:0.06s">e</span><span class="ldr-char" style="animation-delay:0.12s">a</span><span class="ldr-char" style="animation-delay:0.18s">u</span><span class="ldr-char" style="animation-delay:0.24s">t</span><span class="ldr-char" style="animation-delay:0.30s">y</span></div><div class="ldr-bar" id="ldrBar"></div><div class="ldr-pct" id="ldrPct">0%</div></div>
+<div class="cur-dot" id="curDot"></div><div class="cur-ring" id="curRing"></div>
+<div id="pb"></div>
+
+<div class="smol" id="_smol" onclick="closeMenu()"></div>
+<div class="side-menu" id="_sm">
+  <a class="sm-item" href="index.html">Beranda</a>
+  <a class="sm-item" href="loonars-living.html">Loonars Living</a>
+  <a class="sm-item" href="al-fath-makassar.html">Al Fath Makassar</a>
+  <a class="sm-item" href="griya-cariu-indah.html">Griya Cariu</a>
+  <a class="sm-item" href="direktur.html">Direktur</a>
+  <a class="sm-item rose" href="beauty.html">Loonars Beauty</a>
+  <a class="sm-item" href="kontak.html">Kontak</a>
+</div>
+<nav>
+  <a href="index.html" class="nav-logo"><div class="nav-dot"></div>Loonars Beauty</a>
+  <ul class="nav-links">
+    <li><a href="index.html#projects">Properti</a></li>
+    <li><a href="direktur.html">Direktur</a></li>
+    <li><a href="beauty.html">Beauty</a></li>
+  </ul>
+  <a href="https://wa.me/6282228885223" target="_blank" class="nav-cta">&#128172; Konsultasi</a>
+  <div class="hamburger" id="hbg" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- HERO -->
+<section class="b-hero">
+  <div class="b-hero-video">
+    <video autoplay muted loop playsinline poster="beauty-hero-poster.jpg">
+      <source src="beauty-hero.webm" type="video/webm">
+      <source src="beauty-hero.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="b-blob bb1"></div><div class="b-blob bb2"></div><div class="b-blob bb3"></div>
+  <div class="b-grid"></div>
+  <div class="particles" id="pB"></div>
+  <div class="b-hero-inner">
+    <div class="b-left">
+      <a href="index.html" class="d-hero-back" style="color:rgba(255,255,255,.3);">&#8592; Beranda</a>
+      <div class="b-eyebrow">Loonars Beauty</div>
+      <h1 class="b-title">
+        <span class="wl"><span>Hydra</span></span>
+        <span class="wl"><span><em>Glow</em></span></span>
+      </h1>
+      <p class="b-sub">Advanced Brightening Lotion</p>
+    </div>
+    <div class="b-right">
+      <div class="b-tags">
+        <span class="b-tag">&#128167; 4 Types Hyaluron</span>
+        <span class="b-tag">&#10024; Niacinamide</span>
+        <span class="b-tag">&#127807; Squalane</span>
+        <span class="b-tag">&#128737;&#65039; Non-Comedogenic</span>
+      </div>
+      <div class="b-price-old">IDR 119.000</div>
+      <div class="b-price-new">IDR 89.000</div>
+      <span class="b-price-save">Hemat 25%</span>
+      <div class="b-btns">
+        <a href="#checkout" class="btn-rose"><span>&#128722; Pesan COD &mdash; Rp 89.000</span></a>
+        <a href="https://tokopedia.com/loonars" target="_blank" class="btn-shop-out">Tokopedia</a>
+        <a href="https://shopee.co.id/loonarsskin" target="_blank" class="btn-shop-out">Shopee</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INGREDIENTS -->
+<section class="ing-sec">
+  <div class="ing-inner">
+    <div class="s-label rv">Kandungan Aktif</div>
+    <h2 class="s-title rv d1">Formula<br><em>Premium</em></h2>
+    <div class="ing-grid">
+      <div class="ing-c rv d1"><div class="ing-icon">&#128167;</div><div class="ing-name">4 Types Hyaluron</div><div class="ing-role">Deep Hydration Complex</div><div class="ing-desc">Hidrasi berlapis dari permukaan hingga lapisan dalam kulit. Mengunci kelembapan 24 jam.</div></div>
+      <div class="ing-c rv d2"><div class="ing-icon">&#10024;</div><div class="ing-name">Niacinamide</div><div class="ing-role">Brightening Agent</div><div class="ing-desc">Mencerahkan merata, menyamarkan noda hitam, memperkuat skin barrier.</div></div>
+      <div class="ing-c rv d3"><div class="ing-icon">&#127807;</div><div class="ing-name">Squalane</div><div class="ing-role">Emollient Moisturizer</div><div class="ing-desc">Emolien ringan dari tanaman &mdash; melembapkan tanpa rasa berat atau berminyak.</div></div>
+      <div class="ing-c rv d4"><div class="ing-icon">&#129518;</div><div class="ing-name">Non-Comedogenic</div><div class="ing-role">Safe Formula</div><div class="ing-desc">Aman untuk kulit wajah dan tubuh. Tidak menyumbat pori, cocok semua jenis kulit.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT PRODUCT -->
+<section class="ap-sec">
+  <div class="ap-inner">
+    <div class="ap-img rvl">
+      <!-- Dual photo layout: hydraglow1 besar di depan, hydraglow2 di belakang -->
+      <div class="ap-dual-wrap">
+        <div class="ap-photo-main">
+          <img src="img%20hydraglow1.jpeg" alt="HydraGlow"
+            onerror="this.src='img%20hydraglow2.jpeg';this.onerror=function(){this.style.display='none';};">
+        </div>
+        <div class="ap-photo-accent">
+          <img src="img%20hydraglow2.jpeg" alt="HydraGlow Detail"
+            onerror="this.parentElement.style.display='none';">
+        </div>
+        <div class="ap-photo-badge">&#127942; BPOM Terdaftar</div>
+      </div>
+    </div>
+    <div class="ap-content rvr">
+      <div class="s-label">Tentang Produk</div>
+      <h2 class="s-title">Bukan Sekadar<br><em>Bodycare</em></h2>
+      <div class="ap-q">"Kulitmu layak yang terbaik."</div>
+      <ul class="ap-list">
+        <li>Tekstur ringan, cepat meresap tanpa rasa lengket</li>
+        <li>Wangi lembut, tidak overwhelm</li>
+        <li>Aman untuk ibu hamil &amp; menyusui (konsultasikan dulu)</li>
+        <li>BPOM terdaftar</li>
+        <li>Cruelty-free</li>
+      </ul>
+      <a href="https://instagram.com/loonarsbeauty.official" target="_blank" class="btn-rose" style="margin-top:2rem;display:inline-flex;"><span>&#128247; @loonarsbeauty.official</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- HOW TO USE -->
+<section class="ht-sec">
+  <div class="ht-inner">
+    <div class="ht-s-label rv">Cara Pakai</div>
+    <h2 class="s-title rv d1">Ritual<br><em>Harian</em></h2>
+    <div class="ht-steps">
+      <div class="ht-step rv"><div class="ht-num">01</div><div><div class="ht-title">Bersihkan Kulit</div><div class="ht-desc">Setelah mandi atau mencuci wajah, keringkan kulit hingga lembap (tidak terlalu kering).</div></div></div>
+      <div class="ht-step rv"><div class="ht-num">02</div><div><div class="ht-title">Aplikasikan</div><div class="ht-desc">Tuang secukupnya ke telapak tangan. Ratakan ke seluruh tubuh atau area yang diinginkan.</div></div></div>
+      <div class="ht-step rv"><div class="ht-num">03</div><div><div class="ht-title">Pijat &amp; Resap</div><div class="ht-desc">Pijat memutar hingga meresap sempurna. Gunakan pagi &amp; malam untuk hasil optimal.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCT SHOWCASE -->
+<section class="prod-showcase" id="produk">
+  <div class="ps-inner">
+    <div class="ps-visual rv">
+      <div class="ps-bottle">
+        <div class="psb-glow"></div>
+        <div class="psb-icon">&#129518;</div>
+        <div class="psb-name">HydraGlow</div>
+        <div class="psb-sub">Advanced Brightening Lotion</div>
+        <div class="psb-tags">
+          <span>&#128167; 4 Types Hyaluron</span>
+          <span>&#10024; Niacinamide</span>
+          <span>&#127807; Squalane</span>
+        </div>
+        <div class="psb-price-wrap">
+          <span class="psb-old">IDR 119.000</span>
+          <span class="psb-new">IDR 89.000</span>
+        </div>
+      </div>
+    </div>
+    <div class="rvr">
+      <div class="ps-s-label">Produk Unggulan</div>
+      <h2 class="ap-s-title">HydraGlow<br><em>Advanced Brightening</em></h2>
+      <p style="color:rgba(255,255,255,.55);font-size:.88rem;line-height:1.85;margin:1.5rem 0;font-weight:300;">Formula canggih dengan 4 jenis Hyaluronic Acid untuk hidrasi berlapis. Diformulasikan untuk perempuan kota yang aktif &mdash; ringan, cepat meresap, dan bekerja sepanjang hari.</p>
+      <div class="ps-badges">
+        <div class="ps-badge"><span class="psb-i">&#128737;&#65039;</span><span>BPOM Terdaftar</span></div>
+        <div class="ps-badge"><span class="psb-i">&#127807;</span><span>Cruelty-Free &amp; Non-Comedogenic</span></div>
+        <div class="ps-badge"><span class="psb-i">&#9989;</span><span>Aman untuk semua jenis kulit</span></div>
+      </div>
+      <a href="#checkout" class="btn-rose" style="margin-top:2rem;display:inline-flex;"><span>&#128722; Pesan COD Sekarang &darr;</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- COD ORDER FORM -->
+<section class="cod-sec" id="checkout">
+  <div class="cod-inner">
+    <div class="cod-hdr">
+      <div class="cod-hdr-label">&#128666; Bayar di Tempat (COD)</div>
+      <h2 class="s-title">Pesan<br><em>Sekarang</em></h2>
+      <span class="cod-badge">Isi form &rarr; produk dikirim &rarr; bayar saat terima</span>
+    </div>
+    <div class="cod-grid">
+      <div>
+        <div id="bForm">
+          <div class="cod-fb">
+            <div class="cod-fb-title">Data Penerima</div>
+            <div class="cod-fb-sub">Isi lengkap agar pengiriman tepat sasaran</div>
+            <div class="f-g"><label class="f-lbl">Nama Lengkap <span class="f-req" style="color:var(--rose);">*</span></label><input class="f-inp" id="bName" type="text" placeholder="Nama penerima"></div>
+            <div class="f-g"><label class="f-lbl">No. WhatsApp <span class="f-req" style="color:var(--rose);">*</span></label><input class="f-inp" id="bPhone" type="tel" placeholder="08xxxxxxxxxx"></div>
+            <div class="f-g"><label class="f-lbl">Alamat Lengkap <span class="f-req" style="color:var(--rose);">*</span></label><textarea class="f-inp f-ta" id="bAddress" placeholder="Jalan, nomor, RT/RW, kelurahan..."></textarea></div>
+            <div class="form-row-2">
+              <div class="f-g"><label class="f-lbl">Kota / Kabupaten <span class="f-req" style="color:var(--rose);">*</span></label><input class="f-inp" id="bCity" type="text" placeholder="Makassar"></div>
+              <div class="f-g"><label class="f-lbl">Provinsi</label><input class="f-inp" id="bProv" type="text" placeholder="Sulawesi Selatan"></div>
+            </div>
+            <div class="form-row-2">
+              <div class="f-g"><label class="f-lbl">Kecamatan</label><input class="f-inp" id="bDist" type="text" placeholder="Kecamatan"></div>
+              <div class="f-g"><label class="f-lbl">Kode Pos</label><input class="f-inp" id="bPost" type="text" placeholder="90123"></div>
+            </div>
+          </div>
+          <div class="cod-fb" style="margin-top:1px;">
+            <div class="cod-fb-title">Pesanan</div>
+            <div class="prod-row">
+              <div><div><div class="prod-name">HydraGlow Advanced Brightening Lotion</div><div class="prod-price">Rp 89.000 / botol</div></div></div>
+              <div class="qty-c"><button class="q-btn" onclick="bChg(-1)">&#8722;</button><span class="q-val" id="bQty">1</span><button class="q-btn" onclick="bChg(1)">+</button></div>
+            </div>
+            <div class="subtotal-row"><span>Subtotal produk</span><span class="subtotal-val" id="bSub">Rp 89.000</span></div>
+            <div class="f-g" style="margin-top:.5rem;"><label class="f-lbl">Catatan (opsional)</label><input class="f-inp" id="bNote" type="text" placeholder="Permintaan khusus..."></div>
+          </div>
+        </div>
+        <div class="b-ok" id="bOk">
+          <div class="b-ok-icon">&#127881;</div>
+          <div class="b-ok-title">Pesanan Diterima!</div>
+          <div class="b-ok-desc">Terima kasih sudah memesan HydraGlow.<br>Tim kami akan memproses dan mengirimkan pesananmu.<br>Pantau via WhatsApp: <strong style="color:#fff;">+62 822-2888-5223</strong></div>
+          <a id="bWaLink" href="#" target="_blank" class="btn-wa-lnk">&#128172; Chat via WhatsApp</a>
+        </div>
+      </div>
+      <div class="cod-sum">
+        <div class="cs-title">Ringkasan &amp; Konfirmasi</div>
+        <div class="cs-row"><span class="cs-l">Produk</span><span class="cs-v" id="sProd">—</span></div>
+        <div class="cs-row"><span class="cs-l">Ongkir</span><span class="cs-v" id="sOngkir">—</span></div>
+        <div class="cs-row"><span class="cs-l">Biaya COD</span><span class="cs-v" id="sCod">—</span></div>
+        <div class="cs-total"><span class="cs-tl">Total Bayar</span><span class="cs-tv" id="sTotal">—</span></div>
+        <div class="cs-note">&#128161; Bayar saat paket tiba. Tidak perlu transfer dulu.</div>
+        <button class="btn-order" id="bOrderBtn" onclick="bSubmit()">&#128722; Konfirmasi Pesanan COD</button>
+        <p style="font-size:.63rem;color:rgba(255,255,255,.15);text-align:center;margin-top:.7rem;line-height:1.5;">Dengan memesan, kamu setuju dihubungi tim kami via WhatsApp.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="shops-row">
+  <a href="https://tokopedia.com/loonars" target="_blank" class="sh-link">&#128722; Tokopedia Official Store</a>
+  <a href="https://shopee.co.id/loonarsskin" target="_blank" class="sh-link">&#128717; Shopee Official Store</a>
+  <a href="https://instagram.com/loonarsbeauty.official" target="_blank" class="sh-link">&#128247; @loonarsbeauty.official</a>
+</div>
+
+<footer>
+  <div class="ft-brand">Loonars Beauty · PT. Maha Karya Haluoleo</div>
+  <div class="ft-copy">&#169; 2026 haluoleo.id</div>
+  <div class="ft-nav">
+    <a href="loonars-living.html">Loonars Living</a>
+    <a href="al-fath-makassar.html">Al Fath</a>
+    <a href="griya-cariu-indah.html">Griya Cariu</a>
+    <a href="direktur.html">Direktur</a>
+    <a href="beauty.html">Beauty</a>
+    <a href="kontak.html">Kontak</a>
+  </div>
+</footer>
+<a href="https://wa.me/6282228885223" target="_blank" class="wa">&#128172;</a>
+<div class="lb" id="_lb">
+  <button class="lb-close" onclick="closeLb()">&#10005;</button>
+  <button class="lb-prev" onclick="prevLb()">&#8249;</button>
+  <img id="_lbImg" src="" alt="">
+  <button class="lb-next" onclick="nextLb()">&#8250;</button>
+  <div class="lb-cap" id="_lbCap"></div>
+</div>
+<script>
+// SUPABASE — single init after DOM ready
+let _sb=null;
+document.addEventListener('DOMContentLoaded',function(){
+  try{
+    if(typeof supabase!=='undefined' && !_sb){
+      _sb=supabase.createClient('https://gluoioiimapyhchdasfl.supabase.co','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdsdW9pb2lpbWFweWhjaGRhc2ZsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAwNDQ3MjAsImV4cCI6MjA5NTYyMDcyMH0.dHVB0jJBMjUunJKSsqbaM3MGCAq-ZRSWQEqvEyUjIyk');
+    }
+  }catch(e){console.warn('SB:',e);}
+});
+
+// LOADER
+(function(){
+  const bar=document.getElementById('ldrBar'),pct=document.getElementById('ldrPct'),ldr=document.getElementById('ldr');
+  if(!ldr)return;
+  let n=0;
+  setTimeout(()=>bar&&bar.classList.add('go'),100);
+  const iv=setInterval(()=>{
+    n=Math.min(n+Math.floor(Math.random()*6)+2,100);
+    if(pct)pct.textContent=n+'%';
+    if(n>=100){clearInterval(iv);setTimeout(()=>{if(ldr){ldr.classList.add('out');setTimeout(()=>ldr.style.display='none',1000);}},300);}
+  },28);
+})();
+
+// CURSOR
+const _dot=document.getElementById('curDot'),_ring=document.getElementById('curRing');
+let _mx=0,_my=0,_rx=0,_ry=0;
+document.addEventListener('mousemove',e=>{_mx=e.clientX;_my=e.clientY;});
+(function aC(){
+  if(_dot){_dot.style.left=_mx+'px';_dot.style.top=_my+'px';}
+  if(_ring){_rx+=(_mx-_rx)*.1;_ry+=(_my-_ry)*.1;_ring.style.left=_rx+'px';_ring.style.top=_ry+'px';}
+  requestAnimationFrame(aC);
+})();
+document.querySelectorAll('a,button,.unit,.g-item,.loc-c,.spec,.pf-item').forEach(el=>{
+  el.addEventListener('mouseenter',()=>document.body.classList.add('hov'));
+  el.addEventListener('mouseleave',()=>document.body.classList.remove('hov'));
+});
+
+// PROGRESS
+window.addEventListener('scroll',()=>{
+  const s=document.documentElement.scrollTop,h=document.documentElement.scrollHeight-document.documentElement.clientHeight;
+  const pb=document.getElementById('pb');if(pb)pb.style.width=(s/h*100)+'%';
+},{passive:true});
+
+// MENU
+function toggleMenu(){
+  var _h=document.getElementById('hbg');if(_h)_h.classList.toggle('open');
+  var _sm2=document.getElementById('_sm');if(_sm2)_sm2.classList.toggle('open');
+  var _so=document.getElementById('_smol');if(_so)_so.classList.toggle('open');
+}
+function closeMenu(){
+  var _h2=document.getElementById('hbg');if(_h2)_h2.classList.remove('open');
+  var _sm3=document.getElementById('_sm');if(_sm3)_sm3.classList.remove('open');
+  var _so2=document.getElementById('_smol');if(_so2)_so2.classList.remove('open');
+}
+
+// REVEAL
+const _rv=new IntersectionObserver((entries)=>{
+  entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('vis'),i*65);_rv.unobserve(e.target);}});
+},{threshold:.08,rootMargin:'0px 0px -50px 0px'});
+document.querySelectorAll('.rv,.rvl,.rvr').forEach(el=>_rv.observe(el));
+
+// LIGHTBOX
+let _lbD=[],_lbI=0;
+function openLb(data,idx){_lbD=data;_lbI=idx;const lb=document.getElementById('_lb');lb.classList.add('open');_showLb();document.body.style.overflow='hidden';}
+function _showLb(){const img=document.getElementById('_lbImg'),cap=document.getElementById('_lbCap');if(img)img.src=_lbD[_lbI].url||_lbD[_lbI];if(cap)cap.textContent=_lbD[_lbI].caption||'';}
+function closeLb(){document.getElementById('_lb').classList.remove('open');document.body.style.overflow='';}
+function prevLb(){_lbI=(_lbI-1+_lbD.length)%_lbD.length;_showLb();}
+function nextLb(){_lbI=(_lbI+1)%_lbD.length;_showLb();}
+document.addEventListener('keydown',e=>{const lb=document.getElementById('_lb');if(!lb||!lb.classList.contains('open'))return;if(e.key==='Escape')closeLb();if(e.key==='ArrowLeft')prevLb();if(e.key==='ArrowRight')nextLb();});
+
+// GALLERY FROM SUPABASE
+async function loadGallery(slug,gridId){
+  const grid=document.getElementById(gridId);
+  if(!grid)return;
+  grid.innerHTML='<div class="g-loading">&#9203; Memuat galeri...</div>';
+  // Wait for _sb to be ready (max 3s)
+  var waited=0;
+  while(!_sb && waited<3000){
+    await new Promise(function(r){setTimeout(r,200);});
+    waited+=200;
+  }
+  if(!_sb){grid.innerHTML='<div class="g-loading">Koneksi tidak tersedia.</div>';return;}
+  try{
+    var res=await _sb.from('project_images').select('url,caption,display_order').eq('project_slug',slug).order('display_order',{ascending:true});
+    if(res.error)throw res.error;
+    var data=res.data;
+    if(!data||!data.length){grid.innerHTML='<div class="g-loading">Belum ada foto.</div>';return;}
+    window._lbData=data;
+    grid.innerHTML='';
+    data.forEach(function(img,i){
+      var wrap=document.createElement('div');
+      wrap.className='g-item';
+      wrap.addEventListener('click',function(){openLb(window._lbData,i);});
+      var el=document.createElement('img');
+      el.src=img.url||'';
+      el.alt=img.caption||'';
+      el.loading='lazy';
+      el.addEventListener('error',function(){wrap.style.display='none';});
+      wrap.appendChild(el);
+      grid.appendChild(wrap);
+    });
+  }catch(ex){
+    console.error('Gallery:',ex);
+    grid.innerHTML='<div class="g-loading">Gagal memuat galeri.</div>';
+  }
+}
+
+// MAGNETIC
+function addMag(sel){
+  document.querySelectorAll(sel).forEach(btn=>{
+    btn.addEventListener('mousemove',e=>{
+      const r=btn.getBoundingClientRect();
+      const x=e.clientX-r.left-r.width/2,y=e.clientY-r.top-r.height/2;
+      btn.style.transform=`translate(${x*.2}px,${y*.3}px)`;
+    });
+    btn.addEventListener('mouseleave',()=>btn.style.transform='');
+  });
+}
+addMag('.btn-p,.btn-o,.wa,.nav-cta');
+
+// PARTICLES
+function spawnParticles(containerId){
+  const c=document.getElementById(containerId);if(!c)return;
+  const cols=['#7a9e6e','#c9a84c','#c9948a','rgba(255,255,255,.25)'];
+  for(let i=0;i<20;i++){
+    const p=document.createElement('div');p.className='particle';
+    const sz=Math.random()*2.5+.5,dur=Math.random()*18+8,del=Math.random()*25,l=Math.random()*100;
+    p.style.cssText=`width:${sz}px;height:${sz}px;background:${cols[Math.floor(Math.random()*cols.length)]};left:${l}%;animation-duration:${dur}s;animation-delay:-${del}s;`;
+    c.appendChild(p);
+  }
+}
+
+// KONTAK FORM
+async function submitKontak(e){
+  e.preventDefault();
+  var kn=document.getElementById('kName');const name=kn?kn.value.trim():'';
+  var kp=document.getElementById('kPhone');const phone=kp?kp.value.trim():'';
+  if(!name||!phone){alert('Nama dan nomor WhatsApp wajib diisi.');return;}
+  const btn=document.getElementById('kBtn');
+  if(btn){btn.disabled=true;var sp=btn.querySelector('span');if(sp)sp.textContent='Mengirim...';}
+  try{
+    if(_sb)await _sb.from('contact_messages').insert([{
+      name,phone,
+      project:(document.getElementById('kProject')||{}).value||'',
+      message:(document.getElementById('kMsg')||{value:''}).value.trim(),
+      created_at:new Date().toISOString()
+    }]);
+  }catch(ex){console.warn(ex);}
+  document.getElementById('kForm').style.display='none';
+  document.getElementById('kOk').style.display='block';
+}
+
+spawnParticles('pB');
+addMag('.btn-rose,.btn-shop-out,.sh-link,.wa');
+
+const BPRICE=89000;let bQty=1;
+function fRp(n){return'Rp '+n.toLocaleString('id-ID');}
+function bChg(d){bQty=Math.max(1,Math.min(99,bQty+d));document.getElementById('bQty').textContent=bQty;document.getElementById('bSub').textContent=fRp(BPRICE*bQty);document.getElementById('sProd').textContent=fRp(BPRICE*bQty);document.getElementById('sTotal').textContent=fRp(BPRICE*bQty);}
+window.addEventListener('DOMContentLoaded',()=>{document.getElementById('sProd').textContent=fRp(BPRICE);document.getElementById('sTotal').textContent=fRp(BPRICE);});
+
+async function bSubmit(){
+  const name=document.getElementById('bName').value.trim();
+  const phone=document.getElementById('bPhone').value.trim();
+  const address=document.getElementById('bAddress').value.trim();
+  const city=document.getElementById('bCity').value.trim();
+  if(!name||!phone||!address||!city){alert('Nama, nomor WA, alamat, dan kota wajib diisi.');return;}
+  const btn=document.getElementById('bOrderBtn');
+  btn.disabled=true;btn.querySelector('span').textContent='Memproses...';
+  const payload={product:'HydraGlow Advanced Brightening Lotion',customer_name:name,phone,
+    address:address+', '+city,city,province:document.getElementById('bProv').value,
+    district:document.getElementById('bDist').value,postal_code:document.getElementById('bPost').value,
+    qty:bQty,unit_price:BPRICE,total_price:BPRICE*bQty,
+    note:document.getElementById('bNote').value,payment_method:'COD',status:'baru',
+    source:'website-beauty',created_at:new Date().toISOString()};
+  try{if(_sb)await _sb.from('beauty_orders').insert([payload]);}catch(ex){console.warn(ex);}
+  const wm=encodeURIComponent('Halo Loonars Beauty! Saya order HydraGlow.\nNama: '+name+'\nWA: '+phone+'\nJumlah: '+bQty+' botol\nTotal: '+fRp(BPRICE*bQty)+'\nAlamat: '+address+', '+city);
+  document.getElementById('bWaLink').href='https://wa.me/6282228885223?text='+wm;
+  document.getElementById('bForm').style.display='none';
+  document.getElementById('bOk').style.display='block';
+}
+</script>
+</body></html>
