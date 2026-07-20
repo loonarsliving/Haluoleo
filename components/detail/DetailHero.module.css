@@ -1,0 +1,27 @@
+.dHero{height:85vh;min-height:560px;position:relative;overflow:hidden;display:flex;align-items:flex-end;}
+.dHeroVideo{position:absolute;inset:0;overflow:hidden;}
+.dHeroVideo video{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);min-width:100%;min-height:100%;width:auto;height:auto;object-fit:cover;filter:brightness(.5) saturate(1.2);}
+.dHeroVg1{position:absolute;inset:0;background:radial-gradient(ellipse at center,transparent 35%,rgba(6,10,5,.7) 100%);}
+.dHeroVg2{position:absolute;inset:0;background:linear-gradient(to top,rgba(6,10,5,.9) 0%,rgba(6,10,5,.15) 45%,transparent 100%);}
+.dHeroContent{position:relative;z-index:5;padding:0 4rem 5rem;width:100%;}
+.dHeroBack{display:inline-flex;align-items:center;gap:.5rem;color:rgba(255,255,255,.35);font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;margin-bottom:2.5rem;transition:color .25s;opacity:0;animation:fu .6s .2s forwards;}
+.dHeroBack:hover{color:var(--sage);}
+.dEyebrow{font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;color:var(--sage);margin-bottom:1.2rem;display:flex;align-items:center;gap:.8rem;opacity:0;animation:fu .6s .4s forwards;}
+.dEyebrow::before{content:'';display:block;width:18px;height:1px;background:var(--sage);}
+.dTitle{font-family:var(--font-serif),serif;font-size:clamp(3rem,8vw,7rem);font-weight:300;color:#fff;line-height:.9;margin-bottom:2rem;}
+.wl{display:block;overflow:hidden;}
+.wl span{display:block;opacity:0;transform:translateY(100%);animation:wu 1s cubic-bezier(.77,0,.175,1) forwards;}
+.em{font-style:italic;color:rgba(255,255,255,.38);}
+.dChips{display:flex;gap:.6rem;flex-wrap:wrap;opacity:0;animation:fu .6s 1s forwards;}
+.dChip{padding:.3rem .9rem;border-radius:50px;background:rgba(255,255,255,.06);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.1);font-size:.67rem;letter-spacing:.07em;color:rgba(255,255,255,.7);}
+
+@keyframes fu{to{opacity:1;transform:translateY(0)}}
+@keyframes wu{to{opacity:1;transform:translateY(0)}}
+
+@media(max-width:900px){
+  .dHero{height:70vh;min-height:500px;}
+  .dHeroContent{padding:0 1.5rem 3rem;}
+  .dTitle{font-size:clamp(2.5rem,11vw,5rem);}
+  .dChips{gap:.4rem;}
+  .dChip{font-size:.62rem;}
+}

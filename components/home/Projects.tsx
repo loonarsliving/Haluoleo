@@ -5,7 +5,7 @@ import shared from './shared.module.css';
 
 const PROJECTS = [
   {
-    href: '/loonars-living.html',
+    href: '/loonars-living',
     img: '/loonars.jpeg',
     num: '01',
     badge: { text: 'Private Villa', tone: 'villa' as const },

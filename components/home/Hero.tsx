@@ -48,7 +48,7 @@ export default function Hero() {
           </p>
         </div>
         <div className={styles.heroRight}>
-          <Link ref={mainBtnRef} href="/loonars-living.html" className={styles.heroBtnMain}>
+          <Link ref={mainBtnRef} href="/loonars-living" className={styles.heroBtnMain}>
             <span>Lihat Project ↗</span>
           </Link>
           <a

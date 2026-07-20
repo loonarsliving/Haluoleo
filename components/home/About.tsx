@@ -8,8 +8,12 @@ export default function About() {
     <section className={styles.about} id="about">
       <div className={styles.aboutInner}>
         <Reveal direction="left" className={styles.aboutImgStack}>
-          <Image className={styles.aiMain} src="/alfath2.jpeg" alt="Project Haluoleo" width={600} height={460} />
-          <Image className={styles.aiAccent} src="/hero1.jpeg" alt="Loonars" width={440} height={300} />
+          <div className={styles.aiMain}>
+            <Image src="/alfath2.jpeg" alt="Project Haluoleo" fill sizes="(max-width: 900px) 80vw, 40vw" style={{ objectFit: 'cover' }} />
+          </div>
+          <div className={styles.aiAccent}>
+            <Image src="/hero1.jpeg" alt="Loonars" fill sizes="(max-width: 900px) 58vw, 30vw" style={{ objectFit: 'cover' }} />
+          </div>
           <div className={styles.aiBadge}>
             <div className={styles.aiY}>2012</div>
             <div className={styles.aiT}>Tahun Berdiri</div>

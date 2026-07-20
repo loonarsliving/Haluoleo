@@ -6,7 +6,7 @@ import styles from './Nav.module.css';
 
 const MENU_LINKS = [
   { href: '/', label: 'Beranda' },
-  { href: '/loonars-living.html', label: 'Loonars Living' },
+  { href: '/loonars-living', label: 'Loonars Living' },
   { href: '/al-fath-makassar.html', label: 'Al Fath Makassar' },
   { href: '/griya-cariu-indah.html', label: 'Griya Cariu' },
   { href: '/direktur.html', label: 'Direktur' },
