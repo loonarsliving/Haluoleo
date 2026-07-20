@@ -4,8 +4,8 @@ body{background:#060a05;color:#fff;overflow-x:hidden;cursor:none;}
 
 :root{
   --sage:#7a9e6e;--sage-d:#4e7244;--sage-deep:#2d4d25;
-  --gold:#c9a84c;--rose:#c9948a;
-  --dark:#060a05;--dark2:#0a100a;
+  --gold:#c9a84c;--rose:#c9948a;--rose-d:#a06660;--rose-deep:#7a3f3a;
+  --dark:#060a05;--dark2:#0a100a;--dark3:#0d160c;
 }
 
 /* ── SHARED REVEAL-ON-SCROLL ── */

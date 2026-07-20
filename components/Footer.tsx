@@ -6,7 +6,7 @@ const FOOTER_LINKS = [
   { href: '/al-fath-makassar.html', label: 'Al Fath' },
   { href: '/griya-cariu-indah', label: 'Griya Cariu' },
   { href: '/direktur', label: 'Direktur' },
-  { href: '/beauty.html', label: 'Beauty' },
+  { href: '/beauty', label: 'Beauty' },
   { href: '/kontak', label: 'Kontak' },
 ];
 
