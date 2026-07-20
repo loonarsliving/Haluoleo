@@ -1,0 +1,135 @@
+.hero{height:100vh;position:relative;overflow:hidden;}
+
+.heroBgText{
+  position:absolute;
+  top:50%;left:50%;
+  transform:translate(-50%,-52%);
+  z-index:8;
+  white-space:nowrap;
+  pointer-events:none;
+  line-height:.85;
+  text-align:center;
+}
+.htLine{
+  display:block;
+  font-family:var(--font-serif),serif;
+  font-size:clamp(3.5rem,13vw,15rem);
+  font-weight:400;
+  color:rgba(255,255,255,.92);
+  letter-spacing:-.02em;
+  text-shadow:0 4px 40px rgba(0,0,0,.5);
+  opacity:0;
+  transform:translateY(30px);
+  animation:htUp 1.2s cubic-bezier(.77,0,.175,1) forwards;
+  animation-delay:.8s;
+}
+.htLine2{
+  animation-delay:1s;
+  font-style:italic;
+  font-weight:300;
+  color:rgba(168,199,156,.9);
+}
+@keyframes htUp{to{opacity:1;transform:translateY(0)}}
+
+.heroVideoLayer{position:absolute;inset:0;z-index:2;overflow:hidden;}
+.heroVideo{
+  position:absolute;
+  top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  min-width:100%;min-height:100%;
+  width:auto;height:auto;
+  object-fit:cover;
+  filter:brightness(.62) saturate(1.12);
+}
+.heroVideoLayer::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    to bottom,
+    rgba(6,10,5,.4) 0%,
+    rgba(6,10,5,.15) 25%,
+    rgba(6,10,5,.1) 45%,
+    rgba(6,10,5,.6) 75%,
+    rgba(6,10,5,.95) 100%
+  );
+}
+
+.heroVignette{
+  position:absolute;inset:0;z-index:3;pointer-events:none;
+  background:radial-gradient(ellipse 80% 80% at 50% 50%,transparent 40%,rgba(6,10,5,.7) 100%);
+}
+
+.particles{position:absolute;inset:0;z-index:4;pointer-events:none;overflow:hidden;}
+.particle{position:absolute;border-radius:50%;animation:pdrift linear infinite;}
+@keyframes pdrift{
+  0%{transform:translateY(100vh) scale(0);opacity:0}
+  10%{opacity:.5}
+  90%{opacity:.2}
+  100%{transform:translateY(-10vh) scale(1);opacity:0}
+}
+
+.heroContent{
+  position:absolute;
+  bottom:0;left:0;right:0;
+  z-index:10;
+  padding:0 4rem 5rem;
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+}
+.heroLabel{
+  font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;
+  color:var(--sage);margin-bottom:1.2rem;
+  display:flex;align-items:center;gap:.8rem;
+  opacity:0;animation:fu .8s .5s forwards;
+}
+.heroLabel::before,.heroLabel::after{content:'';display:block;height:1px;background:var(--sage);}
+.heroLabel::before{width:28px;}
+.heroLabel::after{width:10px;}
+.heroSub{
+  color:rgba(255,255,255,.5);font-size:.85rem;line-height:1.8;
+  max-width:420px;font-weight:300;
+  opacity:0;animation:fu .8s 1.1s forwards;
+}
+.heroRight{
+  display:flex;flex-direction:column;align-items:flex-end;gap:1.2rem;
+  opacity:0;animation:fu .8s 1.3s forwards;
+}
+.heroBtnMain{
+  display:inline-flex;align-items:center;gap:.7rem;
+  background:var(--sage-d);color:#fff;
+  padding:1rem 2rem;border-radius:6px;
+  font-size:.73rem;letter-spacing:.12em;text-transform:uppercase;
+  text-decoration:none;transition:all .4s;
+  position:relative;overflow:hidden;
+}
+.heroBtnMain::before{content:'';position:absolute;inset:0;background:var(--sage-deep);transform:translateX(-100%);transition:transform .4s cubic-bezier(.77,0,.175,1);}
+.heroBtnMain:hover::before{transform:translateX(0);}
+.heroBtnMain span{position:relative;z-index:1;}
+.heroBtnGhost{
+  display:inline-flex;align-items:center;gap:.7rem;
+  border:1px solid rgba(255,255,255,.18);color:rgba(255,255,255,.55);
+  padding:1rem 2rem;border-radius:6px;
+  font-size:.73rem;letter-spacing:.12em;text-transform:uppercase;
+  text-decoration:none;transition:all .3s;
+}
+.heroBtnGhost:hover{border-color:rgba(255,255,255,.4);color:#fff;}
+
+.heroScroll{
+  position:absolute;bottom:3rem;left:50%;transform:translateX(-50%);
+  z-index:10;display:flex;flex-direction:column;align-items:center;gap:.5rem;
+  opacity:0;animation:fu .8s 1.8s forwards;
+}
+.scrollTrack{width:1px;height:55px;background:rgba(255,255,255,.12);position:relative;overflow:hidden;}
+.scrollTrack::after{content:'';position:absolute;top:-100%;width:100%;height:50%;background:var(--sage);animation:sDrop 2s 2s ease infinite;}
+@keyframes sDrop{0%{top:-100%}100%{top:200%}}
+.scrollTxt{font-size:.56rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.28);}
+
+@media(max-width:900px){
+  .htLine{font-size:clamp(4.5rem,18vw,10rem);}
+  .heroContent{flex-direction:column;align-items:flex-start;gap:1.5rem;padding:0 1.5rem 4.5rem;}
+  .heroRight{align-items:flex-start;width:100%;}
+  .heroBtnMain,.heroBtnGhost{width:100%;justify-content:center;padding:.95rem 1.5rem;}
+  .heroScroll{display:none;}
+}

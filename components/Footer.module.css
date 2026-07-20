@@ -1,0 +1,11 @@
+.footer{background:#030604;padding:2.5rem 4rem;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(255,255,255,.03);}
+.ftBrand{font-family:var(--font-serif),serif;font-size:1rem;color:rgba(255,255,255,.3);}
+.ftCopy{font-size:.65rem;color:rgba(255,255,255,.14);}
+.ftNav{display:flex;gap:2rem;}
+.ftNav a{font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.18);text-decoration:none;transition:color .2s;}
+.ftNav a:hover{color:var(--sage);}
+
+@media(max-width:900px){
+  .footer{padding:2rem 1.5rem;flex-direction:column;gap:1rem;text-align:center;}
+  .ftNav{flex-wrap:wrap;justify-content:center;gap:1rem;}
+}

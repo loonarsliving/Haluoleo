@@ -1,0 +1,24 @@
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:auto;overflow-x:hidden;}
+body{background:#060a05;color:#fff;overflow-x:hidden;cursor:none;}
+
+:root{
+  --sage:#7a9e6e;--sage-d:#4e7244;--sage-deep:#2d4d25;
+  --gold:#c9a84c;--rose:#c9948a;
+  --dark:#060a05;--dark2:#0a100a;
+}
+
+/* ── SHARED REVEAL-ON-SCROLL ── */
+.rv{opacity:0;transform:translateY(45px);transition:opacity 1s ease,transform 1s cubic-bezier(.77,0,.175,1);}
+.rv.vis{opacity:1;transform:translateY(0);}
+.rvl{opacity:0;transform:translateX(-45px);transition:opacity 1s ease,transform 1s cubic-bezier(.77,0,.175,1);}
+.rvl.vis{opacity:1;transform:translateX(0);}
+.rvr{opacity:0;transform:translateX(45px);transition:opacity 1s ease,transform 1s cubic-bezier(.77,0,.175,1);}
+.rvr.vis{opacity:1;transform:translateX(0);}
+.d1{transition-delay:.1s}
+.d2{transition-delay:.2s}
+.d3{transition-delay:.3s}
+.d4{transition-delay:.4s}
+
+@keyframes fu{to{opacity:1;transform:translateY(0)}}
+@keyframes tkr{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}

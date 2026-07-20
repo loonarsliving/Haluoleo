@@ -1,0 +1,15 @@
+.portfolio{padding:10rem 4rem;background:var(--dark);}
+.pfHeader{max-width:1300px;margin:0 auto 4rem;}
+.pfGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.05);max-width:1300px;margin:0 auto;}
+.pfItem{background:var(--dark);padding:1.8rem 1.5rem;transition:background .3s;position:relative;overflow:hidden;}
+.pfItem::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--sage),var(--gold));transform:scaleY(0);transform-origin:bottom;transition:transform .5s cubic-bezier(.77,0,.175,1);}
+.pfItem:hover::before{transform:scaleY(1);}
+.pfItem:hover{background:rgba(122,158,110,.04);}
+.pfLoc{font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:var(--sage);margin-bottom:.4rem;}
+.pfName{font-family:var(--font-serif),serif;font-size:1rem;color:rgba(255,255,255,.92);font-weight:300;}
+.pfUnits{font-size:.68rem;color:rgba(255,255,255,.28);margin-top:.2rem;}
+
+@media(max-width:900px){
+  .portfolio{padding:6rem 1.5rem;}
+  .pfGrid{grid-template-columns:repeat(2,1fr);}
+}

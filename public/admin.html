@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin — Maha Karya Haluoleo</title>
+<meta name="robots" content="noindex, nofollow">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Cormorant+Garamond:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0f1117;--surface:#181c25;--surface2:#1f2430;--border:rgba(255,255,255,0.07);
+  --text:#f0f0f0;--text-mid:#a0a0a0;--text-dim:#5a5a6a;
+  --sage:#7a9e6e;--sage-light:#a8c49a;--sage-dark:#4e7244;
+  --gold:#c9a84c;--red:#e05a5a;--green:#4caf50;
+  --ease:cubic-bezier(0.25,0.46,0.45,0.94);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+
+/* ── LOGIN ── */
+#loginScreen{
+  position:fixed;inset:0;display:flex;align-items:center;justify-content:center;
+  background:radial-gradient(ellipse at 30% 40%,rgba(122,158,110,0.08) 0%,transparent 60%),var(--bg);
+  z-index:1000;
+}
+.login-box{width:380px;padding:3rem;background:var(--surface);border:1px solid var(--border);border-radius:8px;}
+.login-logo{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--sage-light);margin-bottom:0.3rem;}
+.login-sub{font-size:0.78rem;color:var(--text-dim);margin-bottom:2.5rem;letter-spacing:0.06em;}
+.form-group{margin-bottom:1.2rem;}
+.form-label{display:block;font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-mid);margin-bottom:0.5rem;}
+.form-input{width:100%;padding:0.8rem 1rem;background:var(--bg);border:1px solid var(--border);border-radius:4px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:0.88rem;outline:none;transition:border-color 0.2s;}
+.form-input:focus{border-color:var(--sage);}
+.btn-login{width:100%;padding:0.9rem;background:var(--sage-dark);color:var(--text);border:none;border-radius:4px;font-family:'DM Sans',sans-serif;font-size:0.85rem;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;transition:background 0.2s;margin-top:0.5rem;}
+.btn-login:hover{background:var(--sage);}
+.login-err{color:var(--red);font-size:0.8rem;margin-top:1rem;display:none;text-align:center;}
+.login-loading{text-align:center;color:var(--text-mid);font-size:0.82rem;margin-top:1rem;display:none;}
+
+/* ── LAYOUT ── */
+#app{display:none;min-height:100vh;}
+.topbar{
+  position:fixed;top:0;left:0;right:0;height:60px;
+  background:var(--surface);border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 2rem;z-index:100;
+}
+.tb-logo{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--sage-light);}
+.tb-right{display:flex;align-items:center;gap:1.5rem;}
+.tb-user{font-size:0.78rem;color:var(--text-mid);}
+.btn-logout{padding:0.4rem 1rem;background:transparent;border:1px solid var(--border);border-radius:4px;color:var(--text-dim);font-size:0.72rem;letter-spacing:0.08em;cursor:pointer;transition:all 0.2s;}
+.btn-logout:hover{border-color:var(--red);color:var(--red);}
+
+.sidebar{
+  position:fixed;left:0;top:60px;bottom:0;width:220px;
+  background:var(--surface);border-right:1px solid var(--border);
+  padding:1.5rem 0;overflow-y:auto;
+}
+.sidebar-label{font-size:0.62rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-dim);padding:0 1.5rem;margin-bottom:0.8rem;margin-top:1.5rem;}
+.sidebar-label:first-child{margin-top:0;}
+.nav-item{
+  display:flex;align-items:center;gap:0.8rem;
+  padding:0.7rem 1.5rem;color:var(--text-mid);
+  font-size:0.83rem;cursor:pointer;transition:all 0.2s;
+  border-left:2px solid transparent;text-decoration:none;
+}
+.nav-item:hover{background:rgba(255,255,255,0.03);color:var(--text);}
+.nav-item.active{color:var(--sage-light);border-left-color:var(--sage);background:rgba(122,158,110,0.06);}
+.nav-icon{font-size:1rem;width:20px;text-align:center;}
+
+.main{margin-left:220px;margin-top:60px;padding:2.5rem;min-height:calc(100vh - 60px);}
+
+/* ── DASHBOARD ── */
+.page{display:none;}
+.page.active{display:block;}
+.page-title{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:var(--text);margin-bottom:0.4rem;}
+.page-sub{font-size:0.82rem;color:var(--text-mid);margin-bottom:2.5rem;}
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:2.5rem;}
+.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:1.5rem;}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:2.5rem;color:var(--sage-light);line-height:1;}
+.stat-label{font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);margin-top:0.4rem;}
+.proj-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;}
+.proj-card-admin{background:var(--surface);border:1px solid var(--border);border-radius:6px;overflow:hidden;cursor:pointer;transition:border-color 0.2s;}
+.proj-card-admin:hover{border-color:var(--sage);}
+.pca-img{height:140px;overflow:hidden;position:relative;background:var(--surface2);}
+.pca-img img{width:100%;height:100%;object-fit:cover;transition:transform 0.5s;}
+.proj-card-admin:hover .pca-img img{transform:scale(1.06);}
+.pca-body{padding:1.2rem;}
+.pca-name{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--text);margin-bottom:0.2rem;}
+.pca-loc{font-size:0.72rem;color:var(--text-dim);}
+.pca-count{display:inline-block;margin-top:0.8rem;font-size:0.72rem;letter-spacing:0.08em;background:rgba(122,158,110,0.12);color:var(--sage-light);padding:0.2rem 0.7rem;border-radius:50px;}
+
+/* ── PHOTO MANAGER ── */
+.back-btn{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.78rem;color:var(--text-mid);cursor:pointer;background:none;border:none;margin-bottom:1.5rem;padding:0;transition:color 0.2s;}
+.back-btn:hover{color:var(--sage-light);}
+.proj-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:2rem;}
+.proj-header-info .page-title{margin-bottom:0;}
+/* Upload zone */
+.upload-zone{
+  border:2px dashed var(--border);border-radius:8px;
+  padding:3rem;text-align:center;cursor:pointer;
+  transition:all 0.3s;margin-bottom:2rem;
+  background:rgba(255,255,255,0.01);
+}
+.upload-zone:hover,.upload-zone.drag-over{border-color:var(--sage);background:rgba(122,158,110,0.05);}
+.upload-icon{font-size:2.5rem;margin-bottom:0.8rem;}
+.upload-title{font-size:0.92rem;color:var(--text);margin-bottom:0.3rem;}
+.upload-sub{font-size:0.78rem;color:var(--text-dim);}
+#fileInput{display:none;}
+/* Upload progress */
+.upload-progress{display:none;margin-bottom:2rem;}
+.progress-bar-wrap{background:var(--surface2);border-radius:50px;height:6px;overflow:hidden;margin-top:0.8rem;}
+.progress-bar{height:100%;background:var(--sage);border-radius:50px;width:0%;transition:width 0.3s;}
+.progress-text{font-size:0.78rem;color:var(--text-mid);}
+/* Photo grid in admin */
+.photo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem;}
+.photo-item{background:var(--surface);border:1px solid var(--border);border-radius:6px;overflow:hidden;position:relative;}
+.photo-item-img{height:150px;overflow:hidden;}
+.photo-item-img img{width:100%;height:100%;object-fit:cover;transition:transform 0.4s;}
+.photo-item:hover .photo-item-img img{transform:scale(1.06);}
+.photo-item-body{padding:0.8rem;}
+.photo-caption-input{
+  width:100%;background:transparent;border:none;border-bottom:1px solid var(--border);
+  color:var(--text-mid);font-size:0.75rem;padding:0.3rem 0;outline:none;
+  font-family:'DM Sans',sans-serif;
+}
+.photo-caption-input:focus{border-bottom-color:var(--sage);}
+.photo-actions{display:flex;gap:0.5rem;margin-top:0.6rem;}
+.btn-del{padding:0.3rem 0.7rem;background:rgba(224,90,90,0.1);border:1px solid rgba(224,90,90,0.2);border-radius:4px;color:var(--red);font-size:0.68rem;cursor:pointer;transition:all 0.2s;flex:1;}
+.btn-del:hover{background:rgba(224,90,90,0.2);}
+.btn-ord{padding:0.3rem;background:var(--surface2);border:1px solid var(--border);border-radius:4px;color:var(--text-mid);font-size:0.7rem;cursor:pointer;transition:all 0.2s;}
+.btn-ord:hover{color:var(--text);}
+.photo-order-badge{position:absolute;top:0.5rem;left:0.5rem;background:rgba(0,0,0,0.6);color:var(--text);font-size:0.65rem;padding:0.15rem 0.5rem;border-radius:50px;}
+.empty-state{text-align:center;padding:4rem;color:var(--text-dim);}
+.empty-icon{font-size:3rem;margin-bottom:1rem;}
+.empty-text{font-size:0.85rem;}
+
+/* TOAST */
+.toast{
+  position:fixed;bottom:2rem;right:2rem;
+  padding:0.8rem 1.5rem;border-radius:6px;
+  font-size:0.82rem;font-weight:500;
+  transform:translateY(80px);opacity:0;
+  transition:all 0.4s var(--ease);z-index:9999;
+}
+.toast.show{transform:translateY(0);opacity:1;}
+.toast.success{background:var(--sage-dark);color:var(--text);}
+.toast.error{background:var(--red);color:var(--text);}
+
+/* Responsive */
+@media(max-width:900px){
+  .sidebar{display:none;}
+  .main{margin-left:0;}
+  .stats-row{grid-template-columns:repeat(2,1fr);}
+  .proj-cards{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:600px){
+  .proj-cards,.stats-row{grid-template-columns:1fr;}
+  .main{padding:1.5rem;}
+}
+</style>
+</head>
+<body>
+
+<!-- LOGIN SCREEN -->
+<div id="loginScreen">
+  <div class="login-box">
+    <div class="login-logo">Maha Karya Haluoleo</div>
+    <div class="login-sub">Admin Dashboard · haluoleo.id</div>
+    <div class="form-group">
+      <label class="form-label">Email</label>
+      <input type="email" class="form-input" id="emailInput" placeholder="admin@haluoleo.id" onkeydown="if(event.key==='Enter')doLogin()">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Password</label>
+      <input type="password" class="form-input" id="passInput" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()">
+    </div>
+    <button class="btn-login" onclick="doLogin()">Masuk →</button>
+    <div class="login-err" id="loginErr">Email atau password salah.</div>
+    <div class="login-loading" id="loginLoading">Verifikasi...</div>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="app">
+  <!-- Topbar -->
+  <div class="topbar">
+    <div class="tb-logo">Maha Karya Haluoleo · Admin</div>
+    <div class="tb-right">
+      <span class="tb-user" id="tbUser"></span>
+      <button class="btn-logout" onclick="doLogout()">Keluar</button>
+    </div>
+  </div>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="sidebar-label">Menu</div>
+    <div class="nav-item active" onclick="showPage('dashboard')" id="nav-dashboard"><span class="nav-icon">🏠</span>Dashboard</div>
+    <div class="nav-item" onclick="showPage('photos')" id="nav-photos"><span class="nav-icon">📸</span>Kelola Foto</div>
+
+    <div class="sidebar-label">Proyek</div>
+    <div class="nav-item" onclick="openProject('loonars-living')"><span class="nav-icon">🏖️</span>Loonars Living</div>
+    <div class="nav-item" onclick="openProject('al-fath-makassar')"><span class="nav-icon">🏢</span>Al Fath Makassar</div>
+    <div class="nav-item" onclick="openProject('griya-cariu-indah')"><span class="nav-icon">🏡</span>Griya Cariu</div>
+    <div class="nav-item" onclick="openProject('beauty')"><span class="nav-icon">✨</span>Loonars Beauty</div>
+
+    <div class="sidebar-label">Lainnya</div>
+    <a href="/" class="nav-item" target="_blank"><span class="nav-icon">🔗</span>Lihat Website</a>
+  </div>
+
+  <!-- Main content -->
+  <div class="main">
+
+    <!-- DASHBOARD PAGE -->
+    <div class="page active" id="page-dashboard">
+      <div class="page-title">Dashboard</div>
+      <div class="page-sub">Selamat datang di panel admin haluoleo.id</div>
+
+      <div class="stats-row" id="statsRow">
+        <div class="stat-card"><div class="stat-num" id="stat-total">–</div><div class="stat-label">Total Foto</div></div>
+        <div class="stat-card"><div class="stat-num">3</div><div class="stat-label">Proyek Aktif</div></div>
+        <div class="stat-card"><div class="stat-num">4</div><div class="stat-label">Halaman Publik</div></div>
+        <div class="stat-card"><div class="stat-num">12+</div><div class="stat-label">Tahun Berkarya</div></div>
+      </div>
+
+      <div class="page-title" style="font-size:1.3rem;margin-bottom:1.2rem;">Proyek</div>
+      <div class="proj-cards">
+        <div class="proj-card-admin" onclick="openProject('loonars-living')">
+          <div class="pca-img"><img src="img loonars.jpeg" onerror="this.src='hero1.jpeg'" alt="Loonars Living"></div>
+          <div class="pca-body">
+            <div class="pca-name">Loonars Private Living</div>
+            <div class="pca-loc">📍 Yogyakarta</div>
+            <div class="pca-count" id="count-loonars-living">memuat...</div>
+          </div>
+        </div>
+        <div class="proj-card-admin" onclick="openProject('al-fath-makassar')">
+          <div class="pca-img"><img src="img introvert.jpeg" onerror="this.src='hero2.jpeg'" alt="Al Fath"></div>
+          <div class="pca-body">
+            <div class="pca-name">Al Fath Introvert House</div>
+            <div class="pca-loc">📍 Makassar</div>
+            <div class="pca-count" id="count-al-fath-makassar">memuat...</div>
+          </div>
+        </div>
+        <div class="proj-card-admin" onclick="openProject('griya-cariu-indah')">
+          <div class="pca-img"><img src="img cariu1.jpeg" onerror="this.src='hero3.jpeg'" alt="Griya Cariu"></div>
+          <div class="pca-body">
+            <div class="pca-name">Griya Cariu Indah 3</div>
+            <div class="pca-loc">📍 Cariu, Bogor</div>
+            <div class="pca-count" id="count-griya-cariu-indah">memuat...</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PHOTO MANAGER PAGE -->
+    <div class="page" id="page-photos">
+      <button class="back-btn" onclick="showPage('dashboard')">← Kembali ke Dashboard</button>
+      <div class="proj-header">
+        <div class="proj-header-info">
+          <div class="page-title" id="pm-title">Kelola Foto</div>
+          <div class="page-sub" id="pm-sub"></div>
+        </div>
+      </div>
+
+      <!-- Upload Zone -->
+      <div class="upload-zone" id="uploadZone" onclick="document.getElementById('fileInput').click()" ondragover="onDragOver(event)" ondragleave="onDragLeave(event)" ondrop="onDrop(event)">
+        <div class="upload-icon">📤</div>
+        <div class="upload-title">Klik untuk upload foto, atau drag & drop</div>
+        <div class="upload-sub">Mendukung JPG, PNG, WEBP · Bisa pilih banyak sekaligus</div>
+      </div>
+      <input type="file" id="fileInput" multiple accept="image/*" onchange="handleFiles(this.files)">
+
+      <!-- Progress -->
+      <div class="upload-progress" id="uploadProgress">
+        <div class="progress-text" id="progressText">Mengupload...</div>
+        <div class="progress-bar-wrap"><div class="progress-bar" id="progressBar"></div></div>
+      </div>
+
+      <!-- Photo grid -->
+      <div class="photo-grid" id="photoGrid">
+        <div class="empty-state" style="grid-column:1/-1;">
+          <div class="empty-icon">🖼️</div>
+          <div class="empty-text">Belum ada foto. Upload sekarang.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ─── SUPABASE ───
+const SURL='https://gluoioiimapyhchdasfl.supabase.co';
+const SKEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdsdW9pb2lpbWFweWhjaGRhc2ZsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAwNDQ3MjAsImV4cCI6MjA5NTYyMDcyMH0.dHVB0jJBMjUunJKSsqbaM3MGCAq-ZRSWQEqvEyUjIyk';
+const sb=supabase.createClient(SURL,SKEY);
+let currentProject=null;
+let currentUser=null;
+
+// ─── AUTH ───
+async function doLogin(){
+  const email=document.getElementById('emailInput').value.trim();
+  const pass=document.getElementById('passInput').value;
+  document.getElementById('loginErr').style.display='none';
+  document.getElementById('loginLoading').style.display='block';
+  try{
+    const{data,error}=await sb.auth.signInWithPassword({email,password:pass});
+    if(error)throw error;
+    currentUser=data.user;
+    showApp();
+  }catch(e){
+    document.getElementById('loginErr').style.display='block';
+    document.getElementById('loginLoading').style.display='none';
+  }
+}
+
+async function doLogout(){
+  await sb.auth.signOut();
+  document.getElementById('app').style.display='none';
+  document.getElementById('loginScreen').style.display='flex';
+  currentUser=null;
+}
+
+async function checkSession(){
+  const{data:{session}}=await sb.auth.getSession();
+  if(session){currentUser=session.user;showApp();}
+}
+
+function showApp(){
+  document.getElementById('loginScreen').style.display='none';
+  document.getElementById('app').style.display='block';
+  document.getElementById('tbUser').textContent=currentUser?.email||'Admin';
+  loadDashboard();
+}
+
+// ─── NAVIGATION ───
+function showPage(p){
+  document.querySelectorAll('.page').forEach(el=>el.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(el=>el.classList.remove('active'));
+  document.getElementById('page-'+p)?.classList.add('active');
+  document.getElementById('nav-'+p)?.classList.add('active');
+}
+
+function openProject(slug){
+  currentProject=slug;
+  const names={'loonars-living':'Loonars Private Living','al-fath-makassar':'Al Fath Introvert House','griya-cariu-indah':'Griya Cariu Indah 3','beauty':'Loonars Beauty'};
+  const locs={'loonars-living':'Yogyakarta','al-fath-makassar':'Makassar','griya-cariu-indah':'Cariu, Bogor','beauty':'–'};
+  document.getElementById('pm-title').textContent=names[slug]||slug;
+  document.getElementById('pm-sub').textContent='📍 '+(locs[slug]||'')+'  ·  Klik foto untuk edit caption';
+  showPage('photos');
+  loadPhotos();
+}
+
+// ─── DASHBOARD ───
+async function loadDashboard(){
+  const slugs=['loonars-living','al-fath-makassar','griya-cariu-indah'];
+  let total=0;
+  for(const s of slugs){
+    try{
+      const{count}=await sb.from('project_images').select('*',{count:'exact',head:true}).eq('project_slug',s);
+      const n=count||0;total+=n;
+      const el=document.getElementById('count-'+s);
+      if(el)el.textContent=n+' foto';
+    }catch(e){const el=document.getElementById('count-'+s);if(el)el.textContent='–';}
+  }
+  const st=document.getElementById('stat-total');if(st)st.textContent=total;
+}
+
+// ─── PHOTO MANAGER ───
+async function loadPhotos(){
+  const grid=document.getElementById('photoGrid');
+  grid.innerHTML='<div class="empty-state" style="grid-column:1/-1;"><div class="empty-icon">⏳</div><div class="empty-text">Memuat foto...</div></div>';
+  try{
+    const{data,error}=await sb.from('project_images').select('*').eq('project_slug',currentProject).order('display_order',{ascending:true});
+    if(error)throw error;
+    renderPhotos(data||[]);
+  }catch(e){
+    grid.innerHTML='<div class="empty-state" style="grid-column:1/-1;"><div class="empty-icon">❌</div><div class="empty-text">Gagal memuat. Cek koneksi Supabase.</div></div>';
+  }
+}
+
+function renderPhotos(photos){
+  const grid=document.getElementById('photoGrid');
+  if(!photos.length){
+    grid.innerHTML='<div class="empty-state" style="grid-column:1/-1;"><div class="empty-icon">🖼️</div><div class="empty-text">Belum ada foto. Upload di atas.</div></div>';
+    return;
+  }
+  grid.innerHTML=photos.map((p,i)=>`
+    <div class="photo-item" id="photo-${p.id}">
+      <div class="photo-order-badge">${i+1}</div>
+      <div class="photo-item-img"><img src="${p.url}" alt="${p.caption||''}" loading="lazy" onerror="this.src='hero1.jpeg'"></div>
+      <div class="photo-item-body">
+        <input type="text" class="photo-caption-input" value="${p.caption||''}" placeholder="Caption (opsional)" onblur="saveCaption('${p.id}',this.value)">
+        <div class="photo-actions">
+          <button class="btn-ord" onclick="movePhoto('${p.id}',${p.display_order},-1)" title="Naikan">↑</button>
+          <button class="btn-ord" onclick="movePhoto('${p.id}',${p.display_order},1)" title="Turunkan">↓</button>
+          <button class="btn-del" onclick="deletePhoto('${p.id}','${p.storage_path}')">🗑 Hapus</button>
+        </div>
+      </div>
+    </div>`).join('');
+}
+
+// ─── UPLOAD ───
+function onDragOver(e){e.preventDefault();document.getElementById('uploadZone').classList.add('drag-over');}
+function onDragLeave(){document.getElementById('uploadZone').classList.remove('drag-over');}
+function onDrop(e){e.preventDefault();document.getElementById('uploadZone').classList.remove('drag-over');handleFiles(e.dataTransfer.files);}
+
+async function handleFiles(files){
+  if(!files||!files.length)return;
+  if(!currentProject){toast('Pilih proyek dulu!','error');return;}
+  const arr=Array.from(files);
+  const prog=document.getElementById('uploadProgress');
+  const bar=document.getElementById('progressBar');
+  const txt=document.getElementById('progressText');
+  prog.style.display='block';bar.style.width='0%';
+
+  // Get current max order
+  const{data:existing}=await sb.from('project_images').select('display_order').eq('project_slug',currentProject).order('display_order',{ascending:false}).limit(1);
+  let nextOrder=(existing&&existing[0]?existing[0].display_order:0)+1;
+
+  let done=0;
+  for(const file of arr){
+    txt.textContent=`Mengupload ${done+1}/${arr.length}: ${file.name}`;
+    try{
+      // Upload to storage
+      const ext=file.name.split('.').pop();
+      const path=`${currentProject}/${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
+      const{error:upErr}=await sb.storage.from('project-images').upload(path,file,{cacheControl:'31536000',upsert:false});
+      if(upErr)throw upErr;
+      // Get public URL
+      const{data:{publicUrl}}=sb.storage.from('project-images').getPublicUrl(path);
+      // Insert to DB
+      const{error:dbErr}=await sb.from('project_images').insert({project_slug:currentProject,url:publicUrl,storage_path:path,caption:'',display_order:nextOrder++});
+      if(dbErr)throw dbErr;
+    }catch(e){toast('Gagal upload: '+file.name,'error');}
+    done++;
+    bar.style.width=(done/arr.length*100)+'%';
+  }
+  prog.style.display='none';
+  toast(done+' foto berhasil diupload ✓','success');
+  loadPhotos();loadDashboard();
+  document.getElementById('fileInput').value='';
+}
+
+// ─── PHOTO ACTIONS ───
+async function deletePhoto(id,storagePath){
+  if(!confirm('Hapus foto ini?'))return;
+  try{
+    if(storagePath)await sb.storage.from('project-images').remove([storagePath]);
+    await sb.from('project_images').delete().eq('id',id);
+    document.getElementById('photo-'+id)?.remove();
+    toast('Foto dihapus','success');
+    loadDashboard();
+  }catch(e){toast('Gagal hapus','error');}
+}
+
+async function saveCaption(id,caption){
+  try{await sb.from('project_images').update({caption}).eq('id',id);}
+  catch(e){toast('Gagal simpan caption','error');}
+}
+
+async function movePhoto(id,order,dir){
+  // Swap with adjacent item
+  const newOrder=order+dir;
+  try{
+    // Get the item at newOrder
+    const{data}=await sb.from('project_images').select('id,display_order').eq('project_slug',currentProject).eq('display_order',newOrder).single();
+    if(data){
+      // Swap orders
+      await sb.from('project_images').update({display_order:order}).eq('id',data.id);
+      await sb.from('project_images').update({display_order:newOrder}).eq('id',id);
+      loadPhotos();
+    }
+  }catch(e){}
+}
+
+// ─── TOAST ───
+function toast(msg,type='success'){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.className='toast '+type+' show';
+  setTimeout(()=>t.classList.remove('show'),3000);
+}
+
+// ─── INIT ───
+checkSession();
+</script>
+</body>
+</html>
