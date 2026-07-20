@@ -34,7 +34,7 @@ export default function Founder() {
             Umum Kadin Kota Kendari sebelum fokus penuh memimpin ekspansi nasional.
           </Reveal>
           <Reveal as="div" delay={4}>
-            <Link href="/direktur.html" className={shared.btnSage}><span>Lihat Profil Lengkap →</span></Link>
+            <Link href="/direktur" className={shared.btnSage}><span>Lihat Profil Lengkap →</span></Link>
           </Reveal>
         </Reveal>
       </div>

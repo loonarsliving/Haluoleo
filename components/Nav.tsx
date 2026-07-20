@@ -9,7 +9,7 @@ const MENU_LINKS = [
   { href: '/loonars-living', label: 'Loonars Living' },
   { href: '/al-fath-makassar.html', label: 'Al Fath Makassar' },
   { href: '/griya-cariu-indah', label: 'Griya Cariu' },
-  { href: '/direktur.html', label: 'Direktur' },
+  { href: '/direktur', label: 'Direktur' },
   { href: '/beauty.html', label: 'Loonars Beauty', rose: true },
   { href: '/kontak', label: 'Kontak' },
 ];
@@ -35,7 +35,7 @@ export default function Nav() {
         <div className={styles.navR}>
           <ul className={styles.navLinks}>
             <li><Link href="/#projects">Properti</Link></li>
-            <li><Link href="/direktur.html">Direktur</Link></li>
+            <li><Link href="/direktur">Direktur</Link></li>
             <li><Link href="/beauty.html">Beauty</Link></li>
           </ul>
           <a href="https://wa.me/6282228885223" target="_blank" rel="noopener noreferrer" className={styles.navCta}>

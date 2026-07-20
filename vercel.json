@@ -1,7 +1,6 @@
 {
   "rewrites": [
     { "source": "/al-fath-makassar",  "destination": "/al-fath-makassar.html" },
-    { "source": "/direktur",          "destination": "/direktur.html" },
     { "source": "/beauty",            "destination": "/beauty.html" },
     { "source": "/admin",             "destination": "/admin.html" }
   ],

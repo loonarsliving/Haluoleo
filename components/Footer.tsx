@@ -5,7 +5,7 @@ const FOOTER_LINKS = [
   { href: '/loonars-living', label: 'Loonars Living' },
   { href: '/al-fath-makassar.html', label: 'Al Fath' },
   { href: '/griya-cariu-indah', label: 'Griya Cariu' },
-  { href: '/direktur.html', label: 'Direktur' },
+  { href: '/direktur', label: 'Direktur' },
   { href: '/beauty.html', label: 'Beauty' },
   { href: '/kontak', label: 'Kontak' },
 ];
