@@ -28,9 +28,7 @@ export default function LoonarsLivingPage() {
       <Nav />
 
       <DetailHero
-        videoWebm="/loonars-hero.webm"
-        videoMp4="/loonars-hero.mp4"
-        poster="/loonars-hero-poster.jpeg"
+        media={{ type: 'video', webm: '/loonars-hero.webm', mp4: '/loonars-hero.mp4', poster: '/loonars-hero-poster.jpeg' }}
         eyebrow="Private Villa · Yogyakarta"
         titleLines={[{ text: 'Loonars' }, { text: 'Private Living', italic: true }]}
         chips={['📍 Yogyakarta', '🏘️ Private Pool Villa', '✨ Premium Exclusive']}

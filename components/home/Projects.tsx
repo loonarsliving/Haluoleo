@@ -23,7 +23,7 @@ const PROJECTS = [
     desc: '"Where Silence Becomes Luxury" — 95 unit hunian eksklusif di Makassar.',
   },
   {
-    href: '/griya-cariu-indah.html',
+    href: '/griya-cariu-indah',
     img: '/cariu1.jpeg',
     num: '03',
     badge: { text: 'KPR Subsidi', tone: 'sub' as const },

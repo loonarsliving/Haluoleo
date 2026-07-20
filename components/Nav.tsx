@@ -8,7 +8,7 @@ const MENU_LINKS = [
   { href: '/', label: 'Beranda' },
   { href: '/loonars-living', label: 'Loonars Living' },
   { href: '/al-fath-makassar.html', label: 'Al Fath Makassar' },
-  { href: '/griya-cariu-indah.html', label: 'Griya Cariu' },
+  { href: '/griya-cariu-indah', label: 'Griya Cariu' },
   { href: '/direktur.html', label: 'Direktur' },
   { href: '/beauty.html', label: 'Loonars Beauty', rose: true },
   { href: '/kontak.html', label: 'Kontak' },

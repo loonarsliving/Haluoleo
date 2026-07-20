@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, type ReactNode } from 'react';
+import { useEffect, useRef, type CSSProperties, type ReactNode } from 'react';
 
 type Direction = 'up' | 'left' | 'right';
 type Delay = 0 | 1 | 2 | 3 | 4;
@@ -12,12 +12,14 @@ export default function Reveal({
   direction = 'up',
   delay = 0,
   className = '',
+  style,
   children,
 }: {
   as?: keyof React.JSX.IntrinsicElements;
   direction?: Direction;
   delay?: Delay;
   className?: string;
+  style?: CSSProperties;
   children: ReactNode;
 }) {
   const ref = useRef<HTMLElement | null>(null);
@@ -45,7 +47,7 @@ export default function Reveal({
 
   return (
     // @ts-expect-error dynamic intrinsic tag with shared ref
-    <Tag ref={ref} className={classes}>
+    <Tag ref={ref} className={classes} style={style}>
       {children}
     </Tag>
   );

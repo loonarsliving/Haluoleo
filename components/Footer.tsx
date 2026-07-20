@@ -4,7 +4,7 @@ import styles from './Footer.module.css';
 const FOOTER_LINKS = [
   { href: '/loonars-living', label: 'Loonars Living' },
   { href: '/al-fath-makassar.html', label: 'Al Fath' },
-  { href: '/griya-cariu-indah.html', label: 'Griya Cariu' },
+  { href: '/griya-cariu-indah', label: 'Griya Cariu' },
   { href: '/direktur.html', label: 'Direktur' },
   { href: '/beauty.html', label: 'Beauty' },
   { href: '/kontak.html', label: 'Kontak' },

@@ -5,20 +5,19 @@ import Particles from './Particles';
 import styles from './DetailHero.module.css';
 
 export type TitleLine = { text: string; italic?: boolean };
+export type HeroMedia =
+  | { type: 'video'; webm: string; mp4: string; poster: string }
+  | { type: 'image'; src: string };
 
 export default function DetailHero({
-  videoWebm,
-  videoMp4,
-  poster,
+  media,
   eyebrow,
   titleLines,
   chips,
   backHref = '/',
   backLabel = 'Kembali ke Beranda',
 }: {
-  videoWebm: string;
-  videoMp4: string;
-  poster: string;
+  media: HeroMedia;
   eyebrow: string;
   titleLines: TitleLine[];
   chips: string[];
@@ -27,12 +26,16 @@ export default function DetailHero({
 }) {
   return (
     <section className={styles.dHero}>
-      <div className={styles.dHeroVideo}>
-        <video autoPlay muted loop playsInline poster={poster}>
-          <source src={videoWebm} type="video/webm" />
-          <source src={videoMp4} type="video/mp4" />
-        </video>
-      </div>
+      {media.type === 'video' ? (
+        <div className={styles.dHeroVideo}>
+          <video autoPlay muted loop playsInline poster={media.poster}>
+            <source src={media.webm} type="video/webm" />
+            <source src={media.mp4} type="video/mp4" />
+          </video>
+        </div>
+      ) : (
+        <div className={styles.dHeroBg} style={{ backgroundImage: `url('${media.src}')` }} />
+      )}
       <div className={styles.dHeroVg1} />
       <div className={styles.dHeroVg2} />
       <Particles />

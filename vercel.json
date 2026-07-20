@@ -1,7 +1,6 @@
 {
   "rewrites": [
     { "source": "/al-fath-makassar",  "destination": "/al-fath-makassar.html" },
-    { "source": "/griya-cariu-indah", "destination": "/griya-cariu-indah.html" },
     { "source": "/direktur",          "destination": "/direktur.html" },
     { "source": "/beauty",            "destination": "/beauty.html" },
     { "source": "/kontak",            "destination": "/kontak.html" },
