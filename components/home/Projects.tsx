@@ -45,7 +45,7 @@ export default function Projects() {
           <h2 className={styles.projTitleBig}>Tiga Kota,<br /><em>Satu Visi</em></h2>
         </div>
         <Reveal as="div" delay={2} direction="up" className={styles.ctaWrap}>
-          <Link href="/kontak.html" className={shared.btnSage}><span>Konsultasi Gratis →</span></Link>
+          <Link href="/kontak" className={shared.btnSage}><span>Konsultasi Gratis →</span></Link>
         </Reveal>
       </Reveal>
       <div className={styles.devGrid}>

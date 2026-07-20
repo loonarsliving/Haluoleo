@@ -7,7 +7,7 @@ const FOOTER_LINKS = [
   { href: '/griya-cariu-indah', label: 'Griya Cariu' },
   { href: '/direktur.html', label: 'Direktur' },
   { href: '/beauty.html', label: 'Beauty' },
-  { href: '/kontak.html', label: 'Kontak' },
+  { href: '/kontak', label: 'Kontak' },
 ];
 
 export default function Footer() {

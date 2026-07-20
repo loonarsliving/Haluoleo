@@ -22,7 +22,7 @@ export default function CtaBanner({
         <a href={whatsappHref} target="_blank" rel="noopener noreferrer" className={shared.btnP}>
           <span>{whatsappLabel}</span>
         </a>
-        <Link href="/kontak.html" className={shared.btnO}>Form Pertanyaan →</Link>
+        <Link href="/kontak" className={shared.btnO}>Form Pertanyaan →</Link>
       </Reveal>
     </div>
   );
