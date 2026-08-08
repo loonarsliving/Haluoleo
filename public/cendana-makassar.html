@@ -6,7 +6,7 @@
 <meta name="description" content="Cendana Private Living Makassar — cluster gerbang tunggal 18 unit di Jl. Todopuli 6, Borong Indah 7. Desain klasik-modern 2 lantai, taman rooftop, KPR tersedia.">
 <meta property="og:title" content="Cendana Private Living — Cluster Eksklusif Makassar | Maha Karya Haluoleo">
 <meta property="og:description" content="Cendana Private Living Makassar — cluster gerbang tunggal 18 unit di Jl. Todopuli 6, Borong Indah 7. Desain klasik-modern 2 lantai, taman rooftop, KPR tersedia.">
-<meta property="og:image" content="https://haluoleo.id/cendana-hero.jpeg">
+<meta property="og:image" content="https://haluoleo.id/cendana-house-500.png">
 <link rel="canonical" href="https://haluoleo.id">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js" defer></script>
 <style>
@@ -160,7 +160,11 @@ nav{position:fixed;top:0;width:100%;z-index:1000;padding:1.5rem 3rem;display:fle
 
 /* UNIT CARDS */
 .units{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:rgba(255,255,255,.05);margin-top:3rem;}
-.unit{background:var(--dark);padding:2.5rem 2rem;position:relative;overflow:hidden;transition:background .3s;}
+.unit{background:var(--dark);padding:0 0 2.5rem;position:relative;overflow:hidden;transition:background .3s;}
+.unit-photo{width:100%;aspect-ratio:4/3;overflow:hidden;cursor:none;margin-bottom:2rem;}
+.unit-photo img{width:100%;height:100%;object-fit:cover;filter:brightness(.85);transition:transform .6s cubic-bezier(.77,0,.175,1),filter .6s;}
+.unit-photo:hover img{transform:scale(1.06);filter:brightness(1);}
+.unit-body{padding:0 2rem;}
 .unit::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--sage),var(--gold));transform:scaleX(0);transform-origin:left;transition:transform .45s cubic-bezier(.77,0,.175,1);}
 .unit:hover::after{transform:scaleX(1);}
 .unit:hover{background:rgba(122,158,110,.04);}
@@ -325,18 +329,24 @@ footer{background:#030604;padding:2.5rem 4rem;display:flex;align-items:center;ju
     <h2 class="s-title rv d1">Dua Pilihan,<br><em>Satu Karakter</em></h2>
     <div class="units">
       <div class="unit rv d1">
-        <div class="unit-badge ub-std">Type 400</div>
-        <div class="unit-name">Cendana Classic</div>
-        <div class="unit-type">4&times;15 m &middot; 2 Lantai &middot; 2 KT &middot; 2 KM</div>
-        <ul class="unit-feats"><li>Ruang tamu + dapur terbuka</li><li>Taman depan &amp; taman rooftop</li><li>Carport 1 mobil</li></ul>
-        <a href="javascript:void(0)" class="unit-plan-link" onclick="openLb([{url:'cendana-denah-400.jpeg',caption:'Denah Type 400 &middot; 4x15 m'}],0)">Lihat Denah &#8594;</a>
+        <div class="unit-photo" onclick="openLb([{url:'cendana-house-400.png',caption:'Fasad Type 400 &middot; Cendana Classic'}],0)"><img src="cendana-house-400.png" alt="Fasad Cendana Classic Type 400" loading="lazy"></div>
+        <div class="unit-body">
+          <div class="unit-badge ub-std">Type 400</div>
+          <div class="unit-name">Cendana Classic</div>
+          <div class="unit-type">4&times;15 m &middot; 2 Lantai &middot; 2 KT &middot; 2 KM</div>
+          <ul class="unit-feats"><li>Ruang tamu + dapur terbuka</li><li>Taman depan &amp; taman rooftop</li><li>Carport 1 mobil</li></ul>
+          <a href="javascript:void(0)" class="unit-plan-link" onclick="openLb([{url:'cendana-denah-400.jpeg',caption:'Denah Type 400 &middot; 4x15 m'}],0)">Lihat Denah &#8594;</a>
+        </div>
       </div>
       <div class="unit rv d2">
-        <div class="unit-badge ub-pop">Type 500</div>
-        <div class="unit-name">Cendana Grand</div>
-        <div class="unit-type">5&times;15 m &middot; 2 Lantai &middot; 2 KT &middot; 2 KM</div>
-        <ul class="unit-feats"><li>Layout lebih lega</li><li>Taman depan &amp; taman rooftop</li><li>Carport 1 mobil</li></ul>
-        <a href="javascript:void(0)" class="unit-plan-link" onclick="openLb([{url:'cendana-denah-500.jpeg',caption:'Denah Type 500 &middot; 5x15 m'}],0)">Lihat Denah &#8594;</a>
+        <div class="unit-photo" onclick="openLb([{url:'cendana-house-500.png',caption:'Fasad Type 500 &middot; Cendana Grand'}],0)"><img src="cendana-house-500.png" alt="Fasad Cendana Grand Type 500" loading="lazy"></div>
+        <div class="unit-body">
+          <div class="unit-badge ub-pop">Type 500</div>
+          <div class="unit-name">Cendana Grand</div>
+          <div class="unit-type">5&times;15 m &middot; 2 Lantai &middot; 2 KT &middot; 2 KM</div>
+          <ul class="unit-feats"><li>Layout lebih lega</li><li>Taman depan &amp; taman rooftop</li><li>Carport 1 mobil</li></ul>
+          <a href="javascript:void(0)" class="unit-plan-link" onclick="openLb([{url:'cendana-denah-500.jpeg',caption:'Denah Type 500 &middot; 5x15 m'}],0)">Lihat Denah &#8594;</a>
+        </div>
       </div>
     </div>
   </div>

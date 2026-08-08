@@ -15,7 +15,7 @@ const PROJECTS = [
   },
   {
     href: '/cendana-makassar.html',
-    img: '/cendana-hero.jpeg',
+    img: '/cendana-house-500.png',
     num: '02',
     badge: { text: 'New · 18 Unit', tone: 'new' as const },
     loc: 'Borong Indah, Makassar',
