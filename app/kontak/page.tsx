@@ -11,17 +11,17 @@ import styles from './page.module.css';
 
 export const metadata: Metadata = {
   title: 'Kontak — PT. Maha Karya Haluoleo',
-  description: 'Hubungi PT. Maha Karya Haluoleo. Konsultasi properti gratis — Loonars Living, Al Fath Makassar, Griya Cariu Bogor.',
+  description: 'Hubungi PT. Maha Karya Haluoleo. Konsultasi properti gratis — Loonars Living, Cendana Makassar, Griya Cariu Bogor.',
   openGraph: {
     title: 'Kontak — PT. Maha Karya Haluoleo',
-    description: 'Hubungi PT. Maha Karya Haluoleo. Konsultasi properti gratis — Loonars Living, Al Fath Makassar, Griya Cariu Bogor.',
+    description: 'Hubungi PT. Maha Karya Haluoleo. Konsultasi properti gratis — Loonars Living, Cendana Makassar, Griya Cariu Bogor.',
     images: ['https://haluoleo.id/img%20drone.jpeg'],
   },
 };
 
 const PROJECT_LINKS = [
   { href: '/loonars-living', badge: 'Loonars Living 📍 Yogyakarta', name: 'Loonars Private Living' },
-  { href: '/al-fath-makassar.html', badge: 'Al Fath 📍 Makassar', name: 'Al Fath Introvert House' },
+  { href: '/cendana-makassar.html', badge: 'Cendana 📍 Makassar', name: 'Cendana Private Living' },
   { href: '/griya-cariu-indah', badge: 'Griya Cariu 📍 Bogor', name: 'Griya Cariu Indah 3' },
 ];
 

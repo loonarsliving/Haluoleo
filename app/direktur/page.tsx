@@ -45,14 +45,14 @@ const TIMELINE = [
   {
     year: '2025',
     title: 'Meluncurkan Brand Loonars',
-    desc: 'Loonars Private Living (Yogyakarta) — villa eksklusif pertama di Jawa. Bersamaan dengan peluncuran Loonars Beauty (HydraGlow). Ekspansi ke Bogor dengan Griya Cariu Indah 3 dan Al Fath Introvert House di Makassar.',
+    desc: 'Loonars Private Living (Yogyakarta) — villa eksklusif pertama di Jawa. Bersamaan dengan peluncuran Loonars Beauty (HydraGlow). Ekspansi ke Bogor dengan Griya Cariu Indah 3 dan Cendana Private Living di Makassar.',
     badge: 'Multi-brand · Multi-kota',
   },
 ];
 
 const PORTFOLIO = [
   { href: '/loonars-living', img: '/loonars.jpeg', loc: 'Private Villa 📍 Yogyakarta', name: 'Loonars Private Living', sub: 'Villa Eksklusif · 2 Unit' },
-  { href: '/al-fath-makassar.html', img: '/introvert.jpeg', loc: '95 Unit 📍 Makassar', name: 'Al Fath Introvert House', sub: 'Hunian Premium' },
+  { href: '/cendana-makassar.html', img: '/cendana-hero.jpeg', loc: '18 Unit 📍 Makassar', name: 'Cendana Private Living', sub: 'Hunian Premium' },
   { href: '/griya-cariu-indah', img: '/cariu1.jpeg', loc: 'KPR Subsidi 📍 Cariu, Bogor', name: 'Griya Cariu Indah 3', sub: '154 Unit Subsidi' },
 ];
 

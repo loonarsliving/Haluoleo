@@ -2,7 +2,7 @@ import styles from './Ticker.module.css';
 
 const ITEMS = [
   'Loonars Living',
-  'Al Fath Introvert House',
+  'Cendana Private Living',
   'Griya Cariu Indah',
   'Private Villa Yogyakarta',
   'KPR Subsidi Bogor',

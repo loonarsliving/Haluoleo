@@ -199,7 +199,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 
     <div class="sidebar-label">Proyek</div>
     <div class="nav-item" onclick="openProject('loonars-living')"><span class="nav-icon">🏖️</span>Loonars Living</div>
-    <div class="nav-item" onclick="openProject('al-fath-makassar')"><span class="nav-icon">🏢</span>Al Fath Makassar</div>
+    <div class="nav-item" onclick="openProject('cendana-makassar')"><span class="nav-icon">🏢</span>Cendana Makassar</div>
     <div class="nav-item" onclick="openProject('griya-cariu-indah')"><span class="nav-icon">🏡</span>Griya Cariu</div>
     <div class="nav-item" onclick="openProject('beauty')"><span class="nav-icon">✨</span>Loonars Beauty</div>
 
@@ -232,12 +232,12 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
             <div class="pca-count" id="count-loonars-living">memuat...</div>
           </div>
         </div>
-        <div class="proj-card-admin" onclick="openProject('al-fath-makassar')">
-          <div class="pca-img"><img src="img introvert.jpeg" onerror="this.src='hero2.jpeg'" alt="Al Fath"></div>
+        <div class="proj-card-admin" onclick="openProject('cendana-makassar')">
+          <div class="pca-img"><img src="cendana-hero.jpeg" onerror="this.src='hero2.jpeg'" alt="Cendana"></div>
           <div class="pca-body">
-            <div class="pca-name">Al Fath Introvert House</div>
+            <div class="pca-name">Cendana Private Living</div>
             <div class="pca-loc">📍 Makassar</div>
-            <div class="pca-count" id="count-al-fath-makassar">memuat...</div>
+            <div class="pca-count" id="count-cendana-makassar">memuat...</div>
           </div>
         </div>
         <div class="proj-card-admin" onclick="openProject('griya-cariu-indah')">
@@ -344,8 +344,8 @@ function showPage(p){
 
 function openProject(slug){
   currentProject=slug;
-  const names={'loonars-living':'Loonars Private Living','al-fath-makassar':'Al Fath Introvert House','griya-cariu-indah':'Griya Cariu Indah 3','beauty':'Loonars Beauty'};
-  const locs={'loonars-living':'Yogyakarta','al-fath-makassar':'Makassar','griya-cariu-indah':'Cariu, Bogor','beauty':'–'};
+  const names={'loonars-living':'Loonars Private Living','cendana-makassar':'Cendana Private Living','griya-cariu-indah':'Griya Cariu Indah 3','beauty':'Loonars Beauty'};
+  const locs={'loonars-living':'Yogyakarta','cendana-makassar':'Makassar','griya-cariu-indah':'Cariu, Bogor','beauty':'–'};
   document.getElementById('pm-title').textContent=names[slug]||slug;
   document.getElementById('pm-sub').textContent='📍 '+(locs[slug]||'')+'  ·  Klik foto untuk edit caption';
   showPage('photos');
@@ -354,7 +354,7 @@ function openProject(slug){
 
 // ─── DASHBOARD ───
 async function loadDashboard(){
-  const slugs=['loonars-living','al-fath-makassar','griya-cariu-indah'];
+  const slugs=['loonars-living','cendana-makassar','griya-cariu-indah'];
   let total=0;
   for(const s of slugs){
     try{

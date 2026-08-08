@@ -1,6 +1,6 @@
 {
   "rewrites": [
-    { "source": "/al-fath-makassar",  "destination": "/al-fath-makassar.html" },
+    { "source": "/cendana-makassar",  "destination": "/cendana-makassar.html" },
     { "source": "/admin",             "destination": "/admin.html" }
   ],
   "headers": [

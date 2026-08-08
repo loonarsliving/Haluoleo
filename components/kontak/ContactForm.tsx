@@ -7,7 +7,7 @@ import styles from './ContactForm.module.css';
 
 const PROJECTS = [
   'Loonars Private Living (Yogyakarta)',
-  'Al Fath Introvert House (Makassar)',
+  'Cendana Private Living (Makassar)',
   'Griya Cariu Indah 3 (Bogor)',
   'Loonars Beauty',
   'Lainnya / Umum',
